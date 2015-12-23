@@ -13,13 +13,13 @@ OBJS = $(patsubst %.cpp,%.o,$(SOURCE))
  
 all: $(EXEC)
 main:$(OBJS)
-	@$(CC) $(CFLAGS) $(INCLUDE) -o $@ $^
+	$(CC) $(CFLAGS) $(INCLUDE) -o $@ $^
 	@del *.o
 	@echo "<<<<<< $@ is created successfully! >>>>>>"
 
 ##添加文件编译规则
 $(OBJS):%o:%cpp
-	@$(CC) $(CFLAGC) $< -o $@
+	$(CC) $(CFLAGC) $< -o $@
 
 .PHONY: clean
 

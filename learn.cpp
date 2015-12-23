@@ -54,6 +54,27 @@ CVector CVector::operator+ (CVector param) {
 //     cout << (*pf)(lines) << "hour(s)\n";
 // }
 
+void Learn::swapr(int& a,int& b) {
+    int temp;
+    temp = a;
+    a = b;
+    b = temp;
+}
+
+void Learn::swapp(int* p,int* q) {
+    int temp;
+    temp = *p;
+    *p = *q;
+    *q = temp;
+}
+
+void Learn::swapv(int a,int b) {
+    int temp;
+    temp = a;
+    a = b;
+    b = temp;
+}
+
 void Learn::test1(){
 	CVector a (3,1);
     CVector b (1,2);
@@ -90,3 +111,23 @@ void Learn::test2(){
 //     cout << "Here`s Pam`s estimate:";
 //     estimate(code,pam);
 // }
+
+void Learn::test4() {
+    int wallet1 = 300;
+    int wallet2 = 350;
+    cout << "wallet1 = $" << wallet1<<endl;
+    cout << "wallet2 = $" << wallet2<<endl;
+
+    swapr(wallet1,wallet2);
+    cout << "wallet1 = $" << wallet1<<endl;
+    cout << "wallet2 = $" << wallet2<<endl;
+
+    swapp(&wallet1, &wallet2);
+    cout << "wallet1 = $" << wallet1<<endl;
+    cout << "wallet2 = $" << wallet2<<endl;
+
+    swapv(wallet1,wallet2);
+    cout << "wallet1 = $" << wallet1<<endl;
+    cout << "wallet2 = $" << wallet2<<endl;
+
+}

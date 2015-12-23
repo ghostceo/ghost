@@ -56,6 +56,10 @@ using namespace std;
 			// double pam(int);
 			// void estimate(int lines, double (*pf)(int));
 			// void test3();
+			void swapr(int& a, int& b);
+			void swapp(int* p, int* q);
+			void swapv(int  a, int  b);
+			void test4();
 	};
 
 	class CRectangle {

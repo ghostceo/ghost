@@ -34,7 +34,8 @@ int main() {
     Learn l;
     //l.test();
     //l.test1();
-    l.test2();
+    //l.test2();
+    l.test4();
 
     putchar('\n');
     return 0;

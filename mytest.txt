@@ -1,4 +1,0 @@
-welcome to git
-heihei  it`s  my first time use git
-
-

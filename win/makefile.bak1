@@ -1,0 +1,30 @@
+##第二个版本多文件
+TARGET = .
+CC = g++
+CFLAGS = -g -D_HH
+CFLAGC = -c
+INCLUDE = -I$(TARGET)
+EXEC = $(TARGET)/main
+OBJ = main.o hello1.o hello.o
+
+ 
+all: $(EXEC)
+main:$(OBJ)
+	$(CC) $(CFLAGS) $(INCLUDE) -o $@ $^
+	@del *.o
+	@echo "<<<<<< $@ is created successfully! >>>>>>"
+
+main.o:main.cpp hello1.h hello.h
+	$(CC) $(CFLAGC) $<
+
+hello1.o: hello1.cpp hello1.h
+	$(CC) -c $<
+
+hello.o: hello.cpp hello.h
+	$(CC) -c $<
+
+.PHONY: clean
+
+clean:
+	del *.exe
+

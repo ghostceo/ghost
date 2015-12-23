@@ -1,0 +1,22 @@
+##第一个版本 只有main和hello文件
+TARGET = .
+CC = g++
+CFLAGS = -g -D_HH
+CFLAGC = -c
+
+MAINC = main.cpp
+HELLO = hello.cpp
+OBJ = hello.o
+
+INCLUDE = -I$(TARGET)
+EXEC = $(TARGET)/main
+      
+all: $(EXEC)
+$(EXEC): $(OBJ) $(MAINC)
+	$(CC) $(CFLAGS) $(OBJ) $(MAINC) $(INCLUDE) -o $@
+	del $(OBJ)
+	@echo "<<<<<< $@ is created successfully! >>>>>>"
+$(OBJ): $(HELLO)
+	$(CC) $(CFLAGC) $(HELLO) -o $@
+clean:
+	del $(EXEC)

@@ -52,6 +52,10 @@ using namespace std;
 			void test();
 			void test1();
 			void test2();
+			// double betsy(int);
+			// double pam(int);
+			// void estimate(int lines, double (*pf)(int));
+			// void test3();
 	};
 
 	class CRectangle {

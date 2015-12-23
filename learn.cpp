@@ -41,6 +41,19 @@ CVector CVector::operator+ (CVector param) {
     return (temp);
 }
 
+// double Learn::betsy(int lns) {
+//     return 0.05 * lns;
+// }
+
+// double Learn::pam(int lns) {
+//     return 0.03 * lns * 0.004 *lns *lns;
+// }
+
+// void Learn::estimate(int lines, double (*pf)(int)) {
+//     cout << lines << "lines will take";
+//     cout << (*pf)(lines) << "hour(s)\n";
+// }
+
 void Learn::test1(){
 	CVector a (3,1);
     CVector b (1,2);
@@ -66,3 +79,14 @@ void Learn::test2(){
     pairs<int> myobject(100, 75);
     cout<< myobject.getmax()<<endl;
 }
+
+
+// void Learn::test3() {
+//     int code;
+//     cout << "How mang lines of code do you need?";
+//     cin >> code;
+//     cout << "Here`s Betsy`s estimate:";
+//     estimate(code,betsy);
+//     cout << "Here`s Pam`s estimate:";
+//     estimate(code,pam);
+// }

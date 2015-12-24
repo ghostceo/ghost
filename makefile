@@ -14,7 +14,7 @@ OBJS = $(patsubst %.cpp,%.o,$(SOURCE))
 all: $(EXEC)
 main:$(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDE) -o $@ $^
-	@del *.o
+	@rm *.o
 	@echo "<<<<<< $@ is created successfully! >>>>>>"
 
 ##添加文件编译规则
@@ -24,5 +24,5 @@ $(OBJS):%o:%cpp
 .PHONY: clean
 
 clean:
-	del *.exe
+	@rm *.exe
 

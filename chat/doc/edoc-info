@@ -1,0 +1,4 @@
+{application,server}.
+{packages,[]}.
+{modules,[ben,client,listen_work,main,room_manager,room_sup,room_work,
+          server_app,server_sup,tcp_protocol,user_manager]}.

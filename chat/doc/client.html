@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Module client</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" title="EDoc">
+</head>
+<body bgcolor="white">
+<div class="navbar"><a name="#navbar_top"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<hr>
+
+<h1>Module client</h1>
+<ul class="index"><li><a href="#description">Description</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>Server supervisor module.
+<p>Copyright © 2011</p>
+
+<p><b>Introduced in:</b> 2012-2-20</p>
+<p><b>Authors:</b> Zhang Zhizhen (<a href="mailto:QQ:5256712007"><tt>QQ:5256712007</tt></a>).</p>
+
+<h2><a name="description">Description</a></h2>Server supervisor module.
+<h2><a name="index">Function Index</a></h2>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#add_room-1">add_room/1</a></td><td>Admin to add a room.</td></tr>
+<tr><td valign="top"><a href="#delete_room-1">delete_room/1</a></td><td>delete a room.</td></tr>
+<tr><td valign="top"><a href="#enter_room-1">enter_room/1</a></td><td>Send a enter room request
+ 		Use the string room name as parameter.</td></tr>
+<tr><td valign="top"><a href="#leave_room-0">leave_room/0</a></td><td>Leave out a room.</td></tr>
+<tr><td valign="top"><a href="#login-2">login/2</a></td><td>Send a login request
+ 		Use a string as name.</td></tr>
+<tr><td valign="top"><a href="#logout-0">logout/0</a></td><td>logout the chat room system.</td></tr>
+<tr><td valign="top"><a href="#move-2">move/2</a></td><td>move a user to a room.</td></tr>
+<tr><td valign="top"><a href="#move_all-2">move_all/2</a></td><td>move all the client in one room to another room.</td></tr>
+<tr><td valign="top"><a href="#recv_msg-2">recv_msg/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#reg_player-2">reg_player/2</a></td><td>Send a register request
+ 		 Use a string as name.</td></tr>
+<tr><td valign="top"><a href="#said-1">said/1</a></td><td>Send message to other client in the same room.</td></tr>
+<tr><td valign="top"><a href="#send_msg-1">send_msg/1</a></td><td>Send all the message use the Socket.</td></tr>
+<tr><td valign="top"><a href="#silence-1">silence/1</a></td><td>Set a user silent.</td></tr>
+<tr><td valign="top"><a href="#start-0">start/0</a></td><td>Start Socket connect without parameter.</td></tr>
+<tr><td valign="top"><a href="#unsilence-1">unsilence/1</a></td><td>Set a user unsilent.</td></tr>
+</table>
+
+<h2><a name="functions">Function Details</a></h2>
+
+<h3 class="function"><a name="add_room-1">add_room/1</a></h3>
+<div class="spec">
+<p><tt>add_room(RoomName::list()) -&gt; ok</tt><br></p>
+</div><p>Admin to add a room.</p>
+
+<h3 class="function"><a name="delete_room-1">delete_room/1</a></h3>
+<div class="spec">
+<p><tt>delete_room(RoomName::list()) -&gt; ok</tt><br></p>
+</div><p>delete a room</p>
+
+<h3 class="function"><a name="enter_room-1">enter_room/1</a></h3>
+<div class="spec">
+<p><tt>enter_room(RoomNum::string()) -&gt; ok</tt><br></p>
+</div><p>Send a enter room request
+ 		Use the string room name as parameter</p>
+
+<h3 class="function"><a name="leave_room-0">leave_room/0</a></h3>
+<div class="spec">
+<p><tt>leave_room() -&gt; ok</tt><br></p>
+</div><p>Leave out a room</p>
+
+<h3 class="function"><a name="login-2">login/2</a></h3>
+<div class="spec">
+<p><tt>login(LogId::string(), Password::list()) -&gt; ok</tt><br></p>
+</div><p>Send a login request
+ 		Use a string as name</p>
+
+<h3 class="function"><a name="logout-0">logout/0</a></h3>
+<div class="spec">
+<p><tt>logout() -&gt; ok</tt><br></p>
+</div><p>logout the chat room system</p>
+
+<h3 class="function"><a name="move-2">move/2</a></h3>
+<div class="spec">
+<p><tt>move(UserId::list(), RoomName::list()) -&gt; ok</tt><br></p>
+</div><p>move a user to a room</p>
+
+<h3 class="function"><a name="move_all-2">move_all/2</a></h3>
+<div class="spec">
+<p><tt>move_all(Room1::list(), Room2::list()) -&gt; ok</tt><br></p>
+</div><p>move all the client in one room to another room.</p>
+
+<h3 class="function"><a name="recv_msg-2">recv_msg/2</a></h3>
+<div class="spec">
+<p><tt>recv_msg(Socket::atom(), RoomList::list()) -&gt; ok</tt><br></p>
+</div>
+
+<h3 class="function"><a name="reg_player-2">reg_player/2</a></h3>
+<div class="spec">
+<p><tt>reg_player(RegId::list(), Password::list()) -&gt; ok</tt><br></p>
+</div><p>Send a register request
+ 		 Use a string as name</p>
+
+<h3 class="function"><a name="said-1">said/1</a></h3>
+<div class="spec">
+<p><tt>said(Msg::string()) -&gt; ok</tt><br></p>
+</div><p>Send message to other client in the same room</p>
+
+<h3 class="function"><a name="send_msg-1">send_msg/1</a></h3>
+<div class="spec">
+<p><tt>send_msg(Socket::atom()) -&gt; ok</tt><br></p>
+</div><p>Send all the message use the Socket</p>
+
+<h3 class="function"><a name="silence-1">silence/1</a></h3>
+<div class="spec">
+<p><tt>silence(UserId::list()) -&gt; ok</tt><br></p>
+</div><p>Set a user silent.</p>
+
+<h3 class="function"><a name="start-0">start/0</a></h3>
+<div class="spec">
+<p><tt>start() -&gt; ok</tt><br></p>
+</div><p>Start Socket connect without parameter.
+ 		Register a process for send message
+  		Register a process for receive message</p>
+
+<h3 class="function"><a name="unsilence-1">unsilence/1</a></h3>
+<div class="spec">
+<p><tt>unsilence(UserId::list()) -&gt; ok</tt><br></p>
+</div><p>Set a user unsilent</p>
+<hr>
+
+<div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<p><i>Generated by EDoc, Mar 21 2012, 20:27:56.</i></p>
+</body>
+</html>

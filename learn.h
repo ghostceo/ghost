@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <string>
 #include <list>
-#include <map>    
+#include <map> 
 using namespace std;
 #ifndef LEARN_H_
 #define LEARN_H_

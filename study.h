@@ -1,5 +1,5 @@
-#include <deque>  
-#include <vector> 
+#include <deque>
+#include <vector>
 #include <iostream>
 #include <cstdio>
 #include <string>

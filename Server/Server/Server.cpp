@@ -34,6 +34,8 @@ void sends(PVOID pt)
 	}
 }
 
+DWORD WINAPI Fun1Proc(LPVOID lpParameter);
+
 int main(int argc, char* argv[])
 {
 	SServer server;
@@ -58,5 +60,17 @@ int main(int argc, char* argv[])
 	}
 
 	getchar();
+	return 0;
+	
+	// HANDLE hThread1;
+	// hThread1 = CreateThread(NULL, 0, Fun1Proc, NULL, 0, NULL);
+	// CloseHandle(hThread1);
+	// cout << "main thread is running" << endl;
+	// getchar();
+	// return 0;
+}
+
+DWORD WINAPI Fun1Proc(LPVOID lpParameter){
+	cout << "thread1 is running" << endl;
 	return 0;
 }

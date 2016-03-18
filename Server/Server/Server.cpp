@@ -1,12 +1,4 @@
-#include <windows.h>
-#include <process.h>
-#include <iostream>
-using namespace std;
-#pragma comment(lib,"ws2_32.lib") 
-#include "SServer.h"
-#include "CSocket.h"
-#include <vector>
-#include "ClientList.h"
+#include "Server.h"
 const int BUF_LEN = 1024;
 
 void recv(PVOID pt)
@@ -19,7 +11,7 @@ void recv(PVOID pt)
 		{
 			ClientList* list = ClientList::GetInstance();
 			list->Remove(csocket);
-			cout << "one user leave，num online:" << list->Count() << endl;
+			cout << "one user leave,num online:" << list->Count() << endl;
 			_endthread(); //用户下线，终止接收数据线程
 		}
 	}
@@ -45,7 +37,7 @@ void sends(PVOID pt)
 int main(int argc, char* argv[])
 {
 	SServer server;
-	bool isStart = server.Start(1986);
+	bool isStart = server.Start(2345);
 	if (isStart)
 	{
 		cout << "server start success..." << endl;
@@ -61,7 +53,7 @@ int main(int argc, char* argv[])
 		CSocket* csocket = server.Accept();
 
 		list->Add(csocket);
-		cout << "new user come，num online:" << list->Count() << endl;
+		cout << "new user come, num online:" << list->Count() << endl;
 		_beginthread(recv, 0, csocket);//启动一个接收数据的线程
 	}
 

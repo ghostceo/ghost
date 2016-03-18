@@ -1,5 +1,5 @@
-#ifndef __SSERVER_H__
-#define __SSERVER_H__
+#ifndef SSERVER_H
+#define SSERVER_H
 #include <windows.h>
 #include "SocketEnum.h"
 #include "CSocket.h"
@@ -22,4 +22,4 @@ private:
 	bool isStart;
 	WSADATA wsa;
 };
-#endif __SSERVER_H__
+#endif

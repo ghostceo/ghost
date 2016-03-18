@@ -1,5 +1,5 @@
-#ifndef __ENUMTYPE_H__
-#define __ENUMTYPE_H__
+#ifndef ENUMTYPE_H
+#define ENUMTYPE_H
   
 struct SocketEnum
 {
@@ -42,4 +42,4 @@ struct SocketEnum
 		Both = 2    
 	} ShutdownMode;   
 };
-#endif __ENUMTYPE_H__
+#endif

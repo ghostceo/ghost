@@ -1,6 +1,6 @@
 //ClientList.h 存放客户端的请求，只能有一个实例
-#ifndef _CLIENTLIST_H_
-#define _CLIENTLIST_H_
+#ifndef CLIENTLIST_H
+#define CLIENTLIST_H
 #include <vector>
 #include "CSocket.h" 
 #include <assert.h>

@@ -95,6 +95,7 @@
   <ItemGroup>
     <ClInclude Include="ClientList.h" />
     <ClInclude Include="CSocket.h" />
+    <ClInclude Include="Server.h" />
     <ClInclude Include="SocketEnum.h" />
     <ClInclude Include="SServer.h" />
   </ItemGroup>

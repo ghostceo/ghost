@@ -1,5 +1,5 @@
-#ifndef __CSOCKET_H__
-#define __CSOCKET_H__
+#ifndef CSOCKET_H
+#define CSOCKET_H
 #include <windows.h>
 #include "SocketEnum.h"
 #include <iostream>

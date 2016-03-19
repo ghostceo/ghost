@@ -10,7 +10,7 @@
 
 using namespace std;
 
-//typedef char int8_t;
+typedef char int8_t; //再mingw环境中需要注释掉  貌似被mingw用过
 typedef unsigned char uint8_t;
 typedef short int int16_t;
 typedef unsigned short int uint16_t;

@@ -49,7 +49,7 @@ int main()
     //pluto test end
 
     putchar('\n');
-
+	system("pause");
 	return 0;
 
 

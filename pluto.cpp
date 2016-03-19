@@ -107,8 +107,8 @@ void char_to_sz(unsigned char c, char* s)
 unsigned char sz_to_char(char* s)
 {
 	unsigned int i;
-	//sscanf(s, "%02x", &i);
-	unsigned char c = (unsigned char)i;
+	sscanf(s, "%02x", &i); //vs2013支持 在mingw编译不通过
+	unsigned char c = (unsigned char) i;
 	return c;
 }
 
@@ -235,7 +235,7 @@ CPluto& CPluto::operator<< (uint8_t n)
 CPluto& CPluto::operator<< (uint16_t n)
 {
 	Resize(sizeof(n));
-    cout<<sizeof(n)<<endl;
+    //cout<<sizeof(n)<<endl;
     uint16_to_sz(n, m_szBuff + m_unLen);
     m_unLen += sizeof(n);
     return *this;

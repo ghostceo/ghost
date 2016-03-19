@@ -4,11 +4,14 @@ const int BUF_LEN = 1024;
 void recv(PVOID pt)
 {
 	CSocket* csocket = (CSocket*)pt;
+	cout << "run here waita" << endl;
 	if (csocket != NULL)
 	{
+		cout << "run here waitb" << endl;
 		int count = csocket->Receive(BUF_LEN);
 		if (count == 0)
 		{
+			cout << "run here waitc" << endl;
 			ClientList* list = ClientList::GetInstance();
 			list->Remove(csocket);
 			cout << "one user leave,num online:" << list->Count() << endl;
@@ -52,13 +55,14 @@ int main(int argc, char* argv[])
 	_beginthread(sends, 0, list);//启动一个线程广播数据
 	while (1)
 	{
+		cout << "run here wait" << endl;
 		CSocket* csocket = server.Accept();
 
 		list->Add(csocket);
 		cout << "new user come, num online:" << list->Count() << endl;
 		_beginthread(recv, 0, csocket);//启动一个接收数据的线程
 	}
-
+	cout << "run here" << endl;
 	getchar();
 	return 0;
 	

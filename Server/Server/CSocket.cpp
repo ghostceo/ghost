@@ -100,7 +100,9 @@ int CSocket::Receive(int strLen)
 	buffer=new char[strLen];
 	SetSocketError(SocketEnum::Success); 
 	while(1){
+		cout << "wait rec" << endl;
 		recvCount=recv(csocket,buffer,strLen,0) ; 
+		cout << "rec over" << endl;
 		if(recvCount>0){
 			buffer[recvCount]='\0';
 			if(IsExit())
@@ -111,6 +113,10 @@ int CSocket::Receive(int strLen)
 				recvCount=0; 
 				break;
 			}else{
+				for (int i = 0; i < recvCount; i++)
+				{
+					cout << buffer[i] << endl;
+				}
 				cout<<buffer<<endl;
 			}
 		}

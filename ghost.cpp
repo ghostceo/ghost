@@ -1,5 +1,5 @@
 #include "ghost.h"
-
+#pragma warning (disable:4996)
 int main()
 
 {
@@ -37,11 +37,16 @@ int main()
     // cout << "x=" << x << ", y=" << y << ", z=" << z;
 
 
-    Learn l;
+    //Learn l;
     //l.test();
     //l.test1();
     //l.test2();
-    l.test4();
+    //l.test4();
+
+    //pluto test begin
+    Study s;
+    s.pluto_alltype_test();
+    //pluto test end
 
     putchar('\n');
 

@@ -1,4 +1,5 @@
-#include "study.h"  
+#include "study.h"
+#include "pluto.h"  
 void Study::print() {
     cout<<"Hello, welcome to Redhat Linux os!"<<endl;
 }
@@ -461,4 +462,63 @@ void Study::duplicate (int& a, int& b, int& c) {
     a*=2;
     b*=2;
     c*=2;
+}
+
+void Study::pluto_alltype_test()
+{
+    CPluto c1;
+    c1.Encode(120);
+    c1 << (uint8_t) 120;
+    c1 << (uint16_t) 120;
+    c1 << (uint32_t) 120;
+    c1 << (uint64_t) 120;
+    c1 << (int8_t)  120;
+    c1 << (int16_t) 120;
+    c1 << (int32_t) 120;
+    c1 << (int64_t) 120;
+    // c1 << (float32_t) 120.1;
+    // c1 << (float64_t) 120.1;
+    // c1 << "abcddef";
+
+    // {
+    //     charArrayDummy cc;
+    //     cc.m_l = 4;
+    //     strcpy(cc.m_s, "12\03");
+    //     c1 << cc;
+    //     cc.m_l = 0;
+    // }
+    c1 << EndPluto;
+
+    PrintHexPluto(c1);
+
+    //CPluto c2(c1.GetBuff(), c1.GetLen());
+    //c2.Decode();
+
+    //uint8_t u8;
+    // uint16_t u16;
+    // uint32_t u32;
+    // uint64_t u64;
+    // int8_t i8;
+    // int16_t i16;
+    // int32_t i32;
+    // int64_t i64;
+    // float32_t f32;
+    // float64_t f64;
+    // string s;
+    //charArrayDummy cc; 
+
+    //c2 >> u8 >> u16 >> u32 >> u64 >> i8 >> i16 >> i32 >> i64 >> f32 >> f64 >> s;// >> cc;
+    // cout<<u8<<endl;
+    // cout<<u16<<endl;
+    // cout<<u32<<endl;
+    // cout<<u64<<endl;
+    // cout<<i8<<endl;
+    // cout<<i16<<endl;
+    // cout<<i32<<endl;
+    // cout<<i64<<endl;
+    // cout<<f32<<endl;
+    // cout<<f64<<endl;
+    // cout<<s<<endl;
+    // cout <<"err_code:"<<c2.GetDecodeErrIdx() << endl;
+    cout<<"over"<<endl;
 }

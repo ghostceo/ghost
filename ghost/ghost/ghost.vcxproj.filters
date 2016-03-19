@@ -33,6 +33,15 @@
     <ClInclude Include="..\..\study.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\bitcryto.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\my_stl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\pluto.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\ghost.cpp">
@@ -41,13 +50,16 @@
     <ClCompile Include="..\..\hello.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\hello1.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\learn.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\study.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\bitcryto.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\pluto.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

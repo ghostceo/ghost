@@ -61,7 +61,9 @@ send_msgc(Socket)->
 senda(Str)->
 	_Sid = get(ss),
 	Socket = get(ss),
-	gen_tcp:send(Socket, term_to_binary(Str)).
+	Bin = term_to_binary(Str),
+	io:format("Client send binary =~p~n",[Bin]),
+	gen_tcp:send(Socket, Bin).
 
 %%C++
 sendb(Str)->

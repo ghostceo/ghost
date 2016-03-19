@@ -8,7 +8,7 @@ using namespace std;
 
 const int BUF_LEN=1024;
 const char* serverIp="127.0.0.1";
-const int serverPort=1986;
+const int serverPort=2345;
 
 void recv(PVOID pt)
 {

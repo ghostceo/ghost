@@ -22,6 +22,7 @@ typedef list<string> LISTSTR;
 			void swap1(int a, int b);   //传值
 			void swap2(int *a, int *b);   //传址
 			void duplicate(int& a, int& b, int& c);
+			void pluto_alltype_test();
 	};
 	class A  {  
 	    public:  

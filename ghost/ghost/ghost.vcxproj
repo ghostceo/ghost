@@ -79,17 +79,21 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\bitcryto.h" />
     <ClInclude Include="..\..\ghost.h" />
     <ClInclude Include="..\..\hello.h" />
     <ClInclude Include="..\..\hello1.h" />
     <ClInclude Include="..\..\learn.h" />
+    <ClInclude Include="..\..\my_stl.h" />
+    <ClInclude Include="..\..\pluto.h" />
     <ClInclude Include="..\..\study.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\bitcryto.cpp" />
     <ClCompile Include="..\..\ghost.cpp" />
     <ClCompile Include="..\..\hello.cpp" />
-    <ClCompile Include="..\..\hello1.cpp" />
     <ClCompile Include="..\..\learn.cpp" />
+    <ClCompile Include="..\..\pluto.cpp" />
     <ClCompile Include="..\..\study.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

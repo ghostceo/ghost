@@ -520,5 +520,5 @@ void Study::pluto_alltype_test()
     // cout<<f64<<endl;
     // cout<<s<<endl;
     // cout <<"err_code:"<<c2.GetDecodeErrIdx() << endl;
-    cout<<"over"<<endl;
+    cout<<__FILE__<<__LINE__<<"over"<<endl;
 }

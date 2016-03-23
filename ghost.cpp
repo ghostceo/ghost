@@ -1,11 +1,13 @@
 #include "ghost.h"
-#pragma warning (disable:4996)
-int main()
+int main(int argc, char* argv[])
 
 {
 
-	cout << "hello world!" << endl;
-
+	//cout << "hello world!" << endl;
+    // cout << argc << endl;
+    // cout << argv[0] << endl;
+    // cout << argv[1] << endl;
+    
 	//struct game *g = new game();
 	//int a=4;
     //Hello h;

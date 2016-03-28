@@ -1,0 +1,3 @@
+#please insert host info like below(no prefix "#"):
+
+#ip	port	user	old_passwd	new_passwd

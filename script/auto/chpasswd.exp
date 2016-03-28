@@ -1,0 +1,17 @@
+#!/usr/bin/expect -f  
+ log_user 2
+ set ip [lindex $argv 0 ]
+ set port [lindex $argv 1 ]
+ set user [lindex $argv 2 ]
+ set old_password [lindex $argv 3 ]
+ set new_password [lindex $argv 4 ]
+ set timeout 60  
+ spawn ssh root@$ip -p $port 
+ expect {  
+ "*yes/no" { send "yes\r"; exp_continue}  
+ "*password:" { send "$old_password\r" }  
+ }  
+ expect "#*"
+ send  "echo $user:$new_password | chpasswd\n"  
+ send  "exit\n"  
+ expect eof  

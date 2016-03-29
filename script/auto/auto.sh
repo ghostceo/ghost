@@ -19,22 +19,23 @@ fi
 #for ip in `awk '{print $1}' $serverlist_file` 这个过滤不了#
 for ip in `cat $serverlist_file | grep -v ^# | awk '{print $1}'`
 do
-    port=`awk -v I="$i" '{if(I==$1)print $2}' $serverlist_file`
-    user=`awk -v I="$i" '{if(I==$1)print $3}' $serverlist_file`
-    pass=`awk -v I="$i" '{if(I==$1)print $4}' $serverlist_file`
+    port=`awk -v I="$ip" '{if(I==$1)print $2}' $serverlist_file`
+    user=`awk -v I="$ip" '{if(I==$1)print $3}' $serverlist_file`
+    pass=`awk -v I="$ip" '{if(I==$1)print $4}' $serverlist_file`
     
     #num1
-    #expect /root/data/auto/auto.exp $ip $port $user $pass $cmd_str
-    
-    #num2
     echo "DOING--->>>>>" $ip "<<<<<<<"
-    ssh $ip $cmd_str < /dev/null > /dev/null
-    if [ $? -eq 0 ] ; then
-        echo "$cmd_str done!"
-    else
-        echo "error: " $?
-    fi
-    #
+    expect /root/data/auto/auto.exp $ip $port $user $pass
+    
+    # #num2
+    # echo "DOING--->>>>>" $ip "<<<<<<<"
+    # ssh $ip $cmd_str < /dev/null > /dev/null
+    # if [ $? -eq 0 ] ; then
+    #     echo "$cmd_str done!"
+    # else
+    #     echo "error: " $?
+    # fi
+    # #
 
 done
 

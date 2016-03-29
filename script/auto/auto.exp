@@ -4,7 +4,7 @@
  set port [lindex $argv 1 ]
  set user [lindex $argv 2 ]
  set pass [lindex $argv 3 ]
- set cmd_str [lindex $argv 4 ]
+ send  "echo $argc\n"
  set timeout 60  
  spawn ssh root@$ip -p $port 
  expect {  
@@ -12,7 +12,6 @@
  "*password:" { send "$pass\r" }  
  }  
  expect "#*"
- send  "echo $user:$pass | chpasswd\n"
- send  "$cmd_str\n"
- send  "exit\n"  
+ send  "cp /root/data/common/mgectl /root/data/common/mgectl.bk\r"
+ send  "exit\r"  
  expect eof  

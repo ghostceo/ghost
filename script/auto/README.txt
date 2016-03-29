@@ -11,3 +11,5 @@
 
 执行auto.sh
 比如：./auto.sh auto.txt 'rm -rf /root/data/*.txt'
+expect似乎不支持指令的输入  会把指令拆分  所以num1的exp脚本好像只能干一件事
+num2和num3可以输入指令  不过交互方面不够自动化

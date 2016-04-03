@@ -15,7 +15,7 @@ starta(Str)->
 
 %%erlang服务端使用
 startb()->
-	{ok,Socket} = gen_tcp:connect("localhost",2345,[binary,{packet,4}]),
+	{ok,Socket} = gen_tcp:connect("192.168.253.100",2345,[binary,{packet,4}]),
 	io:format("socket info =~p~n",[inet:peername(Socket)]),
 	Sid = spawn(fun()->send_msgb(Socket) end),
 	gen_tcp:controlling_process(Socket,Sid),

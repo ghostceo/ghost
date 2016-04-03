@@ -42,7 +42,7 @@ DWORD WINAPI Fun1Proc(LPVOID lpParameter);
 int main(int argc, char* argv[])
 {
 	SServer server;
-	bool isStart = server.Start(2345);
+	bool isStart = server.Start(443);
 	if (isStart)
 	{
 		cout << "server start success..." << endl;

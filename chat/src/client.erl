@@ -24,7 +24,7 @@
 %%		Register a process for send message
 %% 		Register a process for receive message
 start() ->
-	{ok, Socket} = gen_tcp:connect("172.27.35.4", 443,
+	{ok, Socket} = gen_tcp:connect("192.168.253.100", 443,
 								 [binary, 
 								  {active, false}, 
 								  {packet, 0}

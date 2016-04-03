@@ -44,8 +44,8 @@ init([Port]) ->
 		do_init([Port])
 	catch
 		_:Reason ->
-			?WARNING_MSG("do_init has exception:~w~n",[Reason]),
-			?WARNING_MSG("get_stacktrace:~p",[erlang:get_stacktrace()]),
+			%?WARNING_MSG("do_init has exception:~w~n",[Reason]),
+			%?WARNING_MSG("get_stacktrace:~p",[erlang:get_stacktrace()]),
 			{ok, 0}
 	end.
 

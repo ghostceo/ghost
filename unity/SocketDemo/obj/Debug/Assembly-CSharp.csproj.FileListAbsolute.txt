@@ -1,0 +1,13 @@
+F:\demo\socketDemo\SocketDemo\Temp\bin\Debug\Assembly-CSharp.dll
+F:\demo\socketDemo\SocketDemo\Temp\bin\Debug\Assembly-CSharp.pdb
+F:\demo\socketDemo\SocketDemo\Temp\bin\Debug\System.Data.dll
+F:\demo\socketDemo\SocketDemo\Temp\bin\Debug\UnityEditor.dll
+F:\demo\socketDemo\SocketDemo\Temp\bin\Debug\UnityEngine.dll
+F:\demo\socketDemo\SocketDemo\Temp\bin\Debug\UnityEngine.UI.dll
+F:\demo\socketDemo\SocketDemo\Temp\bin\Debug\Mono.Cecil.dll
+F:\demo\socketDemo\SocketDemo\Temp\bin\Debug\nunit.framework.dll
+F:\demo\socketDemo\SocketDemo\Temp\bin\Debug\Unity.DataContract.dll
+F:\demo\socketDemo\SocketDemo\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+F:\demo\socketDemo\SocketDemo\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+F:\demo\socketDemo\SocketDemo\obj\Debug\Assembly-CSharp.dll
+F:\demo\socketDemo\SocketDemo\obj\Debug\Assembly-CSharp.pdb

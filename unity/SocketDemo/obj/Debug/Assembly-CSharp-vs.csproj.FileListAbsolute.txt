@@ -1,0 +1,8 @@
+C:\00_WORK\workspace\Unity3D\SocketDemo\Temp\bin\Debug\Assembly-CSharp.dll
+C:\00_WORK\workspace\Unity3D\SocketDemo\Temp\bin\Debug\Assembly-CSharp.pdb
+C:\00_WORK\workspace\Unity3D\SocketDemo\Temp\bin\Debug\UnityEditor.dll
+C:\00_WORK\workspace\Unity3D\SocketDemo\Temp\bin\Debug\UnityEngine.dll
+C:\00_WORK\workspace\Unity3D\SocketDemo\Temp\bin\Debug\nunit.framework.dll
+C:\00_WORK\workspace\Unity3D\SocketDemo\obj\Debug\ResolveAssemblyReference.cache
+C:\00_WORK\workspace\Unity3D\SocketDemo\obj\Debug\Assembly-CSharp.dll
+C:\00_WORK\workspace\Unity3D\SocketDemo\obj\Debug\Assembly-CSharp.pdb

@@ -63,24 +63,7 @@
                 }
             }
         if (GUI.Button(new Rect(Screen.width - 60, Screen.height - 240, 60, 60), "协议")) {
-            try
-            {   
-                short unique = 345;
-                byte moduleId = CommandID.MODULE;
-                short methodId = CommandID.METHOD;
-                int num = 1;
-                m_money_tree_fetch_tos  msg = new m_money_tree_fetch_tos(num);
-                Debug.Log(msg.getMethodName());
-                string[][] attrs = new string[1][];
-                Debug.Log(attrs.Length);
-                //attrs[0] = "id";
-                //attrs[1] = "int32";
-                Debug.Log(attrs.Length);
-                //Debug.Log(msg.getAttributes().Length);
-                //msg.encode(unique,moduleId,methodId,msg);
-            } catch(Exception e){
-                MonoBehaviour.print(e.ToString());
-            }
+            socket[1].DoBin();
             Debug.Log("haha");
             }
 		if (GUI.Button(new Rect(Screen.width - 60, Screen.height - 120, 60, 60), "测试")) {

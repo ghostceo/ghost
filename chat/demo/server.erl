@@ -61,7 +61,7 @@ loopu(Socket)->
 	receive
 		{tcp, Socket, Bin}->
 			io:format("Server receiveed binary = ~p~n",[Bin]),
-			route(Bin,Socket),
+			% route(Bin,Socket),
 			%gen_tcp:send(Socket,term_to_binary(Bin)),
 			loopu(Socket);
 		{tcp_close, Socket}->

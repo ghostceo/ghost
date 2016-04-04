@@ -46,19 +46,26 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\BigEndianBitConverter.cs" />
+     <Compile Include="Assets\Script\ByteArray.cs" />
      <Compile Include="Assets\Script\ByteBuffer.cs" />
      <Compile Include="Assets\Script\CommandID.cs" />
+     <Compile Include="Assets\Script\EndianBitConverter.cs" />
+     <Compile Include="Assets\Script\Endianness.cs" />
      <Compile Include="Assets\Script\ErlangTy.cs" />
+     <Compile Include="Assets\Script\LittleEndianBitConverter.cs" />
      <Compile Include="Assets\Script\Message.cs" />
+     <Compile Include="Assets\Script\OutgoingBase.cs" />
      <Compile Include="Assets\Script\SocketDemo.cs" />
      <Compile Include="Assets\Script\TypeConvert.cs" />
      <Compile Include="Assets\Script\UnitySocket.cs" />
+     <Compile Include="Assets\Script\m_activity_fecth_tos.cs" />
      <Compile Include="Assets\Script\m_money_tree_fetch_tos.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>F:/work/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.4/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="System.Data">
- <HintPath>F:/demo/socketDemo/SocketDemo/Assets/Script/System.Data.dll</HintPath>
+ <HintPath>F:/death/ghost/unity/SocketDemo/Assets/Script/System.Data.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

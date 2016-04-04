@@ -156,6 +156,19 @@ namespace LSocket.Net
 
 		}
 
+
+
+        public void DoBin(){
+            try
+            {   
+                m_activity_fecth_tos ras = new m_activity_fecth_tos();
+                ras.npc_id = 16;
+                SendMessage(ras);
+            } catch(Exception e){
+                MonoBehaviour.print(e.ToString());
+            }
+        }
+
         public void Send(float data){
             byte[] longth = TypeConvert.getBytes(data, true);
             mSocket.Send(longth);
@@ -195,6 +208,16 @@ namespace LSocket.Net
 			mSocket.Send(longth); 
 			 
 		}
+
+
+        public void Send(ByteArray body)
+        {
+            uint len = (uint)body.Length - 4;
+            Debug.Log(len);
+            var lenBytes = LittleEndianBitConverter.Big.GetBytes(len);
+            Array.Copy(lenBytes, body.Buff, 4);
+            mSocket.Send(body.Buff);
+        }
 
         public void SendMsg(List<byte> data)
         {
@@ -252,6 +275,13 @@ namespace LSocket.Net
              String data = Encoding.UTF8.GetString(recvBytes); 
 			 return data; 
 		}
+
+        public void SendMessage(OutgoingBase message)
+            {
+                ByteArray byteArray = new ByteArray();
+                message.fill2s(byteArray);
+                Send(byteArray);
+            }
 
         // private void starthandclasp()
         // {    

@@ -50,7 +50,7 @@
                     socket[i] = null;
                     socket[i] = new UnitySocket();
                     // socket[i].SocketConnection("172.22.254.67", 443, this, i);
-                    socket[i].SocketConnection("192.168.253.100", 2345, this, i);
+                    socket[i].SocketConnection("192.168.5.71", 2345, this, i);
                     // socket[i].DoLogin(textFieldString[i]);
                 }
                 else if (GUI.Button(new Rect(i % 2 * Screen.width / 2, i / 2 *( Screen.height / 2) + 85, 100, 80), "关闭"))
@@ -64,7 +64,7 @@
             }
         if (GUI.Button(new Rect(Screen.width - 60, Screen.height - 240, 60, 60), "协议")) {
             socket[1].DoBin();
-            Debug.Log("haha");
+            Debug.Log("proto");
             }
 		if (GUI.Button(new Rect(Screen.width - 60, Screen.height - 120, 60, 60), "测试")) {
 			// char cha;

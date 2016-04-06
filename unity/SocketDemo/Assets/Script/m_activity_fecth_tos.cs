@@ -14,8 +14,8 @@ public class m_activity_fecth_tos:OutgoingBase{
 
 	//fill method for tos
 	public override void fill2s(ByteArray ba){
-		ba.WriteInt(14);
-		ba.WriteInt(15);
+		ba.WriteInt(10);
+		ba.WriteInt(5625);
 		ba.WriteInt(this.npc_id);
 	}
 }

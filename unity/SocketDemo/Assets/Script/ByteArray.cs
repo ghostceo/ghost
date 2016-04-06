@@ -13,7 +13,7 @@ public class ByteArray
     protected int mLength = 0;
     protected int mPosition = 0;
 
-    public ByteArray(int bufferSize = 2046)
+    public ByteArray(int bufferSize = 2048)
     {
         this.MAX_BUFF_SIZE = bufferSize;
         mDataBuff = new byte[MAX_BUFF_SIZE];

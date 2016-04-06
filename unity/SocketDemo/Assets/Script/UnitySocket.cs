@@ -42,7 +42,7 @@ namespace LSocket.Net
             {
                 try
                 {
-                    String s = socket.ReceiveString();
+                    String s = socket.RecMessage();
                     demo.textAreaString[idx * 3] = demo.textAreaString[idx * 3 + 1];
                     demo.textAreaString[idx * 3 + 1] = demo.textAreaString[idx * 3 + 2];
                     demo.textAreaString[idx * 3 + 2] = s;
@@ -212,11 +212,10 @@ namespace LSocket.Net
 
         public void Send(ByteArray body)
         {
-            uint len = (uint)body.Length - 4;
-            Debug.Log(len);
-            var lenBytes = LittleEndianBitConverter.Big.GetBytes(len);
-            Array.Copy(lenBytes, body.Buff, 4);
-            mSocket.Send(body.Buff);
+            int len = body.Length;
+            ByteBuffer msg = ByteBuffer.Allocate(len);
+            Array.Copy(body.Buff, 0, msg.buf, 0, len);
+            mSocket.Send(msg.buf);
         }
 
         public void SendMsg(List<byte> data)
@@ -271,10 +270,27 @@ namespace LSocket.Net
              int length = ReceiveInt();
              Debug.Log("Stringlen="+length);
 			 byte[] recvBytes = new byte[length]; 
-             mSocket.Receive(recvBytes,length,0);//从服务器端接受返回信息 
+             mSocket.Receive(recvBytes,length,0);//从服务器端接受返回信息
              String data = Encoding.UTF8.GetString(recvBytes); 
 			 return data; 
 		}
+
+
+        public String RecMessage() 
+        { 
+             int length = ReceiveInt();
+             Debug.Log("Stringlen="+length);
+             byte[] recvBytes = new byte[length]; 
+             mSocket.Receive(recvBytes,length,0);//从服务器端接受返回信息 
+             Debug.Log(recvBytes);
+             int Method = TypeConvert.getInt(recvBytes,true);
+             int Mlv = TypeConvert.getInt(recvBytes,true);
+             Debug.Log("Sn="+Method);
+             Debug.Log("Stn="+Mlv);
+             String data = "haha";
+             return data; 
+        }
+
 
         public void SendMessage(OutgoingBase message)
             {

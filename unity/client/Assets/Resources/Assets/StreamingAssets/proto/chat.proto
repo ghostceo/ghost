@@ -1,0 +1,149 @@
+
+
+
+
+
+
+
+message m_chat_auth_tos {
+ required string account = "";
+ required int32 roleid = 0;
+ required string key = "";
+ required int32 timestamp = 0;
+}
+
+message m_chat_auth_toc {
+ required bool succ = true;
+ optional string reason =0;
+ repeated p_channel_info channel_list = [];
+ repeated p_chat_role black_list = [];
+ repeated string gm_auth = "";
+}
+
+
+
+
+message m_chat_join_channel_toc{
+ required p_channel_info channel_info = null;
+ optional p_chat_role role_info = null;
+}
+
+
+message m_chat_leave_channel_toc{
+ required string channel_sign =0;
+ required int32 channel_type = 0;
+}
+
+
+message m_chat_in_channel_tos{
+ required string channel_sign =0;
+ required string msg = "";
+}
+
+message m_chat_in_channel_toc{
+ required bool succ = true;
+ optional string reason =0;
+ optional string channel_sign =0;
+ optional string msg = "";
+ optional p_chat_role role_info = null;
+ optional int32 tstamp = 0;
+}
+
+
+message m_chat_in_pairs_tos{
+ required string msg = "";
+ required string to_rolename = "";
+ required int32 show_type = 1;
+}
+
+message m_chat_in_pairs_toc{
+ required bool succ = true;
+ required int32 show_type = 1;
+ optional string reason =0;
+ optional string msg = "";
+ optional p_chat_role from_role_info = null;
+ optional p_chat_role to_role_info = null;
+ optional int32 tstamp = 0;
+ optional int32 error_code = 0;
+ optional int32 to_role_id = 0;
+}
+
+
+
+
+message m_chat_add_black_tos{
+ required string rolename = "";
+}
+
+message m_chat_add_black_toc{
+ required bool succ = 0;
+ optional string reason =0;
+ optional p_chat_role role_info = null;
+}
+
+
+message m_chat_remove_black_tos{
+ required string rolename = "";
+}
+
+message m_chat_remove_black_toc{
+ required bool succ = 0;
+ optional string reason =0;
+ optional p_chat_role role_info = null;
+}
+
+message m_chat_get_black_toc{
+ required bool succ = 0;
+ optional string reason =0;
+ repeated p_chat_role role_list = [];
+}
+
+
+
+message m_chat_status_change_toc{
+ required int32 role_id = 0;
+ required string channel_sign =0;
+ required int32 channel_type = 0;
+ required int32 status = 0;
+}
+message m_chat_get_roles_tos{
+ required string channel_sign =0;
+}
+message m_chat_get_roles_toc{
+ required bool succ = 0;
+ optional string reason =0;
+ optional string channel_sign =0;
+ optional int32 channel_type = 0;
+ repeated p_chat_channel_role_info roles = [];
+}
+
+
+message m_chat_get_goods_tos {
+ required int32 goods_id = 0;
+}
+
+message m_chat_get_goods_toc {
+ required bool succ = true;
+ optional int32 goods_id = 0;
+ optional p_goods goods_info = null;
+ optional string reason =0;
+}
+
+
+message m_chat_king_ban_tos {
+ required int32 roleid = 0; 
+ required string rolename = ""; 
+ required int32 total_times = 0;
+}
+
+message m_chat_king_ban_toc {
+ required bool succ = true;
+ optional string reason =0;
+ optional int32 bantimes = 0;
+}
+
+message m_chat_postchat_toc {
+ required string game = ""; 
+ required int32 server_id = 0; 
+ required string key = ""; 
+}

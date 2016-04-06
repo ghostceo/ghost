@@ -1,0 +1,99 @@
+
+
+
+
+
+
+
+
+
+
+message b_server_auth_tos {
+ required string agent_name = ""; 
+ required int32 game_id = 0; 
+ required string ticket = ""; 
+}
+
+message b_server_auth_toc {
+ required bool succ = true;
+ optional string reason = "";
+ 
+ optional string ip = "";
+ optional int32 port = 0;
+}
+
+
+message b_server_msg_toc {
+ required string msg = "";
+}
+
+
+
+message b_server_unique_toc {
+ required int32 unique = 0;
+}
+
+
+
+message b_consume_gold_tos{
+ required int32 role_id = 0;
+ optional string role_name = "";
+ optional string account_name = "";
+ optional int32 level = 0;
+ optional int32 gold_bind = 0;
+ optional int32 gold_unbind = 0;
+ optional int32 mtime = 0;
+ optional int32 mtype = 0;
+ optional string mdetail = "";
+ optional int32 itemid = 0;
+ optional int32 amount = 0;
+}
+
+
+message b_pay_log_tos{
+ required string account_name= 0;
+ required string role_name = 0;
+ required int32 role_id = 0;
+ required string order_id = "";
+ optional double pay_money = 0;
+ optional int32 pay_gold = 0;
+ optional int32 give_gold = 0;
+ optional int32 role_level = 0;
+ optional int32 pay_time = 0;
+ optional int32 pay_date_time= 0;
+ optional int32 year = 0;
+ optional int32 month = 0;
+ optional int32 day = 0;
+ optional int32 hour = 0;
+ optional int32 online_day = 0;
+}
+
+
+message adm_gm_complaint {
+ required string account_name = "";
+ required int32 role_id = "";
+ required string role_name = "";
+ required int32 pay_amount = 0;
+ required int32 level = 0;
+ required int32 mtime = 0;
+ required int32 mtype = 0;
+ required string mtitle = "";
+ required string content = "";
+}
+
+
+message adm_gm_evaluate {
+ required int32 reply_id = 0;
+ required int32 role_id = 0;
+ required int32 mark = 0;
+}
+
+
+message adm_gm_notify_reply{
+ required int32 reply_id = 0;
+ required bool succ = 0;
+ optional string reason = ""; 
+}
+ 
+
+ 

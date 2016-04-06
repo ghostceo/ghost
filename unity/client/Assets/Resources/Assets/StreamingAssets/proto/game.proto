@@ -1,0 +1,5507 @@
+
+"common.proto";
+option java_package = "proto.line";
+
+message m_common_error_toc {
+ optional int32 error_code = 0;
+ optional string error_str = "";
+ repeated int32 args = []; 
+}
+
+
+message m_common_msg_toc {
+ optional string msg = ""; 
+}
+
+
+
+message m_role_auth_tos {
+ required string account_name = "";
+ required string key = ""; 
+ required int32 os_type = 0; 
+ optional string login_platform = ""; 
+ optional string client_version = ""; 
+}
+
+message m_role_auth_toc {
+ required int32 err_code = 0;
+ optional string reason = "";
+ repeated p_role_info role_infos = null; 
+}
+
+
+
+message m_role_choose_tos {
+ required int32 role_id = 0; 
+}
+
+message m_role_choose_toc {
+ required bool succ = false;
+ optional string reason = "";
+ optional p_role role_details = null; 
+ repeated p_bag_content bags = null;
+ optional p_family_info family = null; 
+ optional p_main_fb_info main_fb = null; 
+ optional int32 server_id = 0; 
+ optional int32 server_time = 0; 
+}
+
+
+message m_role_add_tos {
+ required string role_name = "";
+ required int32 sex = 0; 
+ required int32 faction_id = 0; 
+ required int32 head = 0; 
+ required int32 hair_type = 0; 
+ required int32 hair_color = 0; 
+ required int32 category = 0;
+}
+
+
+message m_role_add_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional int32 role_id = 0;
+}
+
+
+message m_role_gen_name_tos {
+ required int32 sex = 0;
+}
+
+message m_role_gen_name_toc {
+ required string name = "";
+}
+ 
+
+
+
+
+message m_map_enter_tos { 
+ required int32 map_id = 0;
+}
+
+
+message m_map_enter_toc {
+ required bool succ = true;
+ required bool return_self = true;
+ optional string reason = "";
+ 
+ repeated p_map_role roles = []; 
+ 
+ repeated p_map_monster monsters = [];
+ 
+ repeated p_map_dropthing dropthings = [];
+ 
+ repeated p_map_doll dolls = [];
+ 
+ repeated p_map_collect grafts = [];
+ repeated p_map_ybc ybcs = []; 
+ optional p_role_pos pos = null;
+ repeated p_map_server_npc server_npcs = [];
+ 
+ optional p_map_role role_map_info = null;
+ repeated p_map_pet pets = [];
+ repeated p_map_trap trap_list = [];
+ repeated p_map_unit units = [];
+}
+
+message m_map_slice_enter_toc {
+ repeated p_map_role roles = []; 
+ 
+ repeated p_map_monster monsters = [];
+ 
+ repeated p_map_dropthing dropthings = [];
+ 
+ repeated p_map_doll dolls = [];
+ 
+ repeated p_map_collect grafts = [];
+ repeated p_map_ybc ybcs = []; 
+ required bool return_self = true;
+ repeated p_map_server_npc server_npcs = []; 
+ repeated p_map_pet pets = [];
+ repeated p_map_trap trap_list = [];
+ repeated p_map_unit units = [];
+ 
+ 
+ repeated int32 del_roles = []; 
+ 
+ repeated int32 del_monsters = [];
+ 
+ repeated int32 del_dropthings = [];
+ 
+ repeated int32 del_dolls = [];
+ 
+ repeated int32 del_grafts = [];
+ repeated int32 del_ybcs = []; 
+ repeated int32 del_server_npcs = []; 
+ repeated int32 del_pets = [];
+ repeated int32 del_trap_list = []; 
+ repeated int32 del_units = []; 
+ optional int32 enter_type = 0; 
+ optional p_pos src_pos = null; 
+}
+
+message m_map_update_actor_mapinfo_tos{
+ required int32 actor_id = 0;
+ required int32 actor_type = 0;
+ required int32 map_id = 0;
+}
+
+
+message m_map_update_actor_mapinfo_toc{
+ required int32 actor_id = 0;
+ required int32 actor_type = 0;
+ optional p_map_role role_info = null;
+ optional p_map_monster monster_info = null;
+ optional p_map_server_npc server_npc = null;
+ optional p_map_ybc ybc_info = null;
+ optional p_map_pet pet_info = null;
+}
+
+message m_map_update_role_toc{
+ required int32 role_id = 0;
+ repeated int32 update_list = [];
+ required p_skin skin = null;
+ repeated p_actor_buf state_buffs = [];
+}
+
+
+message m_map_transfer_tos {
+ required int32 mapid = 0;
+ required int32 tx = 0;
+ required int32 ty = 0;
+ 
+ required int32 change_type = 0; 
+}
+
+message m_map_transfer_toc {
+ required bool succ = true;
+ optional int32 scroll_id = 0;
+ optional string reason = "";
+}
+
+
+message m_map_role_killed_toc {
+ required string role_name = ""; 
+ required string killer_name = ""; 
+ required int32 faction_id = 0; 
+ required int32 map_id = 0; 
+ required int32 tx = 0;
+ required int32 ty = 0;
+}
+
+
+message m_map_gate_tos{
+ required int32 unitid = 0; 
+}
+
+
+
+
+message m_move_walk_path_tos {
+ required p_walk_path walk_path = null;
+}
+
+
+message m_move_walk_path_toc {
+ required int32 roleid = 0;
+ required p_walk_path walk_path = null;
+}
+
+
+
+message m_move_walk_tos {
+ required p_pos pos = null;
+}
+
+
+
+message m_move_sync_toc {
+ required int32 roleid = 0;
+ required p_pos pos = null;
+}
+
+
+message m_map_quit_toc {
+ required int32 roleid = 0;
+}
+
+message m_map_dropthing_pick_tos {
+ required int32 dropthingid = 0;
+ optional bool isguaji = false;
+} 
+
+message m_map_dropthing_pick_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional int32 pick_type = 0;
+ optional int32 add_money = 0;
+ optional int32 money = 0;
+ optional int32 dropthingid = 0;
+ optional p_goods goods = null;
+ optional int32 num = 0;
+ optional int32 money_type = 0;
+} 
+
+message m_map_change_map_tos {
+ required int32 mapid = 0;
+ required int32 tx = 0;
+ required int32 ty = 0;
+}
+
+message m_map_change_map_toc {
+ required bool succ = true;
+ optional int32 mapid = 0;
+ optional int32 tx = 0;
+ optional int32 ty = 0;
+ optional string reason = "";
+}
+
+
+message m_map_change_pos_toc {
+ required int32 tx = 0;
+ required int32 ty = 0;
+ required int32 change_type = 0; 
+}
+
+
+
+
+message m_fight_before_attack_tos {
+ required int32 skillid = 0;
+ required int32 target_id = 0;
+ required int32 target_type = 0;
+ repeated int32 extends = [];
+}
+
+message m_fight_before_attack_toc {
+ required int32 role_id = 0;
+ required int32 target_id = 0;
+ required int32 target_type = 0; 
+ required int32 skillid = 0; 
+ repeated int32 extends = [];
+}
+
+
+message m_fight_attack_tos {
+ required p_map_tile tile = null; 
+ required int32 skillid = 0; 
+ repeated int32 targets = [];
+ optional int32 src_type = 0; 
+ required int32 dir = 0; 
+}
+
+message m_fight_begin_tos{
+ required int32 skillid = 0;
+ required int32 skill_dir = 0; 
+ required int32 target_type = 0; 
+ required int32 target_id = 0; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+message m_fight_begin_toc{
+ required int32 src_id = 0; 
+ required int32 src_type = 0; 
+ required int32 skillid = 0; 
+ repeated int32 skill_datas = []; 
+ required int32 target_type = 0; 
+ required int32 target_id = 0; 
+ required int32 err_code = 0; 
+}
+
+
+message m_fight_attack_toc {
+ required bool succ = true;
+ required bool return_self = true;
+ optional string reason = "";
+ optional int32 src_id = 0;
+ optional int32 skillid = 0; 
+ optional p_pos src_pos = null; 
+ 
+ optional int32 src_type = 0; 
+ repeated p_attack_result result = [];
+ optional int32 dir = 0; 
+ optional p_pos dest_pos = null; 
+ optional int32 reason_code = 0;
+}
+
+message m_unit_enter_toc {
+ repeated p_map_unit units = []; 
+}
+
+message m_unit_quit_toc {
+ required int32 unitid = 0;
+}
+
+message m_unit_dead_toc {
+ optional string killer_type = "";
+ optional int32 killer_id = 0;
+ required int32 unitid = 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+message m_team_invite_tos {
+ required int32 role_id = 0;
+ 
+ required int32 type = 0;
+ optional int32 team_id = 0;
+}
+
+message m_team_invite_toc {
+ required bool succ = true;
+ required bool return_self = true;
+ optional string reason = ""; 
+ 
+ optional int32 role_id = 0;
+ optional string role_name = "";
+ optional int32 team_id = 0;
+ required int32 pick_type = 0; 
+ optional int32 leader_id = 0; 
+ optional int32 type_id = 0; 
+}
+
+message m_team_accept_tos {
+ required int32 role_id = 0; 
+ optional int32 team_id = 0;
+ optional int32 leader_id = 0;
+ optional int32 type_id = 0; 
+}
+
+
+message m_team_accept_toc {
+ required bool succ = true;
+ required bool return_self = true;
+ optional string reason = ""; 
+ repeated p_team_role role_list = [];
+ optional int32 role_id = 0;
+ optional string role_name = "";
+ optional int32 team_id = 0;
+ required int32 pick_type = 0; 
+ optional int32 type_id = 0; 
+}
+
+message m_team_refuse_tos {
+ required int32 role_id = 0;
+ optional int32 team_id = 0;
+ optional int32 leader_id = 0;
+ optional int32 type_id = 0; 
+}
+
+
+
+message m_team_refuse_toc {
+ optional int32 role_id = 0;
+ optional string role_name = ""; 
+ optional int32 team_id = 0;
+ optional int32 type_id = 0; 
+}
+
+message m_team_leave_tos {
+ required int32 team_id = 0;
+}
+
+
+
+
+message m_team_leave_toc {
+ required bool succ = true;
+ required bool return_self = true;
+ optional string reason = "";
+ repeated p_team_role role_list = []; 
+ optional int32 role_id = 0;
+ optional string role_name = "";
+ optional int32 team_id = 0;
+}
+
+message m_team_kick_tos {
+ required int32 role_id = 0;
+}
+
+
+
+message m_team_kick_toc {
+ required bool succ = true;
+ required bool return_self = true;
+ optional string reason = "";
+ repeated p_team_role role_list = [];
+ optional int32 role_id = 0;
+ optional string role_name = "";
+ optional int32 team_id = 0;
+}
+
+
+
+
+
+message m_team_offline_toc {
+ required bool cache_offline = false;
+ repeated p_team_role role_list = [];
+ optional int32 role_id = 0;
+ optional string role_name = "";
+ optional int32 team_id = 0;
+}
+
+
+
+message m_team_change_leader_tos {
+ required int32 team_id = 0;
+ required int32 role_id = 0;
+ required string role_name = ""; 
+}
+
+message m_team_change_leader_toc {
+ required bool succ = true;
+ required bool return_self = true;
+ optional string reason = "";
+ repeated p_team_role role_list = [];
+ optional int32 role_id = 0;
+ optional string role_name = ""; 
+ optional int32 team_id = 0;
+}
+
+message m_team_disband_tos{
+ optional int32 team_id = 0;
+}
+
+message m_team_disband_toc {
+ required bool succ = true;
+ required bool return_self = true;
+ optional int32 team_id = 0;
+ optional string reason = ""; 
+}
+
+message m_team_pick_tos {
+ required int32 pick_type = 0; 
+}
+
+message m_team_pick_toc {
+ required bool succ = true;
+ required bool return_self = true;
+ required int32 pick_type = 0; 
+ optional string reason = "";
+}
+
+message m_team_auto_disband_toc {
+ required bool succ = true;
+ optional string reason = ""; 
+}
+
+
+
+message m_team_auto_list_toc {
+ required bool return_self = true;
+ optional int32 team_id = 0; 
+ repeated p_team_role role_list = [];
+ required int32 pick_type = 0; 
+ repeated int32 visible_role_list = []; 
+}
+
+message m_team_member_invite_tos {
+ required int32 op_type = 0;
+ required int32 member_id = 0;
+ required string member_name = "";
+ required int32 role_id = 0;
+ required string role_name = "";
+}
+message m_team_member_invite_toc {
+ 
+ 
+ required int32 op_status = 0;
+ optional int32 member_id = 0;
+ optional string member_name = "";
+ optional int32 role_id = 0;
+ optional string role_name = "";
+ optional bool succ = true; 
+ optional bool return_self = true; 
+ optional string reason = "";
+ optional int32 op_type = 0;
+}
+
+message m_team_member_recommend_tos {
+}
+message m_team_member_recommend_toc {
+ required bool succ = true;
+ repeated p_recommend_member_info member_info = [];
+ optional string reason = "";
+}
+
+message m_team_apply_tos{
+ required int32 role_id = 0;
+ required int32 op_type = 0;
+ required int32 apply_id = 0;
+}
+message m_team_apply_toc{
+ required bool succ = true;
+ optional bool return_self = true; 
+ required int32 role_id = 0;
+ required int32 op_type = 0;
+ required int32 apply_id = 0;
+ optional string apply_name = "";
+ optional string reason = "";
+ repeated p_team_role role_list = [];
+ optional int32 team_id = 0;
+ optional int32 pick_type = 0; 
+}
+
+message m_team_query_tos{
+ 
+ required int32 op_type = 0;
+}
+message m_team_query_toc{
+ required int32 op_type = 0;
+ required bool succ = true;
+ optional string reason = "";
+ optional int32 reason_code = 0;
+ repeated p_team_nearby nearby_list = [];
+}
+
+
+message m_team_create_tos{
+ required int32 role_id = 0;
+}
+message m_team_create_toc{
+ required int32 role_id = 0;
+ required bool succ = true;
+ optional string reason = ""; 
+ optional int32 reason_code = 0;
+ repeated p_team_role role_list = [];
+ optional int32 team_id = 0;
+ required int32 pick_type = 0; 
+}
+
+
+message m_team_fb_call_tos{
+ required int32 fb_type = 0;
+ required int32 fb_level = 0;
+ required string fb_name = "";
+}
+
+message m_team_fb_call_toc{
+ required bool return_self = true;
+ required int32 err_code = 0;
+ optional string reason = "";
+ optional int32 fb_type = 0;
+ optional int32 fb_level = 0;
+ optional string fb_name = "";
+}
+
+
+message m_team_fb_transfer_tos{
+ required int32 fb_type = 0;
+ required int32 fb_level = 0;
+}
+
+message m_team_fb_transfer_toc{
+ required int32 err_code = 0;
+ optional string reason = "";
+}
+
+
+
+
+
+message m_friend_request_tos {
+ required string name = ""; 
+}
+
+message m_friend_request_toc {
+ required bool succ = true;
+ required string name = "";
+ optional string reason = "";
+ required bool return_self = true;
+ required bool isopenwindow = false;
+ optional p_friend_info friend_info = null; 
+}
+
+
+
+
+message m_friend_accept_tos {
+ required string name = ""; 
+}
+
+message m_friend_accept_toc {
+ required bool succ = true;
+ optional string name = ""; 
+ optional p_friend_info friend_info = null; 
+ optional string reason = "";
+ required bool return_self = true;
+}
+
+
+message m_friend_accept_or_refuse_tos {
+ required int32 type = 0; 
+}
+
+
+message m_friend_accept_or_refuse_toc {
+ required bool succ = true;
+ optional string name = ""; 
+ optional string reason = "";
+ required bool return_self = true;
+}
+
+
+message m_friend_refuse_tos {
+ required string name = "";
+}
+
+message m_friend_refuse_toc {
+ required bool succ = true;
+ required string name = "";
+ required bool return_self = true;
+ optional string reason = "";
+}
+
+
+
+
+message m_friend_delete_tos {
+ required int32 roleid = 0;
+}
+
+message m_friend_delete_toc {
+ required bool succ = true;
+ optional int32 type = 0;
+ optional string reason = "";
+ required bool return_self = true;
+ optional int32 roleid = 0;
+}
+
+
+message m_friend_black_tos {
+ required string name = "";
+}
+
+message m_friend_black_toc {
+ required bool succ = true;
+ optional string name = "";
+ optional p_friend_info friend_info = null;
+ optional string reason = "";
+ required boolbool return_self = false;
+}
+
+
+
+message m_friend_enemy_toc {
+ required p_friend_info enemy_info = null;
+}
+
+
+message m_friend_list_tos {
+}
+
+message m_friend_list_toc {
+ required bool succ = true;
+ repeated p_friend_info friend_list = [];
+ optional string reason = "";
+ optional int32 cur_friend = 0;
+ optional int32 max_friend = 0;
+}
+
+
+message m_friend_black_list_toc {
+ repeated p_friend_info black_list = [];
+}
+
+
+message m_friend_black_delete_tos {
+ optional int32 roleid = 0;
+}
+
+message m_friend_black_delete_toc {
+ optional int32 roleid = 0;
+ required bool succ = true;
+ optional string reason = "";
+}
+
+
+
+message m_friend_search_tos {
+ repeated string name = "";
+}
+
+
+message m_friend_search_toc {
+ repeated p_friend_info list = [];
+}
+
+
+message m_friend_around_role_tos {
+
+}
+
+message m_friend_around_role_toc {
+ repeated p_friend_info list = [];
+}
+
+
+
+message m_friend_recent_contacts_tos {
+}
+message m_friend_recent_contacts_toc {
+ repeated p_friend_info list = [];
+}
+
+
+
+
+
+
+
+
+message m_friend_offline_request_toc {
+ repeated p_friend_info request_list = [];
+}
+
+message m_friend_request_list_tos {
+}
+
+
+message m_friend_request_list_toc {
+ repeated p_friend_info request_list = [];
+}
+
+message m_friend_change_relative_toc {
+ required int32 role_id = 0;
+ repeated int32 relative = [];
+}
+
+message m_friend_add_friendly_toc {
+ required int32 role_id = 0;
+ required int32 friendly = 0;
+}
+ 
+
+
+
+
+message m_friend_online_toc{
+ required int32 roleid = 0;
+}
+
+message m_friend_offline_toc{
+ required int32 roleid = 0; 
+}
+
+message m_friend_upgrade_toc{
+ required int32 roleid = 0;
+ required int32 oldlevel = 0;
+ required int32 newlevel = 0;
+}
+
+
+message m_friend_info_tos{
+ required int32 roleid = 0;
+}
+
+message m_friend_info_toc{
+ required bool succ = true;
+ optional p_role_ext friend_info = null;
+ optional string reason = "";
+ repeated p_goods equips = [];
+}
+
+
+message m_friend_modify_tos{
+ optional p_role_ext info = null;
+}
+
+message m_friend_modify_toc{
+ required bool succ = true;
+ optional string reason = "";
+ required bool return_self = true;
+ optional p_role_ext info = null;
+}
+
+
+message m_friend_create_family_toc {
+ required int32 role_id = 0;
+ required int32 family_id = 0;
+ required string family_name = "";
+}
+
+
+message m_friend_get_info_tos{
+ required int32 roleid = 0;
+}
+
+message m_friend_get_info_toc{
+ optional p_friend_info roleinfo = null;
+}
+
+
+message m_friend_update_family_toc {
+ required int32 role_id = 0;
+ required int32 family_id = 0;
+ required string family_name = "";
+ required int32 level = 0;
+}
+
+
+message m_friend_recommend_tos {
+ required int32 type = 0; 
+}
+
+message m_friend_recommend_toc {
+ required int32 type = 0; 
+ required bool succ = true;
+ repeated p_recommend_member_info friend_info = []; 
+ optional string reason = "";
+}
+
+
+message m_friend_auto_recommend_tos {
+}
+
+message m_friend_auto_recommend_toc {
+ required bool succ = true;
+ repeated p_recommend_member_info friend_info = []; 
+ optional string reason = "";
+}
+
+message m_friend_quick_request_tos {
+ repeated int32 role_list = []; 
+}
+
+
+message m_friend_quick_request_toc {
+ required int32 err_code = 0;
+ optional string reason = "";
+ required bool return_self = true;
+ optional string role_name = ""; 
+}
+
+
+message m_friend_congratulation_tos {
+ required int32 to_friend_id = 0;
+ required string congratulation = ""; 
+}
+
+message m_friend_congratulation_toc {
+ required bool succ = true;
+ required bool return_self = true;
+ optional string reason = "";
+ optional int32 exp_add = 0; 
+ optional int32 hyd_add = 0; 
+ optional string from_friend = ""; 
+ optional string congratulation = ""; 
+}
+
+
+message m_friend_advertise_tos {
+}
+
+message m_friend_advertise_toc {
+ required bool succ = true;
+ optional string reason = "";
+}
+
+
+message m_friend_send_letter_toc {
+ optional string name = "";
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+message m_letter_get_tos{
+ required int32 pack_num = 0; 
+}
+
+
+message m_letter_get_toc{
+ repeated p_letter_simple_info letters = [];
+ required int32 request_mark = 0;
+}
+
+
+
+message m_letter_open_tos{
+ required int32 letter_id = 0; 
+ required int32 table = 0; 
+ required bool is_self_send = false; 
+}
+
+
+message m_letter_open_toc{
+ required bool succ = false; 
+ optional p_letter_info result = null; 
+ optional string reason = ""; 
+}
+
+
+message m_letter_p2p_send_tos{
+ required string receiver = ""; 
+ required string text = ""; 
+ repeated p_letter_goods goods_list = null; 
+ required string title = ""; 
+}
+
+ 
+
+message m_letter_family_send_tos{
+ required string text = ""; 
+ required int32 range = 0; 
+}
+ 
+
+
+
+
+message m_letter_send_toc{
+ required bool succ = false; 
+ optional p_letter_simple_info letter = null; 
+ optional string reason = ""; 
+}
+
+
+message m_letter_delete_tos{
+ repeated p_letter_delete letters = []; 
+}
+
+
+
+
+message m_letter_delete_toc{
+ required bool succ = false; 
+ repeated p_letter_delete no_del = []; 
+ optional string reason = ""; 
+}
+
+
+message m_letter_accept_goods_tos{
+ required int32 letter_id = 0; 
+ required int32 table = 0; 信件类型
+}
+
+
+message m_letter_accept_goods_toc{
+ required bool succ = false; 
+ required int32 letter_id = 0; 
+ repeated p_reward_prop accept_list = []; 
+ repeated p_goods goods_take = []; 
+ optional string reason = ""; 
+}
+ 
+
+
+
+
+message m_mount_list_tos { 
+}
+
+message m_mount_list_toc {
+ repeated p_mount_info mounts = [];
+}
+
+message m_mount_up_tos {
+ required int32 mountid = 0;
+}
+
+message m_mount_up_toc {
+ required bool succ = false;
+ optional string reason = "";
+ optional p_mount_info mount = null; 
+}
+
+message m_mount_down_tos {
+}
+
+message m_mount_down_toc {
+ required bool succ = false;
+ optional string reason = ""; 
+ optional p_mount_info mount = null;
+}
+
+
+message m_mount_upgrade_tos {
+ required int32 mountid = 0; 
+ required bool is_auto_buy = false; 
+}
+
+message m_mount_upgrade_toc {
+ required bool succ = true;
+ optional bool is_auto_buy = false;
+ optional string reason = "";
+ optional p_mount_info mount = null;
+}
+
+message m_mount_autoupgrade_tos {
+ required int32 mountid = 0; 
+ required int32 target_level = 0; 
+}
+
+message m_mount_autoupgrade_toc {
+ required int32 err_code = 0; 
+ optional string reason = null; 
+ optional p_mount_info mount = null;
+ optional int32 use_speed_card_num = 0; 
+}
+
+
+
+
+
+message m_mount_changeup_tos {
+ required int32 dest_id = 0;
+}
+
+message m_mount_changeup_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional p_mount_info mount = null; 
+}
+
+message m_mount_changedown_tos {
+}
+
+message m_mount_changedown_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional p_mount_info mount = null; 
+}
+
+message m_mount_forceup_tos {
+}
+
+message m_mount_forceup_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional p_mount_info mount = null;
+}
+
+message m_mount_forcedown_tos {
+}
+
+message m_mount_forcedown_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional p_mount_info mount = null;
+}
+
+message m_mount_evolve_tos {
+ required int32 mountid = 0; 
+}
+
+message m_mount_evolve_toc {
+ required p_mount_info mount = null; 
+ required p_mount_info new_mount = 0; 
+}
+
+
+%% 新时装系统
+message m_fashion_list_tos { 
+}
+
+message m_fashion_list_toc {
+ repeated p_mount_info mounts = [];
+}
+
+message m_fashion_up_tos {
+ required int32 mountid = 0;
+}
+
+message m_fashion_up_toc {
+ required bool succ = false;
+ optional string reason = "";
+ optional p_mount_info mount = null; 
+}
+
+message m_fashion_down_tos {
+}
+
+message m_fashion_down_toc {
+ required bool succ = false;
+ optional string reason = ""; 
+ optional p_mount_info mount = null;
+}
+
+
+message m_fashion_upgrade_tos {
+ required int32 mountid = 0; 
+ required bool is_auto_buy = false; 
+}
+
+message m_fashion_upgrade_toc {
+ required bool succ = true;
+ optional bool is_auto_buy = false;
+ optional string reason = "";
+ optional p_mount_info mount = null;
+}
+
+message m_fashion_autoupgrade_tos {
+ required int32 mountid = 0; 
+ required int32 target_level = 0; 
+}
+
+message m_fashion_autoupgrade_toc {
+ required int32 err_code = 0; 
+ optional string reason = 2; 
+ optional p_mount_info mount = null;
+ optional int32 use_speed_card_num = 0; 
+}
+
+
+
+
+
+
+message m_equip_mountup_tos {
+ required int32 mountid = 0; 
+}
+
+message m_equip_mountup_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional p_goods mount_new = null; 
+ optional p_goods mount_old = null; 
+}
+
+
+
+
+message m_equip_mountdown_tos {
+ required int32 mountid = 0; 
+ optional int32 bagid = 0; 
+ optional int32 position = 0; 
+}
+
+message m_equip_mountdown_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional p_goods mount = null; 
+}
+
+
+
+
+message m_equip_mount_changecolor_tos {
+ required int32 mountid = 0; 
+ required bool is_auto_buy = false; 
+}
+message m_equip_mount_changecolor_toc {
+ required bool succ = true;
+ optional bool is_auto_buy = false;
+ optional string reason = "";
+ optional int32 color = 0; 
+ optional int32 level = 0; 
+ optional p_goods mount = null; 
+}
+ 
+
+
+
+
+message m_equip_load_tos {
+ required int32 pet_id = 0; 
+ required int32 equip_slot_num = 0; 
+ required int32 equipid = 0; 
+ required int32 from = 0; 
+}
+
+message m_equip_load_toc {
+ required int32 pet_id = 0; 
+ required bool succ = true;
+ optional string reason = "";
+ optional p_goods equip_load = null; 
+ optional p_goods equip_bag = null; 
+}
+
+
+
+
+message m_equip_unload_tos {
+ required int32 pet_id = 0; 
+ required int32 equipid = 0; 
+ optional int32 bagid = 0; 
+ optional int32 position = 0; 
+}
+
+message m_equip_unload_toc {
+ required int32 pet_id = 0; 
+ required bool succ = true;
+ optional string reason = "";
+ optional p_goods equip = null; 
+ required int32 loadposition = 0; 
+}
+
+
+
+
+message m_equip_update_toc {
+ required int32 pet_id = 0; 
+ repeated p_goods equips = []; 
+} 
+
+
+
+
+
+
+
+message m_equip_reinforce_tos{
+ required int32 pet_id = 0; 
+ required int32 equip_id = 0; 
+ required bool is_loaded = false; 
+ required int32 reinforce_type = 0; 
+}
+message m_equip_reinforce_toc{
+ required int32 pet_id = 0; 
+ required int32 err_code = 0; 
+ required int32 equip_id = 0; 
+ required int32 reinforce_type = 0; 
+ required int32 times = 0; 
+} 
+
+message m_equip_inherit_tos{
+ required int32 from_equip = 0; 
+ required int32 to_equip = 0; 
+}
+message m_equip_inherit_toc{
+}
+
+
+
+
+
+
+message m_item_use_tos {
+ required int32 itemid = 0; 
+ required int32 usenum = 0; 
+ required int32 effect_id = 0; 
+}
+
+message m_item_use_toc {
+ required bool succ = true;
+ repeated string reason = "";
+ optional int32 itemid = 0;
+ optional int32 type_id = 0;
+ optional int32 rest = 0; 
+ optional int32 reason_code = 0;
+}
+
+
+
+
+message m_item_use_special_tos{
+ required int32 item_id = 0;
+}
+message m_item_use_special_toc{
+ optional int32 item_id = 0;
+ required bool succ = true;
+ optional string reason = "";
+ optional int32 reason_code = 0;
+ optional int32 use_status = 0;
+ optional int32 total_progress = 0;
+ optional int32 use_effect = 0;
+ repeated p_item_effect effects = [];
+ repeated p_goods new_goods_list = [];
+ optional string progress_desc = "";
+}
+
+
+message m_item_trace_tos {
+ required string target_name = ""; 
+ required int32 goods_id = 0;
+}
+
+message m_item_trace_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional int32 goods_id = 0;
+ optional int32 goods_num = 0;
+ optional string target_name = "";
+ optional int32 target_mapid = 0;
+ optional int32 target_tx = 0;
+ optional int32 target_ty = 0;
+}
+
+ 
+
+
+message m_item_extend_bag_row_tos{
+ required int32 row = 0; 
+}
+message m_item_extend_bag_row_toc{
+ required bool succ = true;
+ optional int32 reason_code = 0; 
+ optional int32 bagid = 0; 
+ optional int32 rows = 0; 
+ optional int32 columns = 0; 
+ optional int32 grid_number = 0; 
+}
+
+
+message m_item_gift_toc{
+ repeated p_reward_prop goods_list = []; 
+}
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+message m_goods_destroy_tos {
+ required int32 id = 0; 
+}
+
+message m_goods_destroy_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional int32 id = 0; 
+} 
+
+
+
+message m_goods_sale_tos {
+ required int32 id = 0; 
+ required int32 num = 0; 
+}
+
+message m_goods_sale_toc {
+ required int32 err_code = 0;
+ optional string reason = "";
+ required int32 sell_type = 0; 
+ required int32 sell_price = 0; 
+} 
+
+
+
+
+message m_goods_swap_tos {
+ required int32 id1 = 0; 
+ required int32 position2 = 0; 
+ required int32 bagid2 = 0; 
+}
+
+message m_goods_swap_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional p_goods goods1 = null; 
+ optional p_goods goods2 = null; 
+} 
+
+
+
+
+message m_goods_divide_tos {
+ required int32 id = 0; 
+ required int32 num = 0; 
+ required int32 bagposition = 0; 
+ required int32 bagid = 0; 
+}
+
+message m_goods_divide_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional p_goods goods1 = null; 
+ optional p_goods goods2 = null; 
+} 
+
+message m_goods_update_toc {
+ repeated int32 del_list = []; 
+ repeated p_goods update_list = []; 
+} 
+
+
+
+
+
+message m_goods_tidy_tos{
+ required int32 bagid = 0; 
+ 
+}
+message m_goods_tidy_toc{
+ required int32 bagid = 0; 
+ repeated p_goods goods = []; 
+}
+ 
+
+message m_goods_show_goods_tos {
+ optional string channel_sign = ""; 
+ optional string to_role_name = ""; 
+ optional int32 show_type = 0; 
+ required int32 goods_id = 0;
+}
+
+message m_goods_show_goods_toc {
+ required bool succ = true;
+ optional string reason = "";
+}
+
+
+
+message m_role2_hpmp_change_toc{
+ required int32 hp = 0;
+ required int32 mp = 0;
+ required int32 is_show_hp_effect = 0; 
+}
+
+message m_role2_levelup_tos{
+ 
+}
+
+message m_role2_levelup_toc {
+ required int32 err_code = 0;
+ optional int32 need_jingjie = 0;
+ required int32 level = 0; 
+ required int32 maxhp = 0; 
+ required int32 maxmp = 0; 
+ required double exp = 0; 
+ required double next_level_exp = 0; 
+ required double total_add_exp = 0; 
+}
+
+
+message m_role2_levelup_other_toc {
+ required int32 roleid = 0; 
+ required int32 level = 0; 
+}
+
+
+
+message m_role2_attr_change_toc {
+ required int32 roleid = 0;
+ repeated p_role_attr_change changes = [];
+}
+
+message m_role2_base_reload_toc {
+ required p_role_base role_base = null;
+ optional double fight_power = 0;
+}
+
+
+message m_role2_dead_toc {
+ optional string killer = ""; 
+ repeated int32 relive_type = []; 
+ optional int32 relive_silver = 0; 
+ optional int32 dead_type = 0 ; 
+ optional int32 killer_faction = 0 ;
+}
+
+
+message m_role2_dead_other_toc {
+ required int32 roleid = 0; 
+}
+
+
+message m_role2_relive_toc {
+ required bool succ = true;
+ optional bool return_self = true;
+ optional string reason = "";
+ optional p_role_fight role_fight = null;
+ optional p_role_pos role_pos = null;
+ optional p_map_role map_role = null;
+ required bool map_changed = false;
+}
+
+
+message m_role2_unbund_change_tos{
+ required bool unbund = false; 
+}
+
+message m_role2_unbund_change_toc{
+ required bool succ = false;是否成功
+}
+
+message m_role2_relive_tos {
+ 
+ required int32 type = 0; 
+}
+
+message m_role2_getroleattr_tos {
+ required int32 role_id = 0;
+ required bool is_check = false;
+}
+
+
+
+message m_role2_getroleattr_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional p_other_role_info role_info = null;
+ required p_role_pet_bag pet_bag = null; 
+ repeated p_pet all_pets = []; 
+}
+
+ 
+
+
+message m_role2_pkmodemodify_tos {
+ required int32 pk_mode = 0;
+}
+
+message m_role2_pkmodemodify_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional int32 pk_mode = 0;
+}
+
+
+message m_role2_show_equip_ring_tos {
+ required bool show_equip_ring = false;
+}
+
+message m_role2_show_equip_ring_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional bool show_equip_ring = false;
+}
+
+
+message m_role2_sex_tos {
+}
+
+message m_role2_sex_toc {
+ required bool succ = true;
+ optional int32 sex = 0; 
+ optional string reason = "";
+}
+
+
+
+message m_role2_remove_skin_buff_tos {
+}
+
+message m_role2_remove_skin_buff_toc {
+ required bool succ = true;
+ optional string reason = "";
+}
+
+
+message m_role2_online_broadcast_toc {
+ required int32 role_type = 0; 
+ required string role_name = "";
+ optional int32 faction_id = 0;
+}
+
+
+message m_role2_rename_tos{
+ required string new_name = "";
+}
+
+message m_role2_rename_toc{
+ required bool succ = true;
+ optional string reason = "";
+ optional int32 reason_code = 0;
+}
+
+
+message m_role2_buy_tili_tos{
+}
+message m_role2_buy_tili_toc{
+ required int32 err_code = 0;
+ optional string reason = "";
+ optional p_tili_info p_tili = null;
+}
+
+message m_role2_tili_info_toc{
+ optional p_tili_info p_tili = null;
+}
+
+
+
+message m_role2_daily_present_tos{
+ 
+}
+
+message m_role2_daily_present_toc{
+ required int32 msg_type = 0; 
+}
+
+
+
+message m_monster_enter_toc {
+ repeated p_map_monster monsters = [];
+}
+
+message m_monster_quit_toc {
+ required int32 monsterid = 0;
+}
+
+message m_monster_dead_toc {
+ optional string killer_type = "";
+ optional int32 killer_id = 0;
+ required int32 monsterid = 0;
+}
+
+message m_monster_attr_change_toc {
+ required int32 monsterid = 0;
+ required int32 change_type = 0;
+ required int32 value = 0;
+}
+
+
+message m_monster_walk_path_toc {
+ required int32 monsterid = 0;
+ required p_walk_path walk_path = null;
+}
+
+message m_monster_walk_toc {
+ required p_map_monster monsterinfo = null;
+ required p_pos pos = null;
+}
+
+message m_monster_summon_toc {
+ required int32 monster_id = 0;
+}
+
+message m_monster_talk_toc {
+ required int32 monster_id = 0;
+ required int32 show_type = 0;
+ required string content = "";
+ 
+}
+
+message m_monster_skill_toc {
+ required int32 monster_id = 0;
+ required int32 delay = 0;
+ required int32 skill_type = 0;
+ required int32 start_pos = 0;
+ required int32 attack_range = 0;
+}
+
+
+
+
+
+
+message m_exchange_deal_item_tos {
+ required int32 deal_id = 0; 
+ required int32 num = 0; 
+ required int32 type = 0; 
+ 
+}
+
+message m_exchange_deal_item_toc {
+ required int32 deal_id = 0; 
+ required int32 num = 0; 
+ required int32 type = 0; 
+ optional int32 err_code = 0;
+ optional string reason = "";
+} 
+
+
+message m_exchange_deal_score_tos {
+}
+
+message m_exchange_deal_score_toc {
+ required int32 honor_score = 0; 
+ required int32 stone_score = 0; 
+ required int32 prestige_score = 0; 
+}
+
+
+
+message m_skill_list_toc{
+ required int32 open_num = 0; 
+ repeated p_role_skill pve_skills = [];
+ repeated p_role_skill pvp_skills = [];
+ repeated p_role_skill open_skills = []; 
+ repeated p_role_skill next_skills = []; 
+ required int32 pve_strategy = 0;
+ required int32 pvp_strategy = 0;
+}
+message m_skill_setting_tos{
+ required int32 type = 0; 
+ repeated int32 skills = [];
+ required int32 strategy = 0;
+}
+
+
+
+
+message m_depot_get_goods_tos{
+ required int32 npcid = 0; 
+ required int32 depot_id = 0;
+}
+
+
+message m_depot_get_goods_toc{
+ required bool succ = true;
+ optional string reason = "";
+ optional int32 depot_num = 0; 
+ optional int32 overlap_num = 0;
+ repeated p_depot_bag depots = []; 
+}
+
+
+
+
+message m_depot_dredge_tos{
+ required int32 bagid = 0; 
+}
+
+
+message m_depot_dredge_toc{
+ required bool succ = false; 
+ optional int32 bagid = 0; 
+ optional string reason = ""; 
+}
+
+
+message m_depot_destroy_tos {
+ required int32 id = 0; 
+}
+
+
+message m_depot_destroy_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional int32 id = 0; 
+} 
+
+
+message m_depot_swap_tos{
+ required int32 goodsid = 0; 
+ optional int32 position = 0; 
+ optional int32 bagid = 0; 
+}
+
+
+message m_depot_swap_toc {
+ required bool succ = true;
+ optional string reason = ""; 
+ optional p_goods goods1 = null; 
+ optional p_goods goods2 = null; 
+}
+
+
+message m_depot_divide_tos {
+ required int32 id = 0; 
+ required int32 num = 0; 
+ required int32 bagid = 0; 
+ required int32 position = 0; 
+}
+
+
+message m_depot_divide_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional p_goods goods1 = null; 
+ optional p_goods goods2 = null; 
+} 
+
+
+message m_depot_tidy_tos{
+ required int32 bagid = 0;
+}
+
+message m_depot_tidy_toc{
+ required bool succ = false; 
+ required int32 bagid = 0; 
+ repeated p_goods goods_list = []; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+message m_depot_extend_row_tos{
+ required int32 row = 0; 
+}
+message m_depot_extend_row_toc{
+ required bool succ = true;
+ optional int32 reason_code = 0; 
+ optional int32 bagid = 0; 
+ optional int32 rows = 0; 
+}
+
+
+
+
+
+
+
+
+
+message m_shortcut_init_toc {
+ repeated p_shortcut shortcut_list = []; 
+ required int32 selected = 0; 
+}
+
+
+message m_shortcut_update_tos {
+ repeated p_shortcut shortcut_list = [];
+ required int32 selected = 0;
+}
+
+message m_bubble_send_tos{
+ required int32 action_type = 0;
+ required string msg = "";
+ required int32 to_role_id = 0 ;
+}
+
+message m_bubble_send_toc{
+ required bool succ = true;
+ optional string reason = ""; 
+}
+message m_bubble_msg_toc{
+ required int32 actor_type = 0;
+ required int32 actor_id = 0;
+ required string actor_name = "";
+ optional int32 actor_sex = 0;
+ optional int32 actor_faction = 0;
+ required int32 action_type = 0;
+ required string msg = "";
+ required int32 to_role_id = 0 ;
+ optional int32 actor_head = 0;
+}
+
+
+
+
+
+message m_family_create_tos {
+ required string family_name = ""; 
+ required string public_notice = ""; 
+ required string private_notice = ""; 
+ required bool is_invite = false; 
+ required int32 badge = 0; 
+}
+
+message m_family_create_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional p_family_info family_info = null;
+ optional int32 new_silver = 0; 
+ optional int32 new_silver_bind = 0; 
+ optional int32 new_gold = 0; 
+ optional int32 new_gold_bind = 0; 
+}
+
+
+
+message m_family_self_tos {
+}
+
+message m_family_self_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required p_family_info family_info = null;
+ required int32 rank = 0;
+}
+
+
+message m_family_panel_tos { 
+ required int32 num_per_page = 0;
+}
+
+message m_family_panel_toc {
+ repeated p_family_invite_info invites = [];
+ repeated p_family_summary family_list = [];
+ 
+ repeated p_family_request_info requests = [];
+ required int32 total_page = 0;
+}
+
+
+
+
+
+message m_family_enter_map_tos {
+}
+
+message m_family_enter_map_toc {
+ required bool succ = true;
+ optional string reason = "";
+}
+
+message m_family_boss_info_tos {
+}
+message m_family_boss_info_toc {
+ repeated p_family_boss_call boss_list = [];
+}
+
+
+message m_family_boss_call_tos {
+ optional int32 boss_type = 0;
+}
+
+message m_family_boss_call_toc {
+ required int32 err_code = 0;
+ optional string reason = "";
+ optional int32 boss_type = 0;
+ optional p_family_boss_call boss_call = null;
+}
+
+message m_family_boss_notice_toc {
+}
+
+message m_family_boss_attack_toc {
+ optional string boss_name = "";
+ optional int32 max_hp = 0;
+ optional int32 cur_hp = 0;
+ optional string attack_name = "";
+ optional int32 damage = 0;
+ optional bool is_kill = false;
+ optional int32 boss_id = 0;
+}
+
+message m_family_boss_reward_toc {
+ optional p_family_boss_reward reward = null;
+ optional bool is_kill = false;
+}
+
+
+message m_family_call_partyboss_tos {
+}
+
+message m_family_call_partyboss_toc {
+ required bool succ = true;
+ optional string reason = "";
+}
+
+
+message m_family_uplevel_tos {
+}
+
+message m_family_uplevel_toc {
+ required bool succ = true;
+ optional string reason = "";
+ 
+ required bool return_self = true;
+ optional int32 new_level = 0;
+ optional int32 money = 0;
+ optional int32 active_points = 0;
+}
+
+ 
+
+
+message m_family_request_list_tos {
+
+}
+
+
+message m_family_request_list_toc {
+ required bool succ = true;
+ optional string reason = "";
+ 
+ repeated p_family_request request_list = [];
+}
+
+
+
+message m_family_member_join_toc {
+ required p_family_member_info member = null;
+}
+ 
+
+message m_family_list_tos {
+ required int32 page_id = 0;
+ required int32 num_per_page = 0;
+ 
+ optional int32 search_type = 0;
+ optional int32 request_from = 0;
+}
+
+message m_family_list_toc {
+ repeated p_family_summary family_list = [];
+ required int32 total_page = 0;
+ required int32 page_id = 0;
+ optional int32 request_from = 0;
+}
+
+
+message m_family_join_limit_tos {
+required int32 min_level = 0;
+required int32 min_fight_power = 0;
+}
+
+message m_family_join_limit_toc {
+required int32 err_code = 0;
+required int32 min_level = 0;
+required int32 min_fight_power = 0;
+}
+
+
+message m_family_request_tos {
+ required int32 family_id = 0;
+}
+
+message m_family_request_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required bool return_self = true;
+ optional p_family_request request = null;
+ optional int32 family_id = 0;
+}
+
+
+
+message m_family_backout_tos {
+ required int32 family_id = 0;
+}
+
+message m_family_backout_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional int32 family_id = 0;
+ }
+
+
+message m_family_invite_tos {
+ required string role_name = "";
+}
+
+message m_family_invite_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required bool return_self = true;
+ optional string role_name = "";
+ optional int32 family_id = 0;
+ optional string family_name = "";
+}
+
+
+message m_family_cancel_invite_tos {
+ required int32 role_id = 0;
+}
+
+message m_family_cancel_invite_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required bool return_self = true;
+ optional int32 role_id = 0;
+}
+
+
+message m_family_refuse_tos {
+ required int32 family_id = 0;
+}
+
+message m_family_refuse_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required bool return_self = true;
+ optional int32 role_id = 0;
+ 
+ optional string role_name = "";
+}
+
+
+message m_family_agree_f_tos {
+ required int32 role_id = 0;
+}
+
+message m_family_agree_f_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required bool return_self = true;
+ optional p_family_info family_info = null;
+ required int32 admit_role_id = 0;
+}
+
+
+
+message m_family_dismiss_tos {
+}
+
+message m_family_dismiss_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required bool return_self = true;
+}
+
+
+message m_family_set_title_tos {
+ required int32 role_id = 0;
+ required string title = "";
+}
+
+message m_family_set_title_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required bool return_self = true;
+ optional int32 role_id = 0;
+ optional string role_name = "";
+ optional string title = "";
+}
+
+
+
+message m_family_set_owner_tos {
+ required int32 role_id = 0;
+}
+
+message m_family_set_owner_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required bool return_self = true;
+ optional int32 role_id = 0;
+ optional p_family_info family_info = null;
+}
+
+
+
+message m_family_set_secowner_or_elder_tos {
+ required int32 role_id = 0;
+ required int32 type = 0;
+}
+
+message m_family_set_secowner_or_elder_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required bool return_self = true;
+ optional int32 role_id = 0;
+ optional string role_name = "";
+ optional p_family_info family_info = null;
+ required int32 type = 0;
+}
+
+
+message m_family_unset_secowner_or_elder_tos {
+ required int32 role_id = 0;
+ required int32 type = 0;
+}
+
+message m_family_unset_secowner_or_elder_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required bool return_self = true;
+ optional int32 role_id = 0;
+ optional p_family_info family_info = null;
+ required int32 type = 0;
+}
+
+
+
+message m_family_update_notice_tos {
+ optional string pub_content = "";
+ optional string pri_content = "";
+}
+
+message m_family_update_notice_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required bool return_self = true;
+ optional string pub_content = ""; 
+ optional string pri_content = ""; 
+}
+ 
+
+
+message m_family_refuse_f_tos {
+ required int32 role_id = 0;
+}
+
+message m_family_refuse_f_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required bool return_self = true;
+ optional string family_name = "";
+ required int32 target_id = 0;
+}
+
+
+message m_family_fire_tos {
+ required int32 role_id = 0;
+}
+
+message m_family_fire_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required bool return_self = true;
+ optional int32 role_id = 0;
+ optional string role_name = "";
+}
+
+
+message m_family_agree_tos {
+ required int32 family_id = 0;
+}
+
+message m_family_agree_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required bool return_self = true;
+ optional p_family_member_info member_info = null;
+ optional p_family_info family_info = null;
+}
+
+
+message m_family_leave_tos {
+}
+
+message m_family_leave_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional string family_name = "";
+ required bool return_self = true;
+ 
+ optional int32 role_id = 0;
+}
+
+
+
+
+
+message m_family_leave_map_tos {
+}
+
+message m_family_leave_map_toc {
+ required bool succ = true;
+ optional string reason = "";
+}
+
+ 
+
+message m_family_role_online_toc {
+ required int32 role_id = 0;
+}
+
+message m_family_role_offline_toc {
+ required int32 role_id = 0;
+}
+
+
+message m_family_can_invite_tos {
+}
+
+message m_family_can_invite_toc {
+ repeated p_recommend_member_info roles = [];
+}
+
+
+message m_family_cancel_title_tos {
+ required int32 role_id = 0;
+}
+
+message m_family_cancel_title_toc {
+ required bool succ = true;
+ optional string reason = "";
+ 
+ optional int32 role_id = 0;
+}
+
+
+
+message m_family_enable_map_tos {
+}
+
+message m_family_enable_map_toc {
+ required bool succ = true;
+ optional string reason = "";
+ 
+ required bool return_self = true;
+}
+
+
+message m_family_del_request_toc {
+ required int32 role_id = 0; 
+}
+
+
+message m_family_map_closed_toc {
+}
+
+
+
+message m_family_info_change_toc {
+ repeated p_family_info_change changes = [];
+}
+
+
+message m_family_active_points_toc {
+ required int32 new_points = 0;
+}
+
+
+message m_family_money_toc {
+ required int32 new_money = 0;
+}
+
+
+message m_family_downlevel_toc {
+ required int32 level = 0;
+ optional string reason = "";
+}
+
+
+
+message m_family_callmember_toc {
+ required int32 call_type = 0; 
+ required bool succ = true;
+ optional string reason = "";
+ optional string message = "";
+}
+
+
+message m_family_callmember_tos {
+ required string message = ""; 
+}
+
+
+
+message m_family_member_enter_map_toc{
+ required bool succ = false;
+ optional string reason = "";
+}
+
+
+message m_family_member_enter_map_tos{
+ required int32 call_type = 0; 
+}
+
+
+message m_family_maintainfail_toc{
+ required string message = "";
+ required int32 result = 0;
+ optional int32 new_level = 0;
+ }
+
+message m_family_activestate_toc
+{
+ required bool succ = true;
+ repeated p_family_task familytasklist = [];
+}
+
+message m_family_activestate_tos{
+ required int32 family_id = 0;
+}
+
+
+message m_family_membergather_toc{
+ required string message = "";
+}
+
+
+
+message m_family_gatherrequest_tos { 
+
+}
+
+
+message m_family_gatherrequest_toc {
+ required bool succ = false;
+ required string reason = "";
+}
+
+
+message m_family_detail_tos {
+ required int32 family_id = 0;
+}
+
+message m_family_detail_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional p_family_info content = 0;
+}
+
+
+message m_family_set_bonfire_start_time_tos{
+ required int32 hour = 0;
+ required int32 minute = 0;
+ required int32 seconds = 0;
+}
+
+
+message m_family_set_bonfire_start_time_toc{
+ required bool succ = true;
+ optional string reason = "";
+ optional int32 hour = 0;
+ optional int32 minute = 0;
+ optional int32 seconds = 0;
+}
+%% 获取列表
+message m_family_get_donate_info_tos{
+
+}
+message m_family_get_donate_info_toc{
+ optional bool succ = true;
+ optional string reason = "";
+ optional int32 reason_code = 0;
+ repeated p_role_family_donate_info donate_gold_list = [];
+ repeated p_role_family_donate_info donate_silver_list = [];
+}
+message m_family_donate_tos{
+ optional int32 donate_type = 0; 
+ optional int32 donate_value = 0;
+}
+
+message m_family_donate_toc{
+ optional bool succ = true;
+ optional string reason = "";
+ optional int32 reason_code = 0;
+ optional int32 donate_type = 0;
+ optional p_role_family_donate_info donate_info = null;
+}
+
+message m_family_auto_agree_tos{
+ required int32 is_auto_agree = 0; 
+}
+
+message m_family_auto_agree_toc{
+ required int32 is_auto_agree = 0; 
+ required int32 error_code = 0; 
+}
+
+
+message m_fmlbonus_list_tos{
+}
+
+message m_fmlbonus_list_toc{
+ repeated p_family_bonus bonus_list = [];
+}
+
+
+
+
+message m_fmlbonus_donate_tos{
+ required int32 goods_id = 0; 
+}
+
+message m_fmlbonus_donate_toc{
+ repeated p_family_bonus bonus_list = [];
+ required int32 error_code = 0; 
+}
+
+
+message m_fmlbonus_send_tos{
+ required int32 goods_id = 0; 
+ repeated int32 member_ids = []; 
+}
+
+message m_fmlbonus_send_toc{
+ required int32 error_code = 0; 
+}
+
+
+message m_fmlbonus_send_history_tos{
+ required int32 goods_id = 0; 
+}
+
+message m_fmlbonus_send_history_toc{
+ repeated int32 member_ids = []; 
+}
+
+
+message m_fmlbonus_get_tos{
+}
+
+message m_fmlbonus_get_toc{
+ repeated p_family_bonus bonus_list = [];
+ required int32 error_code = 0; 
+}
+
+
+
+
+
+
+message m_broadcast_general_toc{
+ repeated int32 type = [];
+ 
+ required int32 sub_type = 0;
+ 
+ 
+ required string content = "";
+ repeated string ext_info_list = []; 
+}
+
+message m_broadcast_countdown_toc{
+ required int32 type = 0;
+ required int32 sub_type = 0;
+ required int32 id = 0;
+ required string content = "";
+ required int32 countdown_time = 0;
+ required int32 current_countdown_time = 0;
+}
+
+
+
+message m_broadcast_general_tos{
+ required int32 type = 0;
+ required int32 sub_type = 0;
+ 
+ required string content = "";
+ repeated int32 role_list = [];
+ optional bool is_world = false;
+ optional int32 country_id = 0;
+ optional int32 famliy_id = 0;
+ optional int32 team_id = 0;
+}
+
+message m_broadcast_countdown_tos{
+ required int32 type = 0;
+ required int32 sub_type = 0;
+ optional int32 id = 0 ;
+ required string content = "";
+ required int32 countdown_time = 0;
+ required int32 current_countdown_time = 0;
+ repeated int32 role_list = [];
+ optional bool is_world = false;
+ optional int32 country_id = 0;
+ optional int32 famliy_id = 0;
+ optional int32 team_id = 0;
+}
+
+message m_broadcast_admin_tos {
+ required int32 id = 0;
+ required int32 foreign_id = 0;
+ required int32 type = 0; 
+ required string content = "";
+ required int32 send_strategy = 0;
+ optional string start_date = "";
+ optional string end_date = "";
+ optional string start_time = "";
+ optional string end_time = "";
+ optional int32 interval = 00 ;
+}
+
+message m_broadcast_cycle_tos {
+ required int32 type = 0;
+ required int32 sub_type = 0;
+ 
+ required string content = "";
+ required int32 send_type = 0;
+ optional int32 start_time = 0;
+ optional int32 end_time = 0;
+ optional int32 interval = 0 ;
+ repeated int32 role_list = [];
+ optional bool is_world = false;
+ optional int32 country_id = 0;
+ optional int32 famliy_id = 0;
+ optional int32 team_id = 0;
+}
+
+
+message m_broadcast_laba_tos{
+ required string content = "";
+ required int32 laba_id = 0; 
+}
+message m_broadcast_laba_toc{
+ required bool succ = true;
+ required bool return_self = true;
+ optional string reason = "";
+ required string content = "";
+ required int32 role_id = 0;
+ required string role_name = "";
+ required int32 sex = 0; 
+ required int32 faction_id = 0; 
+}
+
+message m_broadcast_stop_toc{
+ required int32 secs = 0; 
+ optional string content = "";
+}
+
+
+
+
+
+message m_equip_del_toc {
+ required int32 pet_id = 0; 
+ repeated int32 slot_nums = [];
+ optional p_goods new_equip = null;
+ optional p_skin new_skin = null;
+}
+
+
+message m_system_apns_tos {
+ required string login_platform = "";
+ required string machine_addr = "";
+}
+ 
+
+
+message m_system_heartbeat_tos {
+ required int32 time = 0;
+}
+
+message m_system_heartbeat_toc {
+ required int32 time = 0;
+ 
+ required int32 server_time = 0;
+}
+
+
+message m_system_fcm_toc{
+ required string info = "";
+ required int32 remain_time = 0;
+ required int32 total_time = 0;
+}
+
+ 
+
+
+
+message m_system_error_toc {
+ required string error_info = ""; 
+ required int32 error_no = 0; 
+}
+
+
+message m_system_message_toc {
+ required string message = "";
+}
+
+
+message m_system_config_change_tos {
+ required p_sys_config sys_config = null;
+}
+
+message m_system_config_change_toc {
+ required bool succ = true;
+ optional string reason = "";
+} 
+
+
+
+message m_system_config_toc {
+ required p_sys_config sys_config = null;
+}
+ 
+
+
+message m_system_setting_toc {
+ required bool is_debug = false; 
+ required bool is_open_pay = false; 
+ required bool is_show_frame = false; 
+ required bool is_report_err = false; 
+ required int32 log_level = 0; 
+ required string payment_link = "" ; 
+ required string website_url = "" ; 
+ required string forum_url = "" ; 
+ optional string service_qq1 = "" ; 
+ optional string service_qq2 = "" ; 
+}
+
+
+message m_system_pay_toc {
+ repeated p_pay_item pay_list = [] ; 
+}
+
+
+
+
+
+message m_gm_complaint_tos{
+ required int32 type = 0; 
+ required string title = ""; 
+ required string content = ""; 
+}
+
+message m_gm_complaint_toc{
+ required bool succ = false; 
+ optional string reason = ""; 
+}
+
+
+message m_gm_score_tos{
+ required int32 id = 0; 
+ required int32 fraction = 0; 
+}
+
+message m_gm_score_toc{
+ required bool succ = false; 
+ optional string reason = ""; 
+}
+
+
+
+message m_ranking_get_rank_tos{
+ required int32 rank_id = 0; 
+}
+message m_ranking_get_rank_toc{
+ required int32 rank_id = 0; 
+ repeated p_rank_row rows = []; 
+ optional int32 my_rank = 0; 
+} 
+
+message m_ranking_role_all_rank_tos{
+ required int32 role_id = 0;
+}
+
+message m_ranking_role_all_rank_toc{
+ repeated p_role_all_rank role_all_ranks = [];
+ required int32 role_id = 0; 
+ optional string role_name = "";
+ required bool is_self = false;
+}
+
+
+
+
+message m_title_get_role_titles_tos{
+ 
+}
+
+message m_title_get_role_titles_toc{
+ repeated p_title titles = [];
+}
+
+message m_title_change_cur_title_tos{
+ required int32 id = 0;
+}
+
+message m_title_change_cur_title_toc{
+ required bool succ = true;
+ optional string reason = "";
+ optional string color = "";
+ optional int32 id = 0;
+}
+
+
+
+
+
+message m_family_memberuplevel_toc{
+ required int32 role_id = 0;
+ required int32 new_level = 0;
+}
+ 
+
+
+
+message m_server_npc_enter_toc{
+ repeated p_map_server_npc server_npcs = [];
+}
+
+message m_server_npc_quit_toc{
+ repeated int32 npc_ids = [];
+}
+
+
+message m_server_npc_dead_toc{
+ required int32 npc_id = 0;
+} 
+
+
+
+
+
+
+message m_activity_today_tos {
+ required int32 type = 0; 
+}
+message m_activity_today_toc {
+ required bool succ = true;
+ optional string reason = "";
+ repeated p_activity_info activity_list = [];
+}
+
+
+message m_activity_today_update_toc {
+ required p_activity_info info = null;
+}
+
+
+message m_activity_pay_gift_info_tos {
+ required int32 type = 0;
+}
+
+message m_activity_pay_gift_info_toc {
+ required int32 err_code = 0;
+ optional string reason = "";
+ required int32 type = 0;
+ repeated p_activity_pay_gift_info gift_infos = [];
+}
+
+
+
+message m_activity_getgift_tos {
+ required int32 type = 0; 
+ optional int32 id = 0; 
+}
+
+message m_activity_getgift_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional int32 type = 0;
+ optional int32 id = 0; 
+}
+
+
+
+
+
+
+message m_activity_completion_info_tos{
+}
+
+message m_activity_completion_info_toc{
+ required int32 err_code = 0;
+ optional string reason = "";
+ required int32 cur_activity = 0;
+ repeated int32 record_list = [];
+ repeated p_activity_completion_new activity_list = [];
+}
+
+%% 快速获取活跃度
+message m_activity_completion_point_tos{
+ required int32 pay_gold = 0;
+}
+
+message m_activity_completion_point_toc{
+ required int32 pay_gold = 0;
+ required int32 err_code = 0;
+ optional string reason = "";
+ required int32 point = 0; 
+}
+
+%% 领取奖励
+message m_activity_completion_fetch_tos{
+ required int32 reward_point = 0;
+}
+
+message m_activity_completion_fetch_toc{
+ required int32 reward_point = 0;
+ required int32 err_code = 0;
+ optional string reason = "";
+}
+
+%%推荐
+message m_activity_recommend_toc{
+ repeated p_activity_completion_new activity_list = [];
+}
+
+
+
+
+
+
+message m_activity_benefit_list_tos {
+}
+message m_activity_benefit_list_toc {
+ required bool succ = true;
+ optional string reason = "";
+ repeated p_type_activity_list activity_list = [];
+ repeated p_activity_reward_list reward_status = [];
+ repeated int32 cur_point_list = [];
+ repeated int32 done_activity_id_list = [];
+ repeated int32 done_activity_num_list = [];
+ required int32 error_code = 0;
+}
+
+
+
+
+
+
+%% 购买活跃度
+message m_activity_point_buy_tos {
+ required int32 type = 0;
+ required int32 point = 0;
+}
+
+
+
+
+message m_activity_benefit_buy_tos {
+ required int32 act_task_id = 0; 
+}
+message m_activity_benefit_buy_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional int32 act_task_id = 0; 
+}
+
+
+
+
+
+
+message m_activity_notice_start_tos {
+ required int32 activity_id = 0;
+}
+
+
+
+message m_activity_notice_start_toc {
+ required int32 activity_id = 0;
+ optional int32 start_time = 0;
+ optional int32 end_time = 0;
+ optional int32 left_time = 0;
+}
+
+
+message m_activity_notice_end_toc {
+ required int32 activity_id = 0;
+}
+
+
+message m_activity_notice_transfer_tos {
+ required int32 activity_id = 0;
+}
+
+message m_activity_notice_transfer_toc {
+ required int32 activity_id = 0;
+ optional int32 npc_id = 0;
+ required int32 error_code = 0; 
+ optional string reason = ""; 
+}
+
+
+message m_activity_schedule_info_tos {
+ required int32 id = 0; 
+}
+
+message m_activity_schedule_info_toc {
+ required int32 error_code = 0; 
+ optional string reason = ""; 
+ optional int32 id = 0; 
+ optional p_activity_rank my_rank = null; 
+ repeated p_activity_rank near_ranks = []; 
+ optional int32 start_time = 0;
+ optional int32 end_time = 0;
+ optional int32 qualified_score = 0; 
+ optional int32 status = 0; 
+}
+
+
+message m_activity_schedule_fetch_tos {
+ required int32 id = 0;
+}
+
+message m_activity_schedule_fetch_toc {
+ required int32 error_code = 0; 
+ optional string reason = ""; 
+ required int32 id = 0;
+}
+
+
+message m_activity_drunk_time_toc{
+ required int32 start_time = 0;
+ required int32 end_time = 0;
+}
+
+
+message m_activity_daily_pay_reward_tos{
+ required int32 type = 0;
+}
+message m_activity_daily_pay_reward_toc{
+ required bool succ = true;
+ optional int32 reason_code = 0; 
+ required int32 type = 0;
+}
+
+
+message m_activity_daily_pay_notify_tos{
+}
+message m_activity_daily_pay_notify_toc{
+ repeated p_daily_pay_notify notify = [];
+}
+
+
+
+message m_activity_gather_tos{
+}
+
+message m_activity_gather_toc{
+ required int32 err_code = 0;
+ required string reason = "";
+}
+
+
+
+message m_activity_fecth_tos{
+ required int32 npc_id = 0; 
+}
+
+message m_activity_fecth_toc{
+ required int32 err_code = 0;
+ optional string reason = "";
+}
+
+message m_activity_gather_info_tos{
+}
+
+message m_activity_gather_info_toc{
+ required int32 err_code = 0;
+ required string reason = "";
+ required int32 my_gather_num = 0; 
+ repeated p_gather_rank ranks = [];
+ required int32 today_total_num = 0; 
+}
+
+
+message m_activity_yunying_info_tos{
+ required int32 activity_id = 0;
+}
+
+message m_activity_yunying_info_toc{
+ required int32 activity_id = 0;
+ required int32 gold_info = 0;
+ required int32 err_code = 0;
+ optional string reason = "";
+ repeated p_activity_reward_info reward_list = [];
+}
+
+
+
+
+
+message m_activity_exp_back_fetch_tos{
+ required int32 id = 0; 
+ required int32 type = 0; 
+}
+
+message m_activity_exp_back_fetch_toc{
+ required int32 id = 0; 
+ required int32 type = 0; 
+ required int32 err_code = 0; 
+ optional string reason = ""; 
+} 
+
+
+ 
+
+message m_level_gift_list_toc{
+ required int32 cur_max_lv = 0; 
+}
+
+
+message m_level_gift_accept_tos{
+ required int32 gift_lv = 0; 
+}
+
+
+message m_pet_enter_toc {
+ repeated p_map_pet pets = [];
+}
+
+message m_pet_quit_toc {
+ required int32 pet_id = 0;
+}
+
+message m_pet_attr_change_toc {
+ required int32 pet_id = 0;
+ required int32 change_type = 0;
+ required double value = 0;
+}
+
+
+message m_pet_summon_tos {
+ required int32 pet_id = 0;
+}
+
+message m_pet_summon_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional p_pet pet_info = null;
+}
+
+
+message m_pet_call_back_tos {
+ required int32 pet_id = 0;
+}
+
+message m_pet_call_back_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required int32 pet_id = 0;
+}
+
+
+message m_pet_info_tos {
+ required int32 pet_id = 0;
+ required int32 role_id = 0;
+}
+
+message m_pet_info_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional p_pet pet_info = null;
+}
+
+message m_pet_bag_info_tos {
+}
+
+message m_pet_bag_info_toc {
+ required p_role_pet_bag info = null;
+}
+
+message m_pet_dead_toc {
+ required int32 pet_id = 0;
+}
+
+message m_pet_all_toc{
+ required p_role_pet_bag pet_bag = null; 
+ repeated p_pet all_pets = []; 
+}
+
+message m_pet_collect_list_tos {
+ required int32 category = 0; 
+}
+message m_pet_collect_list_toc {
+ required int32 category = 0; 
+ repeated p_pet_collect pet_collects = []; 
+}
+
+
+message m_pet_collect_eat_tos {
+ required int32 type = 0; 
+ required int32 type_id = 0; 
+ repeated p_pet_eat_item pet_eat_items = []; 
+}
+message m_pet_collect_eat_toc {
+ required int32 type = 0; 
+ required p_pet_collect pet_collect = 0; 
+ required int32 err_code = 0;
+ optional string reason = "";
+}
+
+
+
+
+message m_pet_collect_change_tos {
+ required int32 type_id = 0; 
+}
+message m_pet_collect_change_toc {
+ required int32 err_code = 0;
+ optional string reason = "";
+}
+
+
+message m_pet_collect_new_toc {
+ required p_pet_collect pet_collect = 0; 
+}
+
+
+
+
+
+
+message m_stat_client_os_tos {
+ required int32 os_type = 0; 
+ optional string os_version = "";
+}
+
+
+message m_stat_browser_tos {
+ optional string flash_ver = "";
+ optional string browser_name = "";
+ optional string browser_ver = "";
+}
+
+
+message m_stat_config_toc {
+ required bool is_open = false; 
+}
+ 
+
+
+
+message m_present_get_tos {
+ required int32 present_id = 0; 
+}
+
+message m_present_get_toc {
+ required int32 err_code = 0; 
+ optional string reason = ""; 
+ required int32 present_id = 0; 
+ optional p_present_info present_info = null; 
+}
+
+
+message m_present_notify_toc {
+ repeated p_present_info present_list = []; 
+}
+
+
+
+
+
+message m_vip_info_toc {
+ optional p_role_vip vip_info = null;
+}
+
+
+message m_vip_notice_toc {
+ required bool active = false; 
+}
+
+
+message m_vip_next_info_toc {
+ 
+}
+
+
+message m_vip_remote_depot_tos {
+}
+
+message m_vip_remote_depot_toc {
+ required bool succ = true;
+ optional string reason = "";
+}
+
+
+message m_vip_active_tos {
+ required int32 vip_type = 0;
+}
+
+message m_vip_active_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional p_role_vip vip_info = null;
+ optional int32 gold = 0;
+ optional int32 item = 0;
+ optional p_role_super_vip super_vip_info = null; 
+}
+
+
+message m_vip_stop_notify_tos {
+ required int32 notify_type = 0; 
+}
+
+message m_vip_stop_notify_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional int32 notify_type = 0;
+}
+
+
+message m_vip_return_gold_tos {
+}
+
+message m_vip_return_gold_toc {
+ required bool succ = true;
+ optional string reason = "";
+ optional int32 return_gold_num = 0;
+}
+
+
+
+message m_vip_reward_tos { 
+ required int32 type = 0;
+}
+
+message m_vip_reward_toc {
+ required bool succ = true;
+ optional int32 reason_code = 0; 
+ optional int32 type = 0;
+}
+
+
+message m_vip_reward_info_tos {
+}
+
+message m_vip_reward_info_toc {
+ required bool succ = true;
+ optional int32 reason_code = 0; 
+ optional bool can_fetch_daily = false;
+ optional bool can_fetch_weekly = false; 
+}
+
+
+message m_vip_super_info_tos {
+}
+
+message m_vip_super_info_toc {
+ optional p_role_super_vip super_vip_info = null; 
+}
+
+
+message m_vip_consume_notice_toc{
+ required int32 use_gold = 0; 
+ required int32 jifen = 0; 
+}
+
+
+message m_vip_buy_buff_tos{
+ required int32 op_type = 0; 
+ optional int32 buy_type = 0; 
+}
+
+message m_vip_buy_buff_toc{
+ required int32 op_type = 0; 
+ required int32 err_code = 0; 
+ optional string reason = ""; 
+ optional int32 free_buff_times = 0; 
+ optional int32 buff_id = 0; 
+}
+
+
+
+message m_vip_gift_tos {
+ required int32 vip_level = 0; 
+}
+
+message m_vip_gift_toc {
+ required bool succ = false;
+ optional string reason = "";
+ required int32 type = 0; 
+ repeated int32 fetched_list = [];
+}
+
+
+
+
+
+message m_vip_sell_info_tos {
+}
+
+message m_vip_sell_info_toc{
+ required int32 has_buy_list = 0; 
+ required int32 can_buy_id = 0; 
+}
+
+message m_vip_sell_tos {
+ required int32 buy_id = 0; 
+}
+
+message m_vip_sell_toc{
+ required int32 buy_id = 0; 
+ required int32 err_code = 0;
+ optional string reason = "";
+}
+
+
+
+message m_fmlshop_error_toc{
+ optional int32 code = 0;
+ optional string msg = "";
+}
+
+message m_fmlshop_list_tos{
+}
+
+message m_fmlshop_list_toc{
+ repeated p_fmlshop_item items = [];
+}
+
+message m_fmlshop_add_tos{
+ required int32 item_id = 0;
+}
+
+message m_fmlshop_add_toc{
+ required int32 item_id = 0;
+}
+
+message m_fmlshop_buy_tos{
+ required int32 item_id = 0;
+}
+
+message m_fmlshop_buy_toc{
+}
+
+
+
+message m_scene_war_fb_query_tos{
+ required int32 op_type = 0;
+ optional int32 npc_id = 0;
+}
+message m_scene_war_fb_query_toc{
+ required bool succ = true;
+ required int32 op_type = 0;
+ optional int32 npc_id = 0;
+ optional string reason = "";
+ optional int32 reason_code = 0;
+ optional bool can_employ = false;
+ repeated p_scene_war_fb_link fb_links = [];
+}
+
+message m_scene_war_fb_enter_toc{
+ required bool succ = true;
+ required bool return_self = true;
+ optional string reason = "";
+ optional int32 reason_code = 0;
+ optional int32 fb_fee = 0;
+ optional int32 fb_times = 0;
+ required int32 npc_id = 0;
+ required int32 fb_type = 0;
+ required int32 fb_level = 0;
+ optional int32 fb_id = 0;
+ optional int32 fb_seconds = 0;
+ optional int32 fb_max_times = 0;
+ optional bool is_ever_first = true;
+}
+
+
+message m_scene_war_fb_end_toc{
+ required int32 close_seconds = 0; 
+}
+
+
+
+
+
+message m_family_set_interior_manager_tos {
+ required int32 role_id = 0;
+}
+
+message m_family_set_interior_manager_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required bool return_self = true;
+ optional int32 role_id = 0;
+ optional string role_name = "";
+ optional int32 oldrole_id = 0;
+ optional string oldrole_name = "";
+}
+
+
+message m_family_unset_interior_manager_tos {
+ required int32 role_id = 0;
+}
+
+message m_family_unset_interior_manager_toc {
+ required bool succ = true;
+ optional string reason = "";
+ required bool return_self = true;
+ optional int32 role_id = 0;
+}
+
+message m_family_leftright_protector_toc{
+ required int32 num = 0;
+ optional string reason = "";
+ optional int32 leftid = 0;
+ optional string leftrole_name = "";
+ optional int32 rightid = 0;
+ optional string rightrole_name = "";
+}
+
+ 
+
+message m_family_notify_online_tos {
+}
+
+message m_family_notify_online_toc {
+ required bool succ = true;
+ optional string reason = "";
+ repeated p_family_member_info online_list = []; 
+}
+
+
+
+message m_activity_boss_group_tos{
+ required int32 op_type = 0;
+ optional int32 boss_id = 0;
+}
+message m_activity_boss_group_toc{
+ required int32 err_code = 0;
+ optional string reason = ""; 
+ required int32 op_type = 0;
+ optional int32 boss_id = 0;
+ repeated p_boss_group boss_group_list = [];
+}
+ 
+
+
+message m_rankreward_info_toc{ 
+ required int32 rank_id = 0; 
+ required bool show_data = true; 
+ optional bool can_fetch = false; 
+ optional p_jingjie_rank_yesterday last_rank = null; 
+ optional int32 reward_silver = 0; 
+}
+
+
+message m_rankreward_fetch_reward_tos{ 
+ required int32 rank_id = 0; 
+}
+
+message m_rankreward_fetch_reward_toc{ 
+ required int32 rank_id = 0; 
+ required int32 error_code = 0; 
+ optional string reason = ""; 
+ optional int32 reward_silver = 0; 
+}
+
+
+
+
+
+
+message m_nationbattle_enter_tos{
+ required int32 enter_type = 0; 
+}
+message m_nationbattle_enter_toc{
+ required int32 enter_type = 0; 
+ required int32 error_code = 0; 
+ optional string reason = ""; 
+}
+
+message m_nationbattle_quit_tos{
+}
+message m_nationbattle_quit_toc{
+ required int32 error_code = 0; 
+ optional string reason = ""; 
+ optional int32 type = 0; 
+}
+
+
+message m_nationbattle_transfer_tos{
+ required int32 role_id = 0; 
+}
+message m_nationbattle_transfer_toc{
+ required int32 role_id = 0; 
+ required int32 error_code = 0; 
+ optional string reason = ""; 
+}
+
+
+message m_nationbattle_info_toc{
+ required int32 change_type = 1; 
+ repeated int32 union_nation = 2; 
+ repeated int32 union_scores = 3; 
+ optional int32 fb_start_time = 0; 
+ optional int32 fb_end_time = 0; 
+ optional int32 my_score = 0; 
+ optional int32 my_kill_num = 0; 
+}
+
+
+message m_nationbattle_rank_toc{
+ repeated p_nationbattle_rank ranks = []; 
+}
+
+
+message m_nationbattle_change_toc{
+ required int32 change_type = 0; 
+ repeated int32 new_value = []; 
+}
+
+
+message m_nationbattle_reward_tos{
+}
+
+message m_nationbattle_reward_toc{
+ required int32 error_code = 0; 
+ optional string reason = ""; 
+ optional p_nationbattle_rank battle_rank = null; 
+ optional int32 reward_silver = 0; 
+ repeated int32 reward_prop = []; 
+ optional int32 reward_equip_score = 0; 
+}
+
+
+message m_nationbattle_fetch_reward_tos{
+}
+message m_nationbattle_fetch_reward_toc{
+ required int32 error_code = 0; 
+ optional string reason = ""; 
+ optional int32 reward_silver = 0; 
+ repeated int32 reward_prop = []; 
+ optional int32 reward_equip_score = 0; 
+}
+ 
+
+
+
+message m_pve_fb_buff_list_toc{
+ repeated p_pve_fb_buff_info buff_list = []; 
+}
+
+
+message m_pve_fb_buy_buff_tos{
+ required int32 type = 0; 
+}
+
+message m_pve_fb_buy_buff_toc{
+ required int32 type = 0; 
+ required int32 err_code = 0; 
+ optional string reason = 3; 
+}
+ 
+
+
+
+message m_caishen_silver_info_tos{
+}
+
+message m_caishen_silver_info_toc{
+ required bool succ = false;
+ optional int32 err_code = 0;
+ optional p_caishen_coin caishen_info = null; 
+ optional int32 left_item_num = 0;
+ optional int32 remain_cnt = 0;
+}
+ 
+
+
+message m_caishen_silver_fetch_tos{
+ required bool is_use_item = false;
+ required int32 type = 0;
+}
+
+message m_caishen_silver_fetch_toc{
+ required bool succ = false;
+ optional int32 err_code = 0; 
+ optional int32 times = 0;
+ optional int32 cost_gold = 0;
+ optional int32 get_coin = 0;
+ optional int32 cost_item_num = 0;
+ optional p_caishen_coin caishen_info = null;
+ optional int32 left_item_num = 0;
+ optional int32 remain_cnt = 0;
+}
+ 
+
+
+message m_caishen_firecoin_info_tos{
+}
+
+message m_caishen_firecoin_info_toc{
+ optional p_caishen_coin caishen_info = null; 
+ optional int32 left_item_num = 0;
+}
+
+
+
+message m_caishen_firecoin_fetch_tos{
+ required bool is_use_item = false;
+ required int32 type = 0;
+}
+
+message m_caishen_firecoin_fetch_toc{
+ optional int32 times = 0;
+ optional int32 cost_gold = 0;
+ optional int32 get_coin = 0;
+ optional int32 cost_item_num = 0;
+ optional p_caishen_coin caishen_info = null;
+ optional int32 left_item_num = 0;
+}
+
+
+message m_caishen_confirm_tos {
+ required int32 type = 0;
+}
+
+message m_caishen_confirm_toc { 
+ required int32 get_coin = 0;
+ required int32 cost_gold = 0;
+}
+
+
+
+message m_shenqi_eat_tos{
+ repeated int32 eat_list = []; 
+ required int32 pet_id = 0; 
+ required int32 up_equip = 0; 
+ required bool is_loaded = false; 
+}
+
+message m_shenqi_eat_toc{
+}
+
+
+message m_shenqi_transfer_tos{
+ required int32 to_pet_id = 0; 
+ required int32 to_equip = 0; 
+ required bool is_loaded1 = false; 
+ required int32 from_pet_id = 0; 
+ required int32 from_equip = 0; 
+ required bool is_loaded2 = false; 
+}
+message m_shenqi_transfer_toc{
+}
+
+
+
+message m_bigpve_enter_tos{
+ required int32 enter_type = 0; 
+}
+message m_bigpve_enter_toc{
+ required int32 err_code = 0; 
+ optional string reason = ""; 
+ required int32 enter_type = 0; 
+}
+
+message m_bigpve_quit_tos{
+}
+message m_bigpve_quit_toc{
+ required int32 err_code = 0; 
+ optional string reason = ""; 
+ optional int32 type = 0; 
+}
+
+
+message m_bigpve_info_toc{
+ optional int32 fb_start_time = 0; 
+ optional int32 fb_end_time = 0; 
+ optional int32 next_silver_buff_id = 0; 
+ optional int32 need_cost_silver = 0;
+ optional int32 next_gold_buff_id = 0; 
+ optional int32 need_cost_gold = 0;
+}
+
+
+message m_bigpve_rank_toc{
+ repeated p_bigpve_rank ranks = []; 
+ optional double my_score = 0; 
+ optional int32 my_rank = 0; 
+}
+
+
+
+
+message m_bigpve_buy_buff_tos{
+ required int32 type = 0; 
+}
+
+message m_bigpve_buy_buff_toc{
+ required int32 type = 0; 
+ required int32 err_code = 0; 
+ optional string reason = 3; 
+ optional int32 next_buff_id = 0; 
+ optional int32 cost_money = 0; 
+ optional int32 voucher_num = 0; 
+}
+
+
+message m_bigpve_boss_dead_toc{
+ optional string boss_name = 1;
+ optional double score = 0;
+ optional int32 rank = 3;
+ optional double add_exp = 0;
+ optional int32 add_prestige = 0;
+ optional string killer_name = 6;
+ optional double killer_add_exp = 0;
+ optional int32 killer_add_prestige = 0;
+}
+
+
+message m_bigpve_result_toc{
+ optional int32 rank = 1; 
+ optional double total_add_exp = 2;
+ optional int32 total_add_prestige = 0;
+ optional double total_score = 0;
+ optional int32 bomb_use_num = 0;
+ optional int32 kill_num = 0;
+}
+
+
+message m_bigpve_bomb_toc{
+ required bool return_self = false;
+ optional int32 monster_id = 2;
+ optional double reduce_hp = 3;
+ optional int32 add_prestige = 0;
+ optional int32 prestige_ratio = 0;
+}
+
+
+message m_bigpve_lower_hp_notify_toc{
+ optional int32 monster_id = 1;
+}
+
+
+message m_monster_war_info_toc{
+ required int32 rank = 0;
+ required int32 total_hurts = 0;
+ repeated p_monster_war_rank rank_datas = [];
+ required int32 end_time = 0;
+}
+message m_monster_war_wave_toc{
+ required int32 wave = 0;
+ required int32 next_time = 0;
+}
+
+message m_monster_war_history_tos{
+}
+message m_monster_war_history_toc{
+ required int32 rank = 0;
+ required int32 total_hurts = 0;
+ repeated p_monster_war_rank rank_datas = [];
+} 
+
+
+message m_rnkm_open_tos{
+}
+
+message m_rnkm_open_toc{
+ optional p_rnkm_role role = null; 
+ repeated p_rnkm_mirror mirrors = []; 
+ optional int32 next_bonus_time = 0; 
+ optional int32 rank_section = 0; 
+}
+
+message m_rnkm_close_tos{
+}
+
+message m_rnkm_challenge_tos{
+ optional int32 rank = 0; 
+ optional int32 role_id = 0; 
+ optional int32 item = 0; /抢夺哪个道具 
+}
+message m_rnkm_challenge_toc{
+ optional int32 rank = 0; 
+ optional int32 role_id = 0; 
+}
+
+message m_rnkm_result_toc{
+ optional bool is_win = false; 
+ optional int32 score = 0; 
+ optional int32 silver = 0; 
+ optional p_prop grab_item = null; 
+}
+
+message m_rnkm_select_reward_tos{
+ optional int32 select_num = 0; 
+}
+
+message m_rnkm_select_reward_toc{
+ optional int32 select_num = 0; 
+ repeated p_prop select_list = []; 
+}
+
+message m_rnkm_add_protect_tos{
+ optional int32 type = 0; 
+}
+
+message m_rnkm_update_role_toc{
+ optional p_rnkm_role role = null; 
+}
+
+message m_rnkm_update_mirror_toc{
+ optional p_rnkm_mirror mirror = null; 
+}
+
+message m_rnkm_add_chance_tos{
+}
+
+message m_rnkm_error_toc{
+ optional int32 code = 0;
+ optional string msg = "";
+}
+
+message m_rnkm_score_deal_tos{
+ optional int32 op_type = 0; 
+ optional int32 deal_id = 0; 
+}
+message m_rnkm_score_deal_toc{
+ optional int32 op_type = 0; 
+ optional int32 deal_id = 0; 
+ repeated int32 dealed_list = []; 
+}
+
+message m_rnkm_notify_toc{
+ optional int32 notify_type = 0;
+ optional int32 challengerid = 0;
+ optional string challengername = "";
+}
+
+message m_rnkm_refresh_tos{
+}
+
+message m_rnkm_refresh_toc{
+ repeated p_rnkm_mirror mirrors = []; 
+}
+
+
+
+
+
+message m_family_welfare_error_toc{
+ optional int32 code = 0;
+ optional string mesg = "";
+}
+
+
+message m_family_welfare_get_tos{
+}
+
+message m_family_welfare_get_toc{
+}
+
+
+message m_family_idol_error_toc{
+ optional int32 code = 0;
+ optional string mesg = "";
+}
+
+
+message m_family_idol_open_tos{
+}
+
+message m_family_idol_open_toc{
+ optional int32 cur_times = 0; 
+ optional int32 max_times = 0; 
+ repeated p_family_pray_rec pray_logs = []; 
+}
+
+
+message m_family_idol_pray_tos{
+ optional int32 type = 0;
+}
+
+message m_family_idol_pray_toc{
+ optional int32 type = 0;
+ optional int32 cur_times = 0; 
+ optional int32 max_times = 0; 
+ optional int32 add_family_contribution = 0; 
+ optional int32 add_family_active_points = 0; 
+ optional int32 add_silver = 0; 
+ optional int32 type_id = 0; 
+ optional int32 cost_gold = 0; 
+}
+
+
+message m_family_idol_update_toc{
+ optional p_family_pray_rec pray_record = null; 
+}
+
+
+
+message m_treasbox_show_tos{
+ required int32 op_type = 0;
+}
+
+message m_treasbox_show_toc{
+ required int32 err_code = 0; 
+ optional string reason = ""; 
+ required int32 op_type = 0;
+ optional int32 has_goods_num = 0;
+ optional bool is_open = true;
+ optional int32 has_gold = 0;
+ repeated p_goods productions = []; 
+ repeated p_goods box_list = []; 
+ required int32 remain_cnt = 0; 
+ required int32 free_remain_cnt = 0; 
+}
+
+message m_treasbox_log_toc{
+ optional bool is_open = true;
+ repeated p_treasbox_log log_list = []; 
+}
+
+
+
+message m_treasbox_open_tos{
+ optional int32 op_fee_type = 0 ; 
+ optional int32 num_type = 0; 
+}
+
+message m_treasbox_open_toc{
+ required int32 err_code = 0; 
+ optional string reason = ""; 
+ optional int32 op_fee_type = 0;
+ optional int32 num_type = 0; 
+ repeated p_goods award_list = []; 
+ repeated p_goods box_list = []; 
+ optional p_reward_prop activity_reward = null; 
+ optional p_treasbox_log self_log = null; 
+ optional p_treasbox_log big_log = null; 
+ required int32 remain_cnt = 0; 
+ required int32 free_remain_cnt = 0; 
+}
+
+
+
+message m_treasbox_get_tos{
+}
+
+message m_treasbox_get_toc{
+ required int32 err_code = 0; 
+ optional string reason = ""; 
+ repeated p_goods award_list = []; 
+}
+
+
+message m_treasbox_refresh_tos{
+}
+
+
+message m_treasbox_refresh_toc{
+ repeated int32 luck_value = []; 
+ repeated int32 item_num = []; 
+}
+ 
+
+
+message m_sms_send_toc{
+ repeated p_sms sms_list = []; 
+}
+
+
+message m_sms_notify_toc{
+ required int32 sms_type = 0;
+ optional string content = ""; 
+ repeated int32 args = []; 
+}
+
+ 
+
+
+message m_newcomer_onlinetime_info_toc{
+ repeated p_reward_prop next_reward_props = []; 
+ optional int32 next_reward_time = 0; 
+}
+
+
+message m_newcomer_onlinetime_fetch_tos{
+}
+
+message m_newcomer_onlinetime_fetch_toc{
+ required int32 err_code = 0;
+ optional string reason = "";
+ repeated p_reward_prop fetch_props = [];
+ repeated p_reward_prop next_reward_props = []; 
+ optional int32 next_reward_time = 0; 
+}
+ 
+ 
+
+
+
+ 
+
+message m_gift_limited_show_tos{
+ 
+}
+
+
+message m_gift_limited_show_toc{
+ required int32 err_code = 0;
+ optional string reason = ""; 
+ repeated int32 had_get_lists = []; 
+ repeated p_gift_reward gifts = []; 
+}
+
+message m_gift_limited_fetch_tos{
+ required int32 type_id = 0;
+}
+
+message m_gift_limited_fetch_toc{
+ required int32 err_code = 0;
+ optional string reason = ""; 
+ required int32 position = 0;
+}
+
+
+
+message m_gift_limited_open_toc{
+ required int32 err_code = 0;
+ optional string reason = ""; 
+}
+
+
+
+
+
+
+
+message m_role_goal_info_toc{
+ required int32 err_code = 0;
+ optional string reason = "";
+ repeated p_role_goal goal_list = [];
+ required bool need_guide = false;
+}
+
+
+message m_role_goal_reach_toc{
+ required int32 err_code = 0;
+ optional string reason = "";
+ repeated p_role_goal goal_list = [];
+}
+
+
+message m_role_goal_fetch_tos{ 
+ required int32 goal_id = 0;
+}
+
+message m_role_goal_fetch_toc{
+ required int32 err_code = 0;
+ optional string reason = ""; 
+ required int32 goal_id = 0;
+}
+
+
+
+
+
+message m_achievement_info_tos{
+}
+
+message m_achievement_info_toc{
+ repeated p_role_achievement info = [];
+}
+
+message m_achievement_fetch_tos{
+ required int32 id = 0;
+}
+
+message m_achievement_fetch_toc{
+ required p_role_achievement info = 0;
+}
+ 
+message m_achievement_update_toc{
+ required p_role_achievement info = 0;
+}
+
+
+message m_fund_info_tos{
+}
+
+message m_fund_info_toc{
+ repeated p_role_fund fund_info = []; 
+}
+
+message m_fund_active_tos{
+ required int32 fund_type = 0; 
+}
+
+message m_fund_active_toc{
+ required p_role_fund info = 0;
+ required int32 first_return_gold = 0; 
+}
+
+message m_fund_fetch_tos{
+ required int32 fund_type = 0; 
+}
+
+message m_fund_fetch_toc{
+ required p_role_fund info = 0; 
+}
+
+
+message m_login_reward_info_tos{
+}
+
+message m_login_reward_info_toc{
+ required bool can_fetch = false; 
+ required int32 cur_day = 0; 
+ repeated int32 fetched_day = []; 
+ repeated p_reward_prop rewards = []; 
+}
+
+message m_login_reward_fetch_tos{
+}
+
+message m_login_reward_fetch_toc{
+}
+
+
+message m_tower_fb_enter_tos{
+ required int32 enter_type = 0;
+ optional int32 barrier_id = 0;
+}
+
+message m_tower_fb_enter_toc{
+ required bool succ = true;
+ optional int32 err_code = 0;
+ optional string reason = "";
+ required int32 fb_time = 0;
+ required int32 current_level = 0;
+ repeated p_reward_prop level_reward = []; 
+ repeated p_reward_prop total_reward = []; 
+}
+
+message m_tower_fb_quit_tos{
+}
+message m_tower_fb_quit_toc{
+}
+
+message m_tower_fb_info_tos{
+}
+message m_tower_fb_info_toc{
+ required bool succ = true;
+ optional int32 err_code = 0;
+ optional string reason = "";
+ optional int32 last_level = 0;
+ optional int32 best_level = 0;
+ repeated p_reward_prop reward_list = []; 
+ optional int32 challenge_state = 0; 
+ required int32 group_count = 0; 
+}
+
+message m_tower_fb_reward_tos{
+}
+
+message m_tower_fb_reward_toc{
+ required bool succ = true;
+ optional int32 err_code = 0;
+ optional string reason = "";
+}
+
+message m_tower_fb_result_toc{
+ required int32 state = 0; 0:死亡 1:成功 2:超时3:已达到最高层
+}
+
+message m_best_tower_fb_info_tos{
+}
+message m_best_tower_fb_info_toc{
+ required double role_id = 0;
+ required string role_name = "";
+ required int32 best_level = 0;
+}
+
+message m_tower_fb_status_tos{
+}
+message m_tower_fb_status_toc{
+ required int32 left_times = 0;
+}
+
+
+message m_time_activity_info_tos{
+}
+
+message m_time_activity_info_toc{
+ repeated p_time_activity info = [];
+ repeated p_org_activity org_list = [];
+}
+
+message m_time_activity_fetch_tos{
+ required int32 type = 0;
+ required int32 id = 0;
+}
+
+message m_time_activity_fetch_toc{
+ required int32 type = 0;
+ required int32 id = 0;
+ required int32 left_times = 0;
+}
+
+
+message m_time_activity_org_fetch_tos{
+ required int32 activity_id = 0;
+}
+message m_time_activity_org_fetch_toc{
+ required int32 activity_id = 0;
+}
+
+message m_time_activity_update_toc{
+ repeated p_time_activity info = [];
+}
+
+
+
+message m_version_notice_tos {
+}
+message m_version_notice_toc {
+ required string notice = "";
+}
+
+
+
+
+message m_room_create_tos{
+ 
+ required int32 room_type = 0;
+}
+
+message m_room_create_toc{
+ required p_room_info room = null; 
+}
+
+message m_room_list_tos{
+ required int32 room_type = 0;
+ required int32 page_num = 0;
+}
+message m_room_self_tos{
+ required int32 room_type = 0;
+}
+message m_room_self_toc{
+ required bool has_room = true;
+ required p_room_info room = null; 
+}
+
+
+message m_room_list_toc{
+ required int32 room_type = 0;
+ required int32 page_num = 0;
+ required int32 total_page = 0;
+ repeated p_room_info rooms = []; 
+}
+
+message m_room_join_tos{
+ required int32 room_type = 0;
+ required int32 owner = 0; 
+}
+message m_room_join_toc{
+ required p_room_info room = null; 
+}
+
+message m_room_exit_tos{
+ required int32 room_type = 0;
+}
+
+
+message m_room_kick_tos{
+ required int32 room_type = 0;
+ required int32 role_id = 0;
+}
+
+message m_room_kick_toc{
+ required int32 room_type = 0;
+ required int32 role_id = 0;
+}
+
+
+
+message m_common_fb_enter_tos{
+ required int32 fb_map_id = 0;
+ repeated int32 mirror_id = [] ;
+}
+
+message m_common_fb_quit_tos{
+ 
+}
+
+message m_common_fb_enter_times_tos{
+ required int32 fb_map_id = 0;
+}
+
+message m_common_fb_enter_times_toc{
+ required int32 fb_map_id = 0;
+ required int32 max_times = 0;
+ required int32 left_times = 0;
+}
+
+message m_common_fb_lost_monster_toc{
+ required int32 lost_num = 0;
+ required int32 max_can_lost = 0;
+}
+
+message m_common_fb_lianzhan_toc{
+ required int32 role_id = 0;
+ required int32 lianzhan = 0;
+}
+
+message m_common_fb_collect_box_toc{
+ required int32 num = 0;
+ required int32 max_num = 0;
+}
+
+message m_common_fb_kill_report_toc{
+ required int32 kill_num = 0;
+ required int32 max_num = 0;
+}
+
+
+message m_common_fb_mirrors_tos{
+ 
+ required int32 fb_type = 0;
+}
+
+message m_common_fb_mirrors_toc{
+ required int32 fb_type = 0;
+ repeated p_team_mirror_info mirrors = [];
+}
+
+
+
+
+
+
+
+message m_compare_sell_info_tos{
+ required int32 goods_id = 0; 
+}
+
+message m_compare_sell_info_toc{
+ repeated p_compare_info compare_info = [];
+}
+
+message m_compare_sell_fetch_tos {
+ required int32 id = 0;
+ required int32 tag = 0;
+}
+
+message m_compare_sell_fetch_toc {
+ required bool succ = false;
+ required int32 id = 0;
+ required int32 tag = 0;
+ optional string reason = "";
+}
+ 
+
+
+
+
+message m_team_mirror_info_tos { 
+ required int32 fb_id = 0; 
+}
+
+message m_team_mirror_info_toc {
+ required int32 fb_id = 0;
+ required int32 left_times = 0;
+}
+
+message m_team_mirror_enter_tos {
+ required int32 fb_id = 0;
+ required int32 mirror_id = 0;
+}
+
+message m_team_mirror_enter_toc {
+ required int32 succ = 0;
+ optional string reason = "";
+ optional int32 fb_id = 0;
+}
+
+message m_team_mirror_quit_tos {
+ required int32 fb_id = 0;
+}
+
+message m_team_mirror_quit_toc {
+ required bool succ = false;
+ optional string reason = "";
+}
+
+message m_team_mirror_report_toc {
+ required int32 state = 0; 
+ required int32 fb_id = 0;
+ repeated p_prop rewards = [];
+ required int32 time_used = 0; 
+ optional int32 damage = 0; 
+ repeated int32 score_list = []; 
+}
+
+message m_team_mirror_get_friends_tos { 
+ required int32 barrier_id = 0;
+}
+
+
+
+message m_team_mirror_get_friends_toc {
+ required int32 barrier_id = 0;
+ repeated p_team_mirror_info mirrors = [];
+}
+
+
+
+message m_family_war_score_toc{
+ required int32 my_score = 0; 
+ repeated p_family_war_score family_rank = []; 
+}
+
+
+
+
+message m_family_war_my_buffs_toc{
+ repeated int32 buffs = []; 
+}
+message m_family_war_use_buff_tos{
+ required int32 buff = 0; 
+}
+
+message m_family_war_commit_medicine_tos{
+ required int32 pos_id = 0; 
+
+}
+message m_family_war_commit_medicine_toc{
+ required bool is_robbed = false; 
+ required int32 score = 0; 
+}
+
+ 
+
+
+
+
+
+message m_super_mission_info_tos{
+ 
+}
+message m_super_mission_info_toc{
+ required int32 need_pay = 0;
+ required int32 today_pay = 0; 
+ repeated p_super_task task_list = [];
+ required int32 cost_gold = 0;
+}
+
+message m_super_mission_opt_tos{
+ required int32 op_type = 0;
+ required int32 task_id = 0;
+}
+message m_super_mission_opt_toc{
+ required bool succ = true;
+ required int32 op_type = 0;
+ optional int32 err_code = 0;
+ optional int32 task_id = 0;
+ optional int32 new_task_state = 0;
+}
+
+
+
+message m_activity_open_activity_status_tos{
+}
+message m_activity_open_activity_status_toc{
+ required bool is_open = false; 
+ repeated p_open_activity activity_list = [];
+ }
+ 
+message m_activity_open_activity_info_tos{
+ required int32 type = 0;
+}
+message m_activity_open_activity_info_toc{
+ required int32 err_code = 0; 
+ optional string reason = ""; 
+ required int32 type = 0;
+ required int32 rank = 0;
+ required double score = 0;
+ repeated p_open_activity_rank rank_list = [];
+}
+
+message m_activity_open_activity_rank_tos{
+ required int32 type = 0;
+}
+
+message m_activity_open_activity_rank_toc{
+ required int32 err_code = 0; 
+ optional string reason = ""; 
+ required int32 type = 0;
+ repeated p_open_activity_rank rank_list = [];
+}
+
+
+
+
+
+message m_daily_activity_info_tos{
+}
+
+message m_daily_activity_info_toc{
+ required int32 err_code = 0 ; 
+ required string reason = ""; 
+ repeated p_daily_activity info_list = [];
+}
+message m_daily_activity_counter_tos{
+ required int32 id = 0 ;
+}
+
+message m_daily_activity_counter_toc{
+ required int32 id = 0 ;
+ required int32 counter = 0 ;
+}
+
+
+message m_daily_activity_guide_toc{
+ repeated p_daily_activity_guide guide_list = [];
+}
+
+
+message m_daily_activity_forecast_tos{
+}
+
+message m_daily_activity_forecast_toc{
+ required int32 id = 0 ;
+ required int32 hour = 0 ;
+ required int32 minute = 0 ;
+}
+
+
+
+
+
+
+message m_cd_info_tos{
+ required int32 cd_type = 0; 
+}
+message m_cd_info_toc{
+ required int32 cd_type = 0; 
+ required int32 end_time = 0; 
+}
+
+message m_cd_clear_tos{
+ required int32 cd_type = 0; 
+}
+message m_cd_clear_toc{
+ required int32 cd_type = 0; 
+}
+
+
+message m_cd_free_hunt_tos{
+ required int32 type = 0; 
+}
+message m_cd_free_hunt_toc{
+ required int32 type = 0; 
+ required int32 free_count = 0; 
+ required int32 free_cd_time = 0; 
+}
+
+
+message m_cd_free_notice_toc{
+ required int32 type = 0; 
+}
+
+
+
+
+
+message m_daily_benefit_info_tos{
+}
+
+message m_daily_benefit_info_toc{
+ required int32 err_code = 0 ; 
+ optional string reason = ""; 
+ repeated p_daily_benefit_info info_list = [];
+ optional p_daily_benefit_expback scene_exp = 0; 
+ optional p_daily_benefit_expback bigpve_exp = 0; 
+}
+
+message m_daily_benefit_fetch_tos{
+ required int32 id = 0; 
+}
+
+message m_daily_benefit_fetch_toc{
+ required int32 id = 0; 
+ required int32 err_code = 0 ; 
+ optional string reason = ""; 
+}
+ 
+
+
+
+
+message m_map_update_hp_toc{
+ optional int32 actor_type = 0;
+ optional int32 actor_id = 0;
+ optional double actor_hp = 0;
+}
+
+
+
+message m_newguide_notice_toc{
+ required int32 guide_id = 0; 
+}
+
+
+
+
+message m_shop_shops_tos{
+}
+
+
+
+
+message m_shop_shops_toc{
+ repeated p_shop_info shops = []; 
+}
+
+
+message m_shop_all_goods_tos{
+ required int32 shop_id = 0; 
+ optional int32 npc_id = 0; 
+}
+
+
+message m_shop_all_goods_toc{
+ required int32 shop_id = 0; 
+ repeated p_shop_goods_info all_goods = []; 
+ optional int32 npc_id = 0; 
+ optional int32 recommend = 0; 
+}
+
+
+message m_shop_item_tos{
+ required int32 shop_id = 0; 
+ required int32 item_type_id = 0; 
+}
+
+message m_shop_item_toc{
+ required bool succ = true;
+ optional string reason = "";
+ optional int32 shop_id = 0; 
+ optional p_shop_goods_info goods = null; 
+}
+
+
+message m_shop_search_tos{
+ repeated int32 search_goods_id = []; 
+ optional int32 npc_id = 0; 
+}
+
+
+message m_shop_search_toc{
+ repeated p_shop_goods_info search_all_goods = [] ; 
+ optional int32 npc_id = 0; 
+}
+
+
+message m_shop_buy_tos{
+ required int32 goods_id = 0 ; 
+ required int32 price_id = 0 ; 
+ required int32 goods_num = 0; 
+ optional int32 shop_id = 0 ; 
+}
+
+
+message m_shop_buy_toc{
+ required bool succ = false; 
+ optional string reason = ""; 
+ optional int32 shop_id = 0 ;
+ repeated p_goods goods = [] ; 
+ repeated int32 property = [] ; 
+ optional int32 error_code = 0 ; 
+}
+
+
+message m_shop_sale_tos{
+ repeated p_shop_sale_goods goods = []; 
+}
+
+
+message m_shop_sale_toc{
+ required bool succ = false; 
+ repeated int32 property = []; 
+ repeated int32 ids = []; 
+ optional string reason = ""; 
+}
+
+
+message m_shop_buy_back_tos{
+ required int32 op_type = 0;
+ optional int32 goods_id = 0;
+}
+
+message m_shop_buy_back_toc{
+ required int32 op_type = 0;
+ repeated p_goods goods = [];
+ optional bool succ = true;
+ optional string reason = "";
+ optional int32 goods_id = 0;
+}
+
+
+message m_shop_npc_tos{
+ required int32 npc_id = 0; 
+}
+
+
+message m_shop_npc_toc{
+ required int32 npc_id = 0; 
+ repeated p_shop_info shops = []; 
+}
+
+
+
+message m_lotto_opt_tos{
+ required int32 opt = 0;
+ required int32 play_num = 0; 
+}
+
+message m_lotto_info_toc{
+ required int32 left_times = 0;
+ required int32 acc_times = 0;
+ required int32 need_gold = 0;
+ required int32 total_bonus = 0;
+ required int32 add_bonus = 0;
+ repeated p_prop prop_list = [];
+}
+message m_lotto_play_toc{
+ required int32 play_num = 0; 
+ required int32 left_times = 0;
+ required int32 acc_times = 0;
+ required int32 total_bonus = 0;
+ required p_prop reward_prop = 0;
+ optional int32 reward_bonus = 0;
+}
+message m_lotto_history_toc{
+ repeated p_lotto_his his_list = [];
+}
+
+
+
+
+
+
+message m_danyao_info_tos{
+ required int32 type = 0; 
+}
+
+message m_danyao_info_toc{
+ required int32 type = 0; 
+ required int32 all_score = 0;
+ required int32 eat_limit = 0;
+ required int32 level_limit = 0;
+ repeated p_danyao_hole hole_list = [];
+}
+
+message m_danyao_eat_tos{
+ required int32 type = 0; 
+ required bool auto_buy = false; 
+ required bool auto_compose = false; 
+}
+message m_danyao_eat_toc{
+ required int32 type = 0; 
+ required int32 all_score = 0;
+ required int32 eat_limit = 0;
+ required int32 level_limit = 0;
+ repeated p_danyao_hole change_list = [];
+}
+
+
+
+
+message m_signin_operate_tos{
+ required int32 op_type = 0; 
+}
+message m_signin_operate_toc{
+ required int32 op_type = 0; 
+ required int32 is_signed_today = 0; 
+ repeated int32 signin_days = []; 
+ required bool has_reward = false; 
+ repeated p_reward_prop hour_items = []; 
+ required bool is_signin_reward_fetched = false; 
+}
+
+
+
+message m_wild_fb_enter_tos{
+ required int32 wild_type = 0; 
+}
+message m_wild_fb_exit_tos{
+}
+
+
+message m_role2_energy_tos{
+}
+message m_role2_energy_toc{
+ required int32 cur_energy = 0; 
+ required int32 max_energy = 0; 
+}
+
+
+message m_role2_dazen_info_tos{
+}
+message m_role2_dazen_info_toc{
+ required int32 unit_secs = 0; 
+ required int32 unit_exp = 0; 
+ required int32 cur_exp = 0; 
+ required int32 max_exp = 0; 
+}
+message m_role2_dazen_fetch_tos{
+ required int32 fetch_type = 0; 
+}
+message m_role2_dazen_fetch_toc{
+ required int32 fetch_type = 0; 
+ required int32 cur_exp = 0; 
+}
+
+
+
+message m_role2_operate_count_toc{
+ required int32 type = 0; 
+ required int32 count = 0; 
+}
+
+
+
+
+
+
+message m_payment_info_toc{
+ required bool is_payed = false; 
+ required bool is_fetched_first = false; 
+ repeated int32 recommend_pays = []; 
+ required int32 all_pay_gold = 0; 
+ 
+}
+
+
+message m_payment_fetch_tos{
+ required int32 type = 0; 
+}
+message m_payment_fetch_toc{
+ required int32 type = 0; 
+ required bool is_fetched_first = false; 
+}
+
+
+message m_payment_request_tos{
+}
+message m_payment_request_toc{
+ required int32 type = 0; 
+ required string notify_url = ""; 
+ required string out_trade_no = ""; 
+ repeated string args = []; 
+}
+
+
+
+
+message m_round_pvp_history_tos{
+}
+message m_round_pvp_history_toc{
+ repeated p_round_pvp_history datas = [];
+}
+
+message m_round_pvp_info_toc{
+ repeated p_round_pvp_rank ranks = []; 
+ required int32 my_rank = 0; 
+ required int32 acc_win = 0; 
+ required int32 con_win = 0; 
+ required int32 reward_exp = 0; 
+ required int32 reward_silver = 0; 
+ repeated p_reward_prop reward_items = []; 
+ required p_reward_prop con_win_gift = null; 
+ required int32 in_times = 0; 
+ required int32 con_win_history = 0; 
+}
+
+
+message m_round_pvp_reward_tos{
+}
+message m_round_pvp_reward_toc{
+}
+
+
+message m_round_pvp_fb_state_toc{
+ required int32 round = 0; 
+ required int32 begin_time = 0; 
+ required int32 end_time = 0; 
+}
+
+message m_round_pvp_fb_result_toc{
+ required int32 win_role = 0; 
+}
+message m_round_pvp_hall_info_toc{
+ required int32 next_round_time = 0; 
+ required int32 cur_round = 0; 
+ required bool is_this_round_finished = false; 
+}
+
+
+
+
+
+message m_gengu_info_tos {
+}
+
+message m_gengu_info_toc {
+ optional p_gengu_info gengu = null;
+}
+
+
+message m_gengu_upgrade_tos {
+ required bool is_auto_buy = false; 
+}
+
+message m_gengu_upgrade_toc {
+ required int32 err_code = 0;
+ optional bool is_auto_buy = false;
+ optional string reason = "";
+ optional p_gengu_info gengu = null;
+}
+
+
+message m_gengu_autoupgrade_tos {
+}
+
+message m_gengu_autoupgrade_toc {
+ required int32 err_code = 0;
+ optional string reason = "";
+ optional p_gengu_info gengu = null;
+ optional int32 use_gold = 0; 
+ optional int32 use_item_num = 0; 
+}
+
+
+
+
+
+
+message m_qq_auth_tos {
+ required string account_name = "";
+ optional p_qq_token qq_token = null; 
+ required int32 os_type = 0; 
+ optional string login_platform = ""; 
+ optional string client_version = ""; 
+}
+
+message m_qq_info_toc {
+ optional int32 zone_id = 0; 
+}
+
+
+message m_qq_buy_gold_tos {
+ optional int32 result_code = 0; 
+ optional int32 pay_channel = 0; 
+ optional int32 pay_state = 0; 
+ optional int32 provider_state = 0; 
+ optional int32 save_num = 0; 
+ optional string result_msg = "";
+ optional string extend_info = "";
+}
+
+message m_qq_buy_gold_toc {
+ required int32 err_code = 0;
+ optional string reason = "";
+}
+
+
+
+message m_holiday_act_info_toc{
+ required bool has_login_gift = false;
+ required int32 gold_act = 0;
+}
+message m_holiday_act_operate_tos{
+ required int32 op_type = 0;
+}
+message m_holiday_act_gold_history_tos{
+}
+message m_holiday_act_gold_history_toc{
+ repeated p_holiday_gold_act_history history = [];
+
+}
+
+
+
+message m_equip_build_info_toc{
+ required int32 build_score = 0; 
+ required int32 petcard_score = 0; 
+ required int32 left_normal_times = 0; 
+ required p_goods current_equip = null; 
+}
+
+message m_equip_rebuild_tos{
+ required int32 type = 0;
+ repeated int32 rebuild_list = [];
+}
+message m_equip_rebuild_toc{
+ required int32 type = 0;
+ required int32 score = 0; 
+ repeated int32 new_gains = [];
+ required int32 return_item = 0; 
+ required int32 return_silver = 0; 
+}
+
+message m_equip_build_refresh_tos{
+}
+message m_equip_build_refresh_toc{
+ required p_goods equip = null; 
+}
+
+message m_equip_build_tos{
+ required int32 build_type = 0; 
+ required int32 target_equip = 0; 
+ required int32 target_type = 0; 
+}
+message m_equip_build_toc{
+ required int32 build_type = 0; 
+ required int32 gain_equip = 0; 
+}
+
+
+message m_equip_build_list_tos{
+}
+message m_equip_build_list_toc{
+ repeated p_shenqi_build list = []; 
+}
+
+
+
+
+
+ 
+
+
+message m_hanging_offline_toc{
+ optional p_hanging_offline_report report = null;
+}
+
+
+
+
+message m_hanging_stat_toc{
+ required int32 barrier_id = 0;
+ optional int32 succ_rate = 0;
+ optional int32 total_time = 0;
+ optional int32 fight_num = 0;
+ optional int32 all_exp = 0;
+ optional int32 all_silver = 0;
+}
+
+
+message m_hanging_change_toc{
+ required p_battle next_battle = null;
+}
+ 
+
+
+message m_hanging_watch_tos{
+ required bool is_watching = false;
+}
+ 
+
+
+message m_hanging_watch_result_tos{
+ required int32 result = 0;
+}
+
+
+
+message m_hanging_round_start_toc{
+ required p_hanging_round hanging_round = null;
+ optional bool is_guide_dialog = false;
+ repeated int32 fb_buffs = []; 
+}
+
+
+message m_hanging_round_end_toc{
+ required int32 result = 0;
+}
+ 
+
+message m_hanging_continue_tos{
+}
+
+message m_hanging_continue_toc{
+ required p_battle cur_battle = null;
+ required int32 left_time = 0;
+}
+ 
+
+message m_hanging_fb_result_toc{
+ required int32 battle_type = 0;
+ required int32 result = 0;
+ required bool is_pass = false;
+ optional int32 exp = 0;
+ optional int32 silver = 0;
+ repeated p_prop rewards = []; 
+}
+
+
+message m_hanging_buff_toc{
+ optional p_hanging_buff hanging_buff = null;
+}
+
+ 
+
+
+
+message m_equip_foster_refresh_tos{
+ required int32 foster_type = 0;
+ required int32 pet_id = 0; 
+ required int32 equip_id = 0;
+ required bool is_loaded = false;
+}
+message m_equip_foster_refresh_toc{
+ required int32 foster_type = 0;
+ required int32 pet_id = 0; 
+ required int32 equip_id = 0;
+ repeated p_attr result = [];
+}
+message m_equip_foster_save_tos{
+ required int32 pet_id = 0; 
+ required int32 equip_id = 0;
+ required bool is_loaded = false;
+}
+message m_equip_foster_save_toc{
+}
+message m_equip_foster_transfer_tos{
+ required int32 from_pet_id = 0; 
+ required int32 from_equip = 0;
+ required bool is_loaded1 = false;
+ required int32 to_pet_id = 0; 
+ required int32 to_equip = 0;
+ required bool is_loaded2 = false;
+}
+message m_equip_foster_transfer_toc{
+}
+
+
+
+message m_stone_opt_tos{
+ required int32 opt_type = 0;
+ required int32 id = 0;
+ required int32 equip_id = 0;
+ optional int32 stone_id = 0;
+ optional int32 stone_typeid = 0;
+}
+message m_stone_opt_toc{
+ required int32 opt_type = 0;
+ required int32 id = 0;
+ optional p_goods equip = null;
+ required int32 err_code = 0;
+ optional string reason = "";
+}
+message m_stone_eat_tos{
+ required int32 id = 0;
+ required int32 equip_id = 0;
+ optional int32 stone_id = 0;
+ optional int32 stone_typeid = 0;
+ repeated p_stone_eat eat_stones = [];
+}
+message m_stone_eat_toc{
+ required int32 id = 0;
+ optional p_goods equip = null;
+ optional int32 stone_id = 0;
+ required int32 err_code = 0;
+ optional string reason = "";
+}
+
+
+
+
+
+message m_main_fb_info_toc{
+ required p_main_fb_info info = null; 
+}
+
+
+
+message m_main_fb_select_tos{
+ required int32 barrier_type = 0;
+ required int32 barrier_id = 0;
+ repeated int32 order_list = [];
+}
+
+message m_main_fb_select_toc{
+ required int32 err_code = 0;
+ optional string reason = "";
+ required int32 barrier_type = 0;
+ required int32 barrier_id = 0;
+}
+ 
+
+message m_main_fb_sweep_tos{
+ required int32 barrier_id = 0; 
+} 
+
+message m_main_fb_sweep_toc{
+ required int32 err_code = 0;
+ optional string reason = "";
+ required int32 barrier_id = 0; 
+ required int32 boss_type_id = 0; 
+ required int32 exp = 0;
+ required int32 silver = 0;
+ repeated p_reward_prop item_drop_list = []; 
+ repeated p_reward_color get_rewards = []; 
+ repeated p_reward_color sell_rewards = []; 
+} 
+
+
+message m_main_fb_buy_tos{
+} 
+
+message m_main_fb_buy_toc{
+ required int32 err_code = 0;
+ optional string reason = "";
+ required int32 remain_count = 0;
+ required int32 buy_count = 0;
+}
+
+
+message m_main_fb_quick_tos{
+}
+
+
+message m_main_fb_quick_toc{
+ required int32 err_code = 0;
+ optional string reason = "";
+ optional p_hanging_offline_report report = null;
+}
+
+
+message m_main_fb_pass_boss_toc{
+ required bool is_beaten = false; 
+ required string mirror_name = "";
+ required bool is_double = false; 
+ required int32 exp = 0; 
+ required int32 silver = 0; 
+ repeated p_reward_prop item_drop_list = []; 
+}
+
+
+
+
+
+message m_fmlmatch_info_tos{
+} 
+message m_fmlmatch_info_toc{
+ repeated p_fmlmatch_family_rank family_ranks = [];
+ repeated p_fmlmatch_role_rank role_ranks = [];
+ optional p_fmlmatch_family_rank my_family_rank = null;
+ optional p_fmlmatch_role_rank my_role_rank = null;
+ optional int32 family_level_limit = 0;
+ optional int32 role_ftpower_limit = 0;
+ required int32 start_time = 0;
+ required int32 count_down_secs = 0;
+ required int32 count_down_state = 0;
+ optional p_fmlmatch_fight my_fight = null;
+ repeated p_fmlmatch_fight fight_list = [];
+ optional int32 cur_round = 0;
+ optional int32 open_time = 0;
+ optional bool is_open = false;
+ optional int32 role_state = 0;
+}
+
+message m_fmlmatch_view_fighting_tos{
+ optional int32 view_role_id = 0; 
+} 
+message m_fmlmatch_view_fighting_toc{
+ optional p_hanging_round hanging_round = null;
+} 
+
+
+message m_fmlmatch_start_toc{
+ optional int32 view_role_id = 0; 
+}
+
+
+message m_fmlmatch_end_toc{
+ required string win_family_name = ""; 
+ required string win_owner_role_name = ""; 
+}
+
+
+
+message m_equip_share_info_toc{
+ optional p_role_snapshot sharer = null;
+ optional int32 next_can_remove_time = 0;
+ repeated p_role_snapshot requester_list = [];
+ optional bool is_first_share = false;
+ optional p_goods first_share_shenqi = null;
+}
+
+message m_equip_share_equips_toc{
+ repeated p_goods share_equips = [];
+}
+
+message m_equip_share_list_tos{
+}
+message m_equip_share_list_toc{
+ repeated p_role_snapshot list = [];
+}
+
+message m_equip_share_sync_tos{
+}
+message m_equip_share_sync_toc{
+}
+message m_equip_share_request_tos{
+ optional int32 sharer_id = 0;
+
+}
+message m_equip_share_request_toc{
+ optional int32 sharer_id = 0;
+}
+message m_equip_share_requester_add_toc{
+ required p_role_snapshot role = null;
+}
+message m_equip_share_agree_tos{
+ optional int32 sharer_id = 0;
+}
+message m_equip_share_agree_toc{
+ optional int32 sharer_id1 = 0;
+ optional string sharer_name1 = "";
+ optional int32 sharer_id2 = 0;
+ optional string sharer_name2 = "";
+}
+
+message m_equip_share_remove_tos{
+}
+message m_equip_share_remove_toc{
+}
+
+message m_equip_share_requester_del_tos{
+ optional int32 sharer_id = 0;
+}
+message m_equip_share_requester_del_toc{
+ optional int32 sharer_id = 0;
+}
+
+message m_role2_notice_toc{
+ optional int32 notice_type = 0;
+ optional int32 times = 0;
+}
+
+
+
+message m_role2_jingmai_tos{
+ required int32 type = 0;
+}
+message m_role2_jingmai_toc{
+ required int32 type = 0;
+ required int32 petcard_score = 0;
+ repeated int32 level_list = [];
+ required int32 err_code = 0;
+ optional string reason = "";
+}
+
+
+message m_single_fb_info_toc{
+ repeated p_single_fb fb_list = []; 
+}
+
+message m_single_fb_fight_tos{
+ required int32 type = 0;
+}
+message m_single_fb_fight_toc{
+ required int32 type = 0;
+}
+
+
+
+message m_family_fb_info_tos{
+}
+message m_family_fb_info_toc{
+ required int32 barrier_id = 0;
+ repeated int32 buffs = [];
+ required p_family_fb_rank rank = null;
+}
+
+message m_family_fb_fight_tos{
+}
+message m_family_fb_fight_toc{
+}
+
+message m_family_fb_result_toc{
+ required int32 barrier_id = 0;
+ required bool is_win = false;
+ repeated p_prop rewards = [];
+}
+
+
+
+
+
+message m_download_task_info_tos{
+}
+
+message m_download_task_info_toc{
+ repeated int32 status_list = []; 
+}
+
+message m_download_task_fetch_tos{
+ required int32 task_id = 0;
+}
+
+message m_download_task_fetch_toc{
+ required int32 task_id = 0;
+}
+

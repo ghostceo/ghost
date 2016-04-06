@@ -1,5 +1,10 @@
 -module(server).
+-include("all_pb.hrl").
+-include("mm_define.hrl").
+
 -compile(export_all).
+
+-define(ModuleID,(MethodID div 100)).
 
 %%only one
 starta()->
@@ -61,13 +66,31 @@ loopu(Socket)->
 	receive
 		{tcp, Socket, Bin}->
 			io:format("Server receiveed binary = ~p~n",[Bin]),
-			% route(Bin,Socket),
-			%gen_tcp:send(Socket,term_to_binary(Bin)),
+			route(Bin,Socket),
 			loopu(Socket);
 		{tcp_close, Socket}->
 			io:format("Server socket cloased~n")
 	end.
 
-route(<<_Unique:16,Module:8,Method:16,Bin/binary>>,_Socket)->
-	io:format("rest:~p~n",[Bin]),
-	io:format("u:~p,mod:~p,meth:~p~n",[_Unique,Module,Method]).
+route(<<_Unique:32,Bin/binary>>,Socket)->
+	case unpack(Bin) of
+		{?ACTIVITY, Method, RTos} ->
+			#m_activity_fecth_tos{npc_id=NpcID}=RTos,
+			RRoc = #m_level_gift_list_toc{cur_max_lv=22},
+			RBin0  =  packet(Method, RRoc),
+			Size = byte_size(RBin0),
+			RBin1  = <<Size:32>>,
+			RBin = list_to_binary([RBin1, RBin0]),
+			gen_tcp:send(Socket,RBin),
+			io:format("Get NpcId:~p,Reply:~p~n",[NpcID,RBin]);
+		_->
+			ignore
+	end.
+	
+packet(_Method,Record) ->
+    proto_pack:pack_toc(element(1, Record), Record).
+
+unpack(<<MethodID:32, Bin/binary>>) -> 
+    Tos = proto_unpack:unpack_tos(MethodID, Bin),
+    io:format("Moudle:~p,Method:~p,Args:~p~n",[?ModuleID,MethodID,Tos]),
+    {?ModuleID, MethodID, Tos}.

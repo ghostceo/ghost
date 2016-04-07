@@ -1,10 +1,5 @@
 namespace LSocket.Net 
-{ /**
- * 
- * @author feng侠,qq:313785443
- * @date 2010-12-23
- *
- */
+{
 
     // 描   述：封装c# socket数据传输协议 
   	using UnityEngine; 
@@ -19,7 +14,7 @@ namespace LSocket.Net
 	using LSocket.cmd;
 	using LSocket.Test;
     using LSocket.erl;
-    using LSocket.Common;
+    //using LSocket.Common;
 
 
     class SocketThread
@@ -38,6 +33,7 @@ namespace LSocket.Net
 
         public void run()
         {
+            m_system_heartbeat_tos heart = new m_system_heartbeat_tos(); 
             while (true)
             {
                 try
@@ -114,40 +110,33 @@ namespace LSocket.Net
 		public void DoTest(){
 		    try
             {   
-                short unique = 345;
-                byte moduleId = CommandID.MODULE;
-                short methodId = CommandID.METHOD;
-                int num = 1;
-                m_money_tree_fetch_tos  msg = new m_money_tree_fetch_tos(num);
-                Debug.Log(msg.id);
-                mSocket.Send(msg.encode(unique,moduleId,methodId,msg));
-               // List<byte> test = new List<byte>();
-               // byte[] unique   = TypeConvert.getBytes((short)258,true);
-               // test.AddRange(unique);
-               // byte[] moduleId = TypeConvert.getBytes(CommandID.MODULE,true);
-               // test.AddRange(moduleId);
-               // byte[] methodId = TypeConvert.getBytes(CommandID.METHOD,true);
-               // test.AddRange(methodId);
-               // byte[] tuple = TypeConvert.getBytes(ErlangTy.TUPLE,true);
-               // test.AddRange(tuple);
-               // byte[] tlenx  = TypeConvert.getBytes(ErlangTy.MIN,true);
-               // test.AddRange(tlenx);
-               // byte[] tleny  = TypeConvert.getBytes((byte)2,true);
-               // test.AddRange(tleny);
-               // byte[] tatom  = TypeConvert.getBytes(ErlangTy.TATOM,true);
-               // test.AddRange(tatom);
-               // string s = "m_money_tree_fetch_tos"; 
-               // int len = s.Length;
-               // byte[] lens  = TypeConvert.getBytes((short)len,true);
-               // test.AddRange(lens);
-               // byte[] bodys = Encoding.UTF8.GetBytes(s);
-               // test.AddRange(bodys);
-               // byte[] tint  = TypeConvert.getBytes(ErlangTy.INT32,true);
-               // test.AddRange(tint);
-               // int num = 1;
-               // byte[] tnum  = TypeConvert.getBytes((byte)num,true);
-               // test.AddRange(tnum);
-               // SendMsg(test);
+               List<byte> test = new List<byte>();
+               byte[] unique   = TypeConvert.getBytes((short)258,true);
+               test.AddRange(unique);
+               byte[] moduleId = TypeConvert.getBytes(CommandID.MODULE,true);
+               test.AddRange(moduleId);
+               byte[] methodId = TypeConvert.getBytes(CommandID.METHOD,true);
+               test.AddRange(methodId);
+               byte[] tuple = TypeConvert.getBytes(ErlangTy.TUPLE,true);
+               test.AddRange(tuple);
+               byte[] tlenx  = TypeConvert.getBytes(ErlangTy.MIN,true);
+               test.AddRange(tlenx);
+               byte[] tleny  = TypeConvert.getBytes((byte)2,true);
+               test.AddRange(tleny);
+               byte[] tatom  = TypeConvert.getBytes(ErlangTy.TATOM,true);
+               test.AddRange(tatom);
+               string s = "m_money_tree_fetch_tos"; 
+               int len = s.Length;
+               byte[] lens  = TypeConvert.getBytes((short)len,true);
+               test.AddRange(lens);
+               byte[] bodys = Encoding.UTF8.GetBytes(s);
+               test.AddRange(bodys);
+               byte[] tint  = TypeConvert.getBytes(ErlangTy.INT32,true);
+               test.AddRange(tint);
+               int num = 1;
+               byte[] tnum  = TypeConvert.getBytes((byte)num,true);
+               test.AddRange(tnum);
+               SendMsg(test);
                Debug.Log("over");
 
             } catch(Exception e){
@@ -155,7 +144,6 @@ namespace LSocket.Net
             }
 
 		}
-
 
 
         public void DoBin(){
@@ -280,11 +268,12 @@ namespace LSocket.Net
         { 
              int length = ReceiveInt();
              Debug.Log("Stringlen="+length);
-             byte[] recvBytes = new byte[length]; 
-             mSocket.Receive(recvBytes,length,0);//从服务器端接受返回信息 
-             Debug.Log(recvBytes);
-             int Method = TypeConvert.getInt(recvBytes,true);
-             int Mlv = TypeConvert.getInt(recvBytes,true);
+             byte[] recvBytes = new byte[length];
+             mSocket.Receive(recvBytes,0,length,0);//从服务器端接受返回信息 
+             ByteBuffer msg = ByteBuffer.Allocate(length);
+             Array.Copy(recvBytes, 0, msg.buf, 0, length);
+             uint Method = msg.ReadUint();
+             uint Mlv = msg.ReadUint();
              Debug.Log("Sn="+Method);
              Debug.Log("Stn="+Mlv);
              String data = "haha";

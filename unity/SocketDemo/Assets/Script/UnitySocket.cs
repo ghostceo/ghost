@@ -33,7 +33,6 @@ namespace LSocket.Net
 
         public void run()
         {
-            m_system_heartbeat_tos heart = new m_system_heartbeat_tos(); 
             while (true)
             {
                 try

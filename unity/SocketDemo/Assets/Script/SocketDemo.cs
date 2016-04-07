@@ -37,6 +37,10 @@
 
         }
 
+        void LaunchProjectile() {
+            Debug.Log("circle"+Time.time);
+        }
+
         void OnGUI()
         {
             GUI.skin = mySkin;
@@ -62,6 +66,9 @@
                     }
                 }
             }
+        if(GUI.Button(new Rect(Screen.width - 60, Screen.height - 300, 60, 60), "click")){
+            InvokeRepeating("LaunchProjectile", 2, 3.0F);
+        }
         if (GUI.Button(new Rect(Screen.width - 60, Screen.height - 240, 60, 60), "协议")) {
             socket[1].DoBin();
             Debug.Log("proto");

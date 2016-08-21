@@ -4,4 +4,6 @@
 #include <iostream>
 #include <cstdio>
 #include "pluto.h"
+#include "LogisticRegression.h"
+#include "mgr.h"
 using namespace std;

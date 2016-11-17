@@ -253,10 +253,10 @@ int main(int argc, char* argv[])
             sClient = accept(slisten, (SOCKADDR *)&remoteAddr, &nAddrlen);
             if(sClient == INVALID_SOCKET)
             {
-                printf("accept error !");
+                printf("accept error ！");
                 continue;
             }
-            printf("acceot a link：%s \r\n", inet_ntoa(remoteAddr.sin_addr));
+            printf("acceot a link:%s \r\n", inet_ntoa(remoteAddr.sin_addr));
              
             //接收数据
             int ret = recv(sClient, revData, 255, 0);       
@@ -267,7 +267,7 @@ int main(int argc, char* argv[])
             }
      
             //发送数据
-            const char * sendData = "hello,TCP Client\n";
+            const char * sendData = "hello TCP Client I am Server\n";
             send(sClient, sendData, strlen(sendData), 0);
             closesocket(sClient);
         }

@@ -4,4 +4,8 @@
 #include <iostream>
 #include <cstdio>
 #include "pluto.h"
+#include <windows.h> 
+#include <process.h> 
 using namespace std;
+
+template <class T,class U> T GetMin (T a, U b) { return (a<b?a:b); }

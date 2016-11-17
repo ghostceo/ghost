@@ -1,8 +1,7 @@
-##第四个版本 简化脚本 调整CFLAGS 顺序 避免sock编程报错
+##第三个版本 简化脚本
 TARGET = .
 CC = g++
-##CFLAGS = -g -lwssock32 -D_HH 
-CFLAGS = -g -lws2_32 -D_HH   
+CFLAGS = -g -D_HH
 CFLAGC = -c
 INCLUDE = -I$(TARGET)
 EXEC = $(TARGET)/ceo
@@ -14,7 +13,7 @@ OBJS = $(patsubst %.cpp,%.o,$(SOURCE))
  
 all: $(EXEC)
 ceo:$(OBJS)
-	$(CC)  $(INCLUDE) -o $@ $^ $(CFLAGS)
+	$(CC) $(CFLAGS) $(INCLUDE) -o $@ $^
 	@del *.o   #mingw要使用rm
 	@echo "<<<<<< $@ is created successfully! >>>>>>"
 

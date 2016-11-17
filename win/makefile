@@ -4,7 +4,7 @@ CC = g++
 CFLAGS = -g -D_HH
 CFLAGC = -c
 INCLUDE = -I$(TARGET)
-EXEC = $(TARGET)/ghost
+EXEC = $(TARGET)/ceo
 #搜索当前目录,生成由*.cpp结尾的文件列表,wildcard--函数名
 SOURCE = $(wildcard *.cpp)
 #用%.o替换$(SOURCE)中的%.cpp文件
@@ -12,9 +12,9 @@ OBJS = $(patsubst %.cpp,%.o,$(SOURCE))
 
  
 all: $(EXEC)
-ghost:$(OBJS)
+ceo:$(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDE) -o $@ $^
-	@del *.o
+	@del *.o   #mingw要使用rm
 	@echo "<<<<<< $@ is created successfully! >>>>>>"
 
 ##添加文件编译规则

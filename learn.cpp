@@ -80,7 +80,7 @@ void Learn::test1(){
     CVector b (1,2);
     CVector c;
     c = a + b;
-    cout << c.x << "," << c.y;
+    cout << c.x << "," << c.y<<endl;
 }
 
 void Learn::test2(){

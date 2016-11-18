@@ -10,6 +10,8 @@
 #include <windows.h> 
 #include <process.h> 
 #include <winsock2.h> 
+#include "cfg_reader.h"
+#include "defparser.h"
 #pragma comment(lib,"ws2_32.lib") 
 //#pragma comment(lib,"wsock32.lib") 
 

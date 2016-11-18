@@ -87,17 +87,17 @@ enum VTYPE
     V_UINT16    = 6,
     V_INT32     = 7,
     V_UINT32    = 8,
-    //V_INT64     = 9,
-    //V_UINT64    = 10,
+    V_INT64     = 9,
+    V_UINT64    = 10,
     V_FLOAT32   = 11,
-    //V_FLOAT64   = 12,
+    V_FLOAT64   = 12,
     V_ENTITYMB  = 13,
     V_ENTITY    = 14,
     V_CLSMETHOD = 15,
     V_BLOB      = 16,
 
-    //V_LIST = 4,
-    //V_MAP = 5,
+    V_LIST = 4,
+    V_MAP = 5,
 
     V_REDIS_HASH     = 22,      //redis hash类型数据
     V_LUA_OBJECT     = 23,      //任意lua对象,用在entity_index和newindex,其他地方不支持

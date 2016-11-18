@@ -207,7 +207,7 @@ int main(int argc, char* argv[])
 	    return 0;
     #endif
 
-    #define SOCKET_TEST
+    //#define SOCKET_TEST
     #ifdef SOCKET_TEST
         //初始化WSA
         WORD sockVersion = MAKEWORD(2,2);
@@ -289,6 +289,27 @@ int main(int argc, char* argv[])
          
         closesocket(slisten);
         WSACleanup();
+    #endif
+
+    //#define READER_TEST
+    #ifdef READER_TEST
+        char* pszEtcFile = "F:\\death\\ghost\\cfg.ini";
+        CCfgReader* m_cfg;
+        m_cfg = new CCfgReader(pszEtcFile);
+        string strLuaPath = m_cfg->GetValue("init", "lua_path");
+        cout<<strLuaPath<<endl;
+    #endif
+
+    #define PARSER_TEST
+    #ifdef PARSER_TEST
+        const char* pszEtcFile = "F:\\death\\ghost\\cfg.ini";
+        CCfgReader* m_cfg;
+        m_cfg = new CCfgReader(pszEtcFile);
+        CDefParser m_defParser;
+        m_defParser.init(m_cfg->GetValue("init", "def_path").c_str());
+        // m_defParser.ReadDbCfg(m_cfg);
+        // cout<<m_defParser.GetDbCfg().m_strHost<<endl;
+        return 0;
     #endif
 }
 

@@ -1,11 +1,4 @@
-//#include "stdafx.h"
-#include <windows.h>
-#include <winsock2.h>
-#include <stdlib.h>
-#include <stdio.h>
-
-#pragma  comment(lib,"ws2_32.lib")
-
+#include "client.h"
 
 int main(int argc, char* argv[])
 {
@@ -38,10 +31,37 @@ int main(int argc, char* argv[])
 
     char recData[255];
     int ret = recv(sclient, recData, 255, 0);
+    cout << "Result:" << ret << endl;
     if(ret > 0)
     {
-        recData[ret] = 0x00;
-        printf(recData);
+        // recData[ret] = 0x00;
+        // printf(recData);
+        CPluto c2(recData, ret);
+        c2.Decode();
+        uint8_t u8;
+        uint16_t u16;
+        uint32_t u32;
+        uint64_t u64;
+        int8_t i8;
+        int16_t i16;
+        int32_t i32;
+        int64_t i64;
+        string s;
+        //charArrayDummy cc;
+        // float32_t f32;
+        // float64_t f64; 
+
+        c2 >> u8 >> u16 >> u32 >> u64 >> i8 >> i16 >> i32 >> i64>>s;//>>cc;
+        cout<<u8<<endl;
+        cout<<u16<<endl;
+        cout<<u32<<endl;
+        cout<<u64<<endl;
+        cout<<i8<<endl;
+        cout<<i16<<endl;
+        cout<<i32<<endl;
+        cout<<i64<<endl;
+        cout<<s<<endl;
+        //cout<<cc.m_l<<endl;
     }
     closesocket(sclient);
     WSACleanup();

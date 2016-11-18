@@ -267,8 +267,23 @@ int main(int argc, char* argv[])
             }
      
             //发送数据
-            const char * sendData = "hello TCP Client I am Server\n";
-            send(sClient, sendData, strlen(sendData), 0);
+            // const char * sendData = "hello TCP Client I am Server\n";
+            // send(sClient, sendData, strlen(sendData), 0);
+            CPluto c1;
+            c1.Encode(120);
+            c1 << (uint8_t) 120;
+            c1 << (uint16_t) 120;
+            c1 << (uint32_t) 120;
+            c1 << (uint64_t) 120;
+            c1 << (int8_t)  120;
+            c1 << (int16_t) 120;
+            c1 << (int32_t) 120;
+            c1 << (int64_t) 120;
+            c1 << "abcddef";
+            c1 << EndPluto;
+            //PrintHexPluto(c1);
+            cout<<c1.GetLen()<<endl;
+            send(sClient, c1.GetBuff(), c1.GetLen(), 0);
             closesocket(sClient);
         }
          

@@ -467,7 +467,7 @@ void Study::duplicate (int& a, int& b, int& c) {
 void Study::pluto_alltype_test()
 {
     CPluto c1;
-    c1.Encode(120);
+ c1.Encode(120);
     c1 << (uint8_t) 120;
     c1 << (uint16_t) 120;
     c1 << (uint32_t) 120;
@@ -476,6 +476,7 @@ void Study::pluto_alltype_test()
     c1 << (int16_t) 120;
     c1 << (int32_t) 120;
     c1 << (int64_t) 120;
+
     // c1 << (float32_t) 120.1;
     // c1 << (float64_t) 120.1;
     // c1 << "abcddef";
@@ -520,5 +521,5 @@ void Study::pluto_alltype_test()
     // cout<<f64<<endl;
     // cout<<s<<endl;
     // cout <<"err_code:"<<c2.GetDecodeErrIdx() << endl;
-    cout<<__FILE__<<__LINE__<<"over"<<endl;
+    cout<<"Mod:"<<__FILE__<<"\tLine:"<<__LINE__<<endl;
 }

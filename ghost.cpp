@@ -293,7 +293,7 @@ int main(int argc, char* argv[])
 
     //#define READER_TEST
     #ifdef READER_TEST
-        char* pszEtcFile = "F:\\death\\ghost\\cfg.ini";
+        char* pszEtcFile = "F:\\ghost\\cfg.ini";
         CCfgReader* m_cfg;
         m_cfg = new CCfgReader(pszEtcFile);
         string strLuaPath = m_cfg->GetValue("init", "lua_path");
@@ -302,13 +302,13 @@ int main(int argc, char* argv[])
 
     #define PARSER_TEST
     #ifdef PARSER_TEST
-        const char* pszEtcFile = "F:\\death\\ghost\\cfg.ini";
+        const char* pszEtcFile = "F:\\ghost\\cfg.ini";
         CCfgReader* m_cfg;
         m_cfg = new CCfgReader(pszEtcFile);
         CDefParser m_defParser;
         m_defParser.init(m_cfg->GetValue("init", "def_path").c_str());
-        // m_defParser.ReadDbCfg(m_cfg);
-        // cout<<m_defParser.GetDbCfg().m_strHost<<endl;
+        m_defParser.ReadDbCfg(m_cfg);
+        cout<<m_defParser.GetDbCfg().m_strHost<<endl;
         return 0;
     #endif
 }

@@ -168,9 +168,10 @@ string& Rtrim(string& s)
         {
             return false;
         }
+        size_t dest_s = strlen(dest);
         if(src && dest)
-        {
-            for(;;)
+        {   
+            for(size_t i = 0; i < dest_s; ++i)
             {
                 char c1 = *src;
                 char c2 = *dest;

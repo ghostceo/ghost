@@ -166,7 +166,7 @@ void CDefParser::init(const char* pszDefFilePath)
     for(; iter != m_typeStr2Int.end(); ++iter)
     {
         ostringstream oss;
-        oss << pszDefFilePath << g_cPathSplitd << iter->first << ".def";
+        oss << pszDefFilePath << g_cPathSplitd << iter->first << ".xml";
         SEntityDef* p = ParseDef(oss.str().c_str());
         m_entityDefs.insert(make_pair(iter->first, p));
     }
@@ -174,6 +174,30 @@ void CDefParser::init(const char* pszDefFilePath)
     ParseParent();
 }
 
+TENTITYTYPE CDefParser::GetTypeId(const string& tname)
+    {
+        map<string, TENTITYTYPE>::const_iterator iter = m_typeStr2Int.find(tname);
+        if(iter != m_typeStr2Int.end())
+        {
+            return iter->second;
+        }
+        else
+        {
+            return ENTITY_TYPE_NONE;
+        }
+    }
+    
+const string& CDefParser::GetTypeName(TENTITYTYPE tid)
+    {
+        if(tid <= m_maxtype )
+        {
+            return m_typeInt2Str[tid];
+        }
+        else
+        {
+            return EMPTY_STRING;
+        }
+    }
 
 //解析entities.xml
 void CDefParser::ParseEntitiesXml(const char* pszFileName)
@@ -200,7 +224,7 @@ void CDefParser::ParseEntitiesXml(const char* pszFileName)
     map<string, TENTITYTYPE>::const_iterator iter = m_typeStr2Int.begin();
     for(; iter != m_typeStr2Int.end(); ++iter)
     {   
-        cout<<iter->first<<"\t"<<__LINE__<<endl;
+        //cout<<iter->first<<"\t"<<__LINE__<<endl;
         m_typeInt2Str[iter->second] = iter->first;
     }
 }
@@ -575,12 +599,12 @@ const SEntityDef* CDefParser::GetEntityDefByName(const string& strEntityName)
     }
 }
 
-// const SEntityDef* CDefParser::GetEntityDefByType(TENTITYTYPE t)
-// {
-//     const string& strEntityName = this->GetTypeName(t);
-//     const SEntityDef* pDef = this->GetEntityDefByName(strEntityName);
-//     return pDef;
-// }
+const SEntityDef* CDefParser::GetEntityDefByType(TENTITYTYPE t)
+{
+    const string& strEntityName = this->GetTypeName(t);
+    const SEntityDef* pDef = this->GetEntityDefByName(strEntityName);
+    return pDef;
+}
 
 //根据entity类型和属性名获取属性的定义
 const _SEntityDefProperties* CDefParser::GetEntityPropDef(const SEntityDef* p,
@@ -619,25 +643,25 @@ void CDefParser::ReadDbCfg(CCfgReader* r)
 }
 
 // //查询一个entity的某个方法的名称
-// const string& CDefParser::GetMethodNameById(TENTITYTYPE t, int32_t nFuncId)
-// {
-//     const SEntityDef* p = GetEntityDefByType(t);
-//     if(p)
-//     {
-//         return p->m_baseMethodsMap.GetStrByInt(nFuncId);
-//     }
+const string& CDefParser::GetMethodNameById(TENTITYTYPE t, int32_t nFuncId)
+{
+    const SEntityDef* p = GetEntityDefByType(t);
+    if(p)
+    {
+        return p->m_baseMethodsMap.GetStrByInt(nFuncId);
+    }
 
-//     return EMPTY_STRING;
-// }
+    return EMPTY_STRING;
+}
 
-// //查询一个entity的某个cell方法的名称
-// const string& CDefParser::GetCellMethodNameById(TENTITYTYPE t, int32_t nFuncId)
-// {
-// 	const SEntityDef* p = GetEntityDefByType(t);
-// 	if(p)
-// 	{
-// 		return p->m_cellMethodsMap.GetStrByInt(nFuncId);
-// 	}
+//查询一个entity的某个cell方法的名称
+const string& CDefParser::GetCellMethodNameById(TENTITYTYPE t, int32_t nFuncId)
+{
+	const SEntityDef* p = GetEntityDefByType(t);
+	if(p)
+	{
+		return p->m_cellMethodsMap.GetStrByInt(nFuncId);
+	}
 
-// 	return EMPTY_STRING;
-// }
+	return EMPTY_STRING;
+}

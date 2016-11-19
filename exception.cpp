@@ -40,6 +40,6 @@ void ThrowException(int n, const char* pszMsg, ...)
         va_start(ap, pszMsg);
         vsnprintf(szTmp, sizeof(szTmp)-1, pszMsg, ap);
         va_end(ap);
-
+        cout<<szTmp<<n<<endl;
         throw CException(n, szTmp);
     }

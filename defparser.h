@@ -41,6 +41,7 @@ struct CEntityMailbox
 
 
 const string EMPTY_STRING = "";
+enum { ENTITY_TYPE_NONE = 0};
 const char g_cPathSplitd = '\\';
 
 //string和int的映射类
@@ -191,6 +192,8 @@ public:
 
 public:
     void init(const char* pszDefFilePath);
+    TENTITYTYPE GetTypeId(const string& tname);
+    const string& GetTypeName(TENTITYTYPE tid);
 
 private:
     //解析entities.xml
@@ -216,14 +219,14 @@ public:
     VTYPE GetVTypeByStr(const string& s);
     //根据entity类型获取其定义
     const SEntityDef* GetEntityDefByName(const string& );
-    //const SEntityDef* GetEntityDefByType(TENTITYTYPE t);
+    const SEntityDef* GetEntityDefByType(TENTITYTYPE t);
     //根据entity类型和属性名获取属性的定义
     const _SEntityDefProperties* GetEntityPropDef(const SEntityDef*, const string&);
     const _SEntityDefProperties* GetEntityPropDef(const string&, const string&);
     //查询一个entity的某个方法的名称
-    //const string& GetMethodNameById(TENTITYTYPE t, int32_t nFuncId);
+    const string& GetMethodNameById(TENTITYTYPE t, int32_t nFuncId);
 	//查询一个entity的某个cell方法的名称
-	//const string& GetCellMethodNameById(TENTITYTYPE t, int32_t nFuncId);
+	const string& GetCellMethodNameById(TENTITYTYPE t, int32_t nFuncId);
 
 public:
     void ReadDbCfg(CCfgReader* r);

@@ -1,4 +1,4 @@
-##第三个版本 简化脚本 调整CFLAGS 顺序 避免sock编程报错
+##第三个版本 简化脚本 调整CFLAGS 顺序 避免sock编程报错 server在chat/demo server:startu()
 TARGET = .
 CC = g++
 CFLAGS = -g -lws2_32 -D_HH

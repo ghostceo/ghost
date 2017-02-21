@@ -47,16 +47,19 @@ void Study::compare() {
     vector<int>v(2);  
     v[0]=10;  
     int *p = &v[0];  
-    cout<<"vector第一个元素迭代指针*p="<<*p<<endl;  
+    // cout<<"vector第一个元素迭代指针*p="<<*p<<endl; 
+    cout<<"vector`s no.1 itor *p="<<*p<<endl;  
     v.push_back(20);  
-    cout<<"vector容量变化后原vector第1个元素迭代指针*p="<<*p<<endl;  
-  
+    // cout<<"vector容量变化后原vector第1个元素迭代指针*p="<<*p<<endl;  
+    cout<<"vector after change no.1 itor *p="<<*p<<endl;
     deque<int> d(2);  
     d[0]=10;  
     int *q = &d[0];  
-    cout<<"deque第一个元素迭代指针*q="<<*q<<endl;  
+    //cout<<"deque第一个元素迭代指针*q="<<*q<<endl; 
+    cout<<"deque`s no.1 itor *q="<<*q<<endl; 
     d.push_back(20);  
-    cout<<"deque容量变化后第一个元素迭代器指针*q="<<*q<<endl;  
+    //cout<<"deque容量变化后第一个元素迭代器指针*q="<<*q<<endl;  
+    cout<<"deque after change no.1 itor *q="<<*q<<endl;
 }
 
 void Study::vect() {
@@ -274,7 +277,7 @@ void Study::vect() {
       
     vecIntA.erase(vecIntA.begin()+4);  
           
-    cout<<"删除第5个元素后的向量vecIntA:"<<endl;  
+    cout<<"del no.5 vecIntA:"<<endl;  
     //打印vectorA  
     for(vector<int>::iterator it = vecIntA.begin();it!=vecIntA.end();it++)  
     {  
@@ -285,7 +288,7 @@ void Study::vect() {
     //删除第2-5个元素  
     vecIntA.erase(vecIntA.begin()+1,vecIntA.begin()+5);  
   
-    cout<<"删除第2-5个元素后的vecIntA:"<<endl;  
+    cout<<"del no.2-no.5 vecIntA:"<<endl;  
     //打印vectorA  
     for(vector<int>::iterator it = vecIntA.begin();it!=vecIntA.end();it++)  
     {  
@@ -296,7 +299,7 @@ void Study::vect() {
     //删除最后一个元素  
     vecIntA.pop_back();  
   
-    cout<<"删除最后一个元素后的vecIntA:"<<endl;  
+    cout<<"del last vecIntA:"<<endl;  
     //打印vectorA  
     for(vector<int>::iterator it = vecIntA.begin();it!=vecIntA.end();it++)  
     {  
@@ -309,12 +312,45 @@ void Study::vects() {
     Student s1("1001","zhangsan","boy","1988-10-10");     
     Student s2("1002","lisi","boy","1988-8-25");  
     Student s3("1003","wangwu","boy","1989-2-14");  
-  
+   
+    // map<int,Student*> stumap;
+    // stumap[1001]=&s1;
+    // stumap[1002]=&s2;
+    // stumap[1003]=&s3;
+    // map<int, Student*>::iterator iterstu = stumap.find(1003);
+    // if (iterstu != stumap.end())
+    // {
+    //     iterstu->second->Display();
+    // }
+
+
+    RoleTemp r1;
+    r1.rid=1001;
+    r1.age=12;
+    r1.name="toy";
+    RoleTemp r2;
+    r2.rid=1002;
+    r2.age=13;
+    r2.name="tom";
+    RoleTemp r3;
+    r3.rid=1003;
+    r3.age=14;
+    r3.name="joy";
+    map<int,RoleTemp> rolemap;
+    rolemap[1001]=r1;
+    rolemap[1002]=r2;
+    rolemap[1003]=r3;
+    map<int, RoleTemp>::iterator iterrole = rolemap.find(1003);
+    if (iterrole != rolemap.end())
+    {
+        cout<<"role:"<<iterrole->second.name<<endl;
+    }
+    
+
     StudCollect s; 
     s.Add(s1);  
     s.Add(s2);  
     s.Add(s3);  
-  
     Student* ps = s.Find("1002");  
     if(ps)  
         ps->Display();
@@ -325,7 +361,7 @@ void Student::Display()  {
     cout<<m_strNO<<"\t";  
     cout<<m_strName<<"\t";  
     cout<<m_strSex<<"\t";  
-    cout<<m_strDate<<"\t";  
+    cout<<m_strDate<<"\t\n";  
 }
 
 //注意传值 传址

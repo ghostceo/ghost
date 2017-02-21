@@ -55,5 +55,13 @@ typedef list<string> LISTSTR;
 		public:  
 		    void Add(Student &s); 
 		    Student* Find(string strNO);  
-	};    
+	};   
+
+	struct RoleTemp
+		{
+			int	   rid;
+			int    age;
+			string name;
+		};
+
 #endif

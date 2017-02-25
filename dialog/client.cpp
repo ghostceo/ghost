@@ -1,5 +1,14 @@
 #include "client.h"
 
+int decode_test(const char* s, uint32_t n) {
+    char* m_szBuff = new char[n];
+    int m_unLen = 6;
+    memcpy(m_szBuff, s, n);
+    uint16_t nu = sz_to_uint16((unsigned char*)m_szBuff + m_unLen);
+    cout<<nu<<endl;
+    return 0;
+}
+
 int main(int argc, char* argv[])
 {
     WORD sockVersion = MAKEWORD(2,2);
@@ -18,8 +27,8 @@ int main(int argc, char* argv[])
 
     sockaddr_in serAddr;
     serAddr.sin_family = AF_INET;
-    serAddr.sin_port = htons(8888);
-    serAddr.sin_addr.S_un.S_addr = inet_addr("127.0.0.1"); 
+    serAddr.sin_port = htons(2345);
+    serAddr.sin_addr.S_un.S_addr = inet_addr("192.168.5.119"); 
     if (connect(sclient, (sockaddr *)&serAddr, sizeof(serAddr)) == SOCKET_ERROR)
     {
         printf("connect error !");
@@ -36,6 +45,7 @@ int main(int argc, char* argv[])
     {
         // recData[ret] = 0x00;
         // printf(recData);
+
         CPluto c2(recData, ret);
         c2.Decode();
         uint8_t u8;
@@ -62,8 +72,11 @@ int main(int argc, char* argv[])
         cout<<i64<<endl;
         cout<<s<<endl;
         //cout<<cc.m_l<<endl;
+        decode_test(recData, ret);
     }
     closesocket(sclient);
     WSACleanup();
     return 0;
 }
+
+    

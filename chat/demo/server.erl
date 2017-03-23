@@ -162,14 +162,15 @@ read_string(<<L:8,H:8,Bin/binary>>) ->
 	<<L:16>> = <<H:8,L:8>>,
     case Bin of
         <<Str:L/binary-unit:8, Rest/binary>> ->
-            {unicode:characters_to_list(Str, utf8), Rest};
+        	{binary_to_list(Str), Rest};
+            % {unicode:characters_to_list(Str, utf8), Rest};
         _R1 ->
             {[],<<>>}
     end.
 
 %%打包字符串
 write_string(S) when is_list(S)->
-    SB = unicode:characters_to_binary(S, utf8),
+    SB = iolist_to_binary(S),%unicode:characters_to_binary(S, utf8),
     Len = byte_size(SB),
     <<H:8,L:8>> = <<Len:16>>,
     <<L:8,H:8,SB/binary>>;

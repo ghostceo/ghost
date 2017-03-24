@@ -12,10 +12,11 @@
 %% gen_server callbacks
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
 %% API
--export([start_link/4]).
+-export([start_link/4, new_table/0]).
 -export([encode/2, decode/1]).
 
 -record(state, {id, sock, role_id, scene_id, x, y, ard_roles = [], ard_mons = [], skills = []}).
+
 
 %%%-------------------------------------------------------------------
 %%% API Functions
@@ -23,19 +24,25 @@
 start_link(ID, SceneID, X, Y) ->
 	gen_server:start_link(?MODULE, {ID, SceneID, X, Y}, []).
 
+new_table() ->
+    ets:new(role_state, [set, named_table, public, {keypos, #state.id}]).
+
 %%%-------------------------------------------------------------------
 %%% Callback Functions
 %%%-------------------------------------------------------------------
 init({ID, SceneID, X, Y}) ->
+    process_flag(trap_exit, true),
 	{ok, Host} = application:get_env(host),
 	{ok, Port} = application:get_env(port),
 	case gen_tcp:connect(Host, Port, [binary, {packet,0}, {active,false}], 5000) of
 		{ok, Sock} ->
 			State = #state{id = ID, sock = Sock, scene_id = SceneID, x = X, y = Y},
 			do_auth(State),
-			erlang:send_after(5000, self(), heartbeat),
-			erlang:send_after(10000, self(), random_act),
-			{ok, State, 200};
+            ets:insert(role_state, State),
+            Pid = spawn_link(fun() -> timer_do(ID, Sock, self()) end),
+			erlang:send_after(5000, Pid, heartbeat),
+			erlang:send_after(10000, Pid, random_act),
+			{ok, State, 0};
 		{error, Err} ->
 			{stop, Err}
 	end.
@@ -46,41 +53,31 @@ handle_call(_Request, _From, State) ->
 handle_cast(_Msg, State) ->
 	{noreply, State}.
 
-handle_info(random_act, State) ->
-	case random(1, 2) of
-		1 ->
-			do_walk(State);
-		2 ->
-			do_attack(State)
-	end,
-	erlang:send_after(random(1, 3)*1000, self(), random_act),
-	{noreply, State};
-handle_info(heartbeat, State = #state{sock = Sock}) ->
-	gen_tcp:send(Sock, encode(10006, <<>>)),
-	erlang:send_after(5000, self(), heartbeat),
-	{noreply, State};
 handle_info(timeout, State = #state{sock = Sock}) ->
-	erlang:send_after(1000, self(), timeout),
 	{ok, <<Len:32>>} = gen_tcp:recv(Sock, 4),
 	{ok, Bin} = gen_tcp:recv(Sock, Len - 4),
 	case catch decode(Bin) of
 		{ok, Cmd, Data} ->
 			case do_handle_info(Cmd, Data, State) of
 				{ok, NewSt} ->
-					{noreply, NewSt};
+                    ets:insert(role_state, NewSt),
+					{noreply, NewSt, 0};
 				{stop, Reason} ->
 					error_logger:error_msg("stop, reason:~p~n", [Reason]),
 					{stop, Reason, State};
 				_ ->
-					{noreply, State}
+					{noreply, State, 0}
 			end;
 		Error ->
 			error_logger:error_msg("decode_error:~p~n", [Error]),
 			{stop, normal, State}
 	end;
+handle_info(exit, State) ->
+    error_logger:error_msg("timer do exit"),
+    {stop, exit, State};
 handle_info(Info, State) ->
 	error_logger:error_msg("unhandle info:~p~n", [Info]),
-	{noreply, State}.
+	{noreply, State, 0}.
 
 terminate(_Reason, _State) ->
 	ok.
@@ -91,6 +88,29 @@ code_change(_OldVsn, State, _Extra) ->
 %%%-------------------------------------------------------------------
 %%% Internal Functions
 %%%-------------------------------------------------------------------
+
+timer_do(Id, Socket, Pid) ->
+    receive
+        heartbeat ->
+            gen_tcp:send(Socket, encode(10006, <<>>)),
+            erlang:send_after(6000, self(), heartbeat);
+        random_act ->
+            case ets:lookup(role_state, Id) of
+                [State] ->
+                    case random(1, 2) of
+                        1 ->
+                            do_walk(State);
+                        2 ->
+                            do_attack(State)
+                    end,
+                    erlang:send_after(500, self(), random_act);
+                _ ->
+                    erlang:send(Pid, exit)
+            end;
+        _ -> ignore
+    end,
+    timer_do(Id, Socket, Pid).
+
 %% 验证
 do_handle_info(10000, <<_:8, _:64, Len:16, Bin/binary>>, State) ->
 	case Len of

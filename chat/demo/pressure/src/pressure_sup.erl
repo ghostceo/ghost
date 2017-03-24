@@ -28,6 +28,7 @@ start_link() ->
 init(_Args) ->
 	{ok, Scenes} = application:get_env(scenes),
 	{ok, Load}   = application:get_env(load),
+    pressure_agent:new_table(),
 	{_, ChildSpecs} = lists:foldl(fun
 		({SceneID, X, Y}, {AccGrp, AccList}) ->
 			AccList2 = lists:foldl(fun

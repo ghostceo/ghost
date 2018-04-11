@@ -28,6 +28,22 @@ class Shape
       }
       protected int width;
       protected int height;
+
+      public Shape( int a=0, int b=0)
+      {
+         width = a;
+         height = b;
+      }
+
+
+      //当有一个定义在类中的函数需要在继承类中实现时，
+      //可以使用虚方法。虚方法是使用关键字 virtual 声明的。虚方法可以在不同的继承类中有不同的实现。对虚方法的调用是在运行时发生的。
+      public virtual int area()
+      {
+         Console.WriteLine("父类的面积：");
+         return 0;
+      }
+
    }
 
    // 不支持多重继承  可以使用接口来扩展 基类 PaintCost
@@ -49,8 +65,62 @@ class Shape
       {
          return area * 70;
       }
+      public Rectangle( int a=0, int b=0): base(a, b)
+      {
+
+      }
+      public override int area ()
+      {
+         Console.WriteLine("Rectangle 类的面积：");
+         return (width * height);
+      }
+
    }
 
+
+   class Triangle: Shape
+   {
+      public Triangle(int a = 0, int b = 0): base(a, b)
+      {
+
+      }
+      public override int area()
+      {
+         Console.WriteLine("Triangle 类的面积：");
+         return (width * height / 2);
+      }
+   }
+   class Caller
+   {
+      public void CallArea(Shape sh)
+      {
+         int a;
+         a = sh.area();
+         Console.WriteLine("面积： {0}", a);
+      }
+   }
+
+
+   //抽象类
+   abstract class AbsShape
+   {
+      public abstract int area();
+   }
+   class AbsRectangle:  AbsShape
+   {
+      private int length;
+      private int width;
+      public AbsRectangle( int a=0, int b=0)
+      {
+         length = a;
+         width = b;
+      }
+      public override int area ()
+      {
+         Console.WriteLine("Rectangle 类的面积：");
+         return (width * length);
+      }
+   }
 
 class Rectangle2
    {
@@ -93,8 +163,112 @@ class Rectangle2
 
 
 
+
+[AttributeUsage(AttributeTargets.All)]
+public class HelpAttribute : System.Attribute
+{
+   public readonly string Url;
+
+   public string Topic  // Topic 是一个命名（named）参数
+   {
+      get
+      {
+         return topic;
+      }
+      set
+      {
+
+         topic = value;
+      }
+   }
+
+   public HelpAttribute(string url)  // url 是一个定位（positional）参数
+   {
+      this.Url = url;
+   }
+
+   private string topic;
+}
+[HelpAttribute("Information on the class MyClass")]
+class MyClass
+{
+}
+
+
+
+
+public class EventTest
+  {
+    private int value;
+
+    public delegate void NumManipulationHandler();
+
+
+    public event NumManipulationHandler ChangeNum;
+    protected virtual void OnNumChanged()
+    {
+      if ( ChangeNum != null )
+      {
+        ChangeNum(); /* 事件被触发 */
+      }else {
+        Console.WriteLine( "event not fire" );
+        Console.ReadKey(); /* 回车继续 */
+      }
+    }
+
+
+    public EventTest()
+    {
+      int n = 5;
+      SetValue( n );
+    }
+
+
+    public void SetValue( int n )
+    {
+      if ( value != n )
+      {
+        value = n;
+        OnNumChanged();
+      }
+    }
+  }
+
+
+  /***********订阅器类***********/
+
+  public class subscribEvent
+  {
+    public void printf()
+    {
+      Console.WriteLine( "event fire" );
+      Console.ReadKey(); /* 回车继续 */
+    }
+  }
+
+
+
 class Demo
 {
+	delegate int NumberChanger(int n);
+
+	static int num = 10;
+	public static int AddNum(int p)
+	{
+	 num += p;
+	 return num;
+	}
+
+	public static int MultNum(int q)
+	{
+	 num *= q;
+	 return num;
+	}
+	public static int getNum()
+	{
+	 return num;
+	}
+
     static void Main(string[] args)
     {
         Demo d = new Demo();
@@ -110,6 +284,21 @@ class Demo
                 case "3" :
                     d.fun3();
                     break;
+                case "4" :
+                    d.fun4();
+                    break;
+                case "5" :
+                    d.fun5();
+                    break;
+                case "6" :
+                	d.fun6();
+                	break;
+                case "7" :
+                	d.fun7();
+                	break;
+                case "8" :
+                	d.fun8();
+                	break;
                 default:
                     Console.WriteLine("无效的参数");
                     break;
@@ -160,6 +349,57 @@ class Demo
    {
    	  Tabletop t = new Tabletop(4.5, 7.5);
       t.Display();
+
+   }
+
+   void fun4()
+   {
+   	 AbsRectangle r = new AbsRectangle(10, 7);
+     double a = r.area();
+     Console.WriteLine("面积： {0}",a);
+
+   }
+
+   void fun5()
+   {
+   	   Caller c = new Caller();
+       Rectangle r = new Rectangle(10, 7);
+       Triangle t = new Triangle(10, 5);
+       c.CallArea(r);
+       c.CallArea(t);
+   }
+
+   void fun6()
+   {
+   		System.Reflection.MemberInfo info = typeof(MyClass);
+         object[] attributes = info.GetCustomAttributes(true);
+         for (int i = 0; i < attributes.Length; i++)
+         {
+            Console.WriteLine(attributes[i]);
+         }
+
+   }
+
+   void fun7()
+   {
+   		// 创建委托实例
+         NumberChanger nc1 = new NumberChanger(AddNum);
+         NumberChanger nc2 = new NumberChanger(MultNum);
+         // 使用委托对象调用方法
+         nc1(25);
+         Console.WriteLine("Value of Num: {0}", getNum());
+         nc2(5);
+         Console.WriteLine("Value of Num: {0}", getNum());
+
+   }
+
+   void fun8()
+   {
+   	  EventTest e = new EventTest(); /* 实例化对象,第一次没有触发事件 */
+      subscribEvent v = new subscribEvent(); /* 实例化对象 */
+      e.ChangeNum += new EventTest.NumManipulationHandler( v.printf ); /* 注册 */
+      e.SetValue( 7 );
+      e.SetValue( 11 );
 
    }
 }

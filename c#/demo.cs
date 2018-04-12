@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 
 class Box
 {
@@ -264,7 +265,6 @@ public class MyGenericArray<T>
     }
 
 
-
 class Demo
 {
 	delegate int NumberChanger(int n);
@@ -293,6 +293,39 @@ class Demo
         lhs = rhs;
         rhs = temp;
     }
+
+    public static void CallToChildThread()
+        {
+            // Console.WriteLine("Child thread starts");
+            // // 线程暂停 5000 毫秒
+            // int sleepfor = 5000;
+            // Console.WriteLine("Child Thread Paused for {0} seconds",
+            //                   sleepfor / 1000);
+            // Thread.Sleep(sleepfor);
+            // Console.WriteLine("Child thread resumes");
+            try
+            {
+
+                Console.WriteLine("Child thread starts");
+                // 计数到 10
+                for (int counter = 0; counter <= 10; counter++)
+                {
+                    Thread.Sleep(500);
+                    Console.WriteLine(counter);
+                }
+                Console.WriteLine("Child Thread Completed");
+
+            }
+            catch (ThreadAbortException e)
+            {
+                Console.WriteLine("Thread Abort Exception");
+            }
+            finally
+            {
+                Console.WriteLine("Couldn't catch the Thread Exception");
+            }
+
+        }
 
     static void Main(string[] args)
     {
@@ -330,6 +363,12 @@ class Demo
                 case "10" :
                 	d.fun10();
                 	break;
+                case "11" :
+                    d.fun11();
+                    break;
+                case "12" :
+                    d.fun12();
+                    break;
                 default:
                     Console.WriteLine("无效的参数");
                     break;
@@ -489,5 +528,25 @@ class Demo
     Console.WriteLine("Char values after calling swap:");
     Console.WriteLine("c = {0}, d = {1}", c, d);
 
+   }
+
+   void fun11()
+   {
+    Thread th = Thread.CurrentThread;
+    th.Name = "MainThread";
+    Console.WriteLine("This is {0}", th.Name);
+   }
+
+   void fun12()
+   {
+    ThreadStart childref = new ThreadStart(CallToChildThread);
+    Console.WriteLine("In Main: Creating the Child thread");
+    Thread childThread = new Thread(childref);
+    childThread.Start();
+    // 停止主线程一段时间
+    Thread.Sleep(2000);
+    // 现在中止子线程
+    Console.WriteLine("In Main: Aborting the Child thread");
+    childThread.Abort();
    }
 }
